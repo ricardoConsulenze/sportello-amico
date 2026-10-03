@@ -65,3 +65,39 @@ def rules_for(request_type: str, permanent: bool | None) -> list[str]:
 
 def rules_text(ids: list[str]) -> str:
     return "\n".join(f"{i}: {RULES[i][0]}" for i in ids)
+
+
+# Checks on the other attachments (identity document, photo, delega, atto di nomina), made by Claude only
+# when the person agrees. Each check comes from R2 or R3: only what the form asks, nothing more (the form
+# does not say the identity document must be in date, so we do not check it).
+# kind -> [(check id, what Claude verifies, rule)]
+DOC_CHECKS = {
+    "id_front": [
+        ("tipo", "È un documento d'identità (carta d'identità, passaporto o patente).", "R2"),
+        ("lato", "Si vede il fronte, cioè il lato con la foto della persona.", "R2"),
+        ("leggibile", "Il documento è intero e leggibile: si vedono i bordi, senza riflessi o parti sfocate.", "R2"),
+    ],
+    "id_back": [
+        ("tipo", "È un documento d'identità (carta d'identità, passaporto o patente).", "R2"),
+        ("lato", "Si vede il retro, cioè il lato opposto a quello con la foto principale.", "R2"),
+        ("leggibile", "Il documento è intero e leggibile: si vedono i bordi, senza riflessi o parti sfocate.", "R2"),
+    ],
+    "photo": [
+        ("persona", "È la foto di una sola persona, con il viso intero, visibile e di fronte.", "R2"),
+        ("colori", "La foto è a colori.", "R2"),
+        ("originale", "È una fotografia della persona, non la foto di un documento, di una stampa o di uno schermo.", "R2"),
+    ],
+    "delega": [
+        ("modulo", "È una delega per la domanda del pass disabili (per esempio il MOD. DELEGA del Comune).", "R3"),
+        ("compilata", "Le parti su chi delega e su chi è delegato sono compilate.", "R3"),
+        ("firma", "C'è la firma di chi delega.", "R3"),
+    ],
+    "nomina": [
+        ("tipo", "È un atto di nomina di tutore, protutore, procuratore o amministratore di sostegno.", "R3"),
+        ("leggibile", "Il documento è intero e leggibile.", "R3"),
+    ],
+}
+
+
+def doc_checks_text(kind: str) -> str:
+    return "\n".join(f"- {cid}: {text} (regola {rule})" for cid, text, rule in DOC_CHECKS[kind])

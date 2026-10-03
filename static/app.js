@@ -35,6 +35,7 @@ const fresh = () => ({
   user: null, role: null, request: null, permanent: null, canGoOut: null, car: null, plate: "",
   files: {}, // slot -> {blob, name, url, note, status: scanning|ok|bad|warn, stamp, demo}
   medical: null, rehearsal: null, stage: "welcome", tab: 1, chips: [], mock: false,
+  consent: null, // may Claude check the identity document, photo and delega? null (not asked yet) | "check" | "local"
 });
 S = fresh();
 
@@ -203,7 +204,7 @@ async function welcome() {
 }
 
 async function explainPrivacy() {
-  await bot(`<p>Il documento d'identità, la foto e la delega <strong>restano sul tuo telefono o computer</strong>: li sistemo io qui, senza mandarli da nessuna parte.</p>
+  await bot(`<p>Il documento d'identità, la foto e la delega <strong>restano sul tuo telefono o computer</strong>: li sistemo io qui. Te lo chiedo prima: li faccio controllare a Claude <strong>solo se mi dici di sì</strong>.</p>
     <p>Solo il <strong>documento sanitario</strong> lo faccio leggere a Claude, un'intelligenza artificiale, e guarda <strong>solo i riferimenti che chiede il Comune</strong>, non la diagnosi. Non viene salvato.</p>`);
   chips([{ label: "Ho capito, iniziamo", yes: true, do: askRole }]);
 }
@@ -271,8 +272,11 @@ const FILE_NAMES = { medical: "documento_sanitario", idFront: "documento_titolar
 // ===================================================================================== examples and transparency
 
 const renewalCert = () => S.request === "rinnovo" && S.permanent;
-const goesToCheck = (id) => id === "medical" || id === "summary"; // PRIVACY.md: only these two leave the device
-const where = (id) => goesToCheck(id) ? "🔎 Lo legge il controllo automatico, poi viene cancellato" : "🔒 Resta sul tuo telefono o computer";
+// PRIVACY.md: the medical document and the summary always go to the check; the other attachments only if the person agrees
+const KIND = { idFront: "id_front", reqFront: "id_front", idBack: "id_back", reqBack: "id_back", photo: "photo", delega: "delega", nomina: "nomina" };
+const goesToCheck = (id) => id === "medical" || id === "summary" || (KIND[id] && (S.consent === "check" || !!S.files[id]?.check));
+const where = (id) => goesToCheck(id) ? "🔎 Lo legge il controllo automatico, poi viene cancellato"
+  : KIND[id] && S.consent === null ? "🔒 Resta sul tuo telefono o computer, se non mi chiedi di controllarlo" : "🔒 Resta sul tuo telefono o computer";
 const HEIC = "📱 Le foto dell'iPhone le converto io: puoi usarle così come sono.";
 
 function why(id) {
@@ -342,15 +346,18 @@ function showExample(id) {
 const RULE_PLAIN = { R4: "il riferimento che chiede il Comune (art. 381 o L. 382/70)", R5: "tutte le pagine, versione OMISSIS, in un unico PDF",
   R6: "la frase esatta del medico per il rinnovo" };
 const ESITO = { trovato: "✅ c'è", manca: "❌ manca", non_sicuro: "❓ non sono sicuro" };
+const ESITO_DOC = { trovato: "✅ sì", manca: "❌ no", non_sicuro: "❓ non sono sicuro" }; // the document checks are yes/no questions
 
-function howChecked(m) {
+function howChecked(m, id = "medical") {
+  const notLooked = id === "medical"
+    ? ["Non ho letto la diagnosi e non la giudico.", "Non ho copiato nomi, codici fiscali o date di nascita."]
+    : ["Non ho copiato nomi, numeri del documento o date.", ...(id === "photo" ? ["Non ho descritto la persona nella foto."] : [])];
   sheet("🔎 Come ho controllato?", `<p>Il controllo automatico lo fa <strong>Claude, un'intelligenza artificiale</strong>.${m.mock ? " In questa dimostrazione le risposte sono preimpostate." : ""}</p>
     <h3>Cosa ho guardato</h3>
-    <ul>${m.controlli.map((c) => `<li><strong>${esc(RULE_PLAIN[c.regola] || c.regola)}</strong>: ${ESITO[c.esito] || ""}<br>
+    <ul>${m.controlli.map((c) => `<li><strong>${esc(c.etichetta ? c.etichetta.replace(/\.$/, "") : RULE_PLAIN[c.regola] || c.regola)}</strong>: ${(c.etichetta ? ESITO_DOC : ESITO)[c.esito] || ""}<br>
       <span class="small">Dove: ${esc(c.dove_ho_guardato)} · <a href="${esc(m.fonti?.[c.regola] || SRC.form)}" target="_blank" rel="noopener">regola ${esc(c.regola)} del Comune</a></span></li>`).join("")}</ul>
     <h3>Cosa non ho guardato</h3>
-    <ul><li>Non ho letto la diagnosi e non la giudico.</li><li>Non ho copiato nomi, codici fiscali o date di nascita.</li>
-      <li>Il documento non è stato conservato.</li></ul>
+    <ul>${notLooked.map((t) => `<li>${t}</li>`).join("")}<li>Il documento non è stato conservato.</li></ul>
     <h3>Chi decide</h3>
     <p>Decide l'<strong>ufficio del Comune</strong>. Io controllo solo che il documento sia completo. Posso sbagliare: quando non sono sicuro, te lo dico.</p>`);
 }
@@ -381,6 +388,22 @@ function progress(steps) {
     fail: () => end("⚠️ Il controllo non è riuscito: non ho un risultato.", () => "–"),
   };
 }
+
+// same ids as DOC_CHECKS in rules.py: the labels are shown while the check runs
+const DOC_STEPS = {
+  id_front: [{ id: "tipo", label: "Guardo che sia un documento d'identità" }, { id: "lato", label: "Guardo che sia il davanti" }, { id: "leggibile", label: "Guardo che si legga bene" }],
+  id_back: [{ id: "tipo", label: "Guardo che sia un documento d'identità" }, { id: "lato", label: "Guardo che sia il retro" }, { id: "leggibile", label: "Guardo che si legga bene" }],
+  photo: [{ id: "persona", label: "Guardo che si veda bene il viso" }, { id: "colori", label: "Guardo che sia a colori" }, { id: "originale", label: "Guardo che non sia la foto di uno schermo" }],
+  delega: [{ id: "modulo", label: "Guardo che sia la delega giusta" }, { id: "compilata", label: "Guardo che sia compilata" }, { id: "firma", label: "Cerco la firma" }],
+  nomina: [{ id: "tipo", label: "Guardo che sia un atto di nomina" }, { id: "leggibile", label: "Guardo che si legga bene" }],
+};
+// stamp for the first failed check: says what to fix, in 1-3 words
+const DOC_STAMP = { tipo: "DOCUMENTO SBAGLIATO", modulo: "DOCUMENTO SBAGLIATO", lato: "LATO SBAGLIATO", leggibile: "NON SI LEGGE",
+  persona: "VISO NON CHIARO", colori: "SERVE A COLORI", originale: "RIFAI LA FOTO", compilata: "DA COMPLETARE", firma: "MANCA LA FIRMA" };
+const ICON = { trovato: "✅", manca: "❌", non_sicuro: "❓" };
+
+const checksList = (m) => `<ul>${m.controlli.map((c) => `<li>${ICON[c.esito]} ${esc(c.spiegazione)}${c.esito !== "trovato" ? `<br><strong>Cosa fare:</strong> ${esc(c.cosa_fare)}` : ""}<br><span class="small">Ho guardato: ${esc(c.dove_ho_guardato)} · regola ${esc(c.regola)}</span></li>`).join("")}</ul>
+  <p class="small">È un controllo di completezza: la decisione è dell'ufficio.</p>`;
 
 function medicalSteps() {
   const ref = renewalCert() ? { rule: "R6", label: "Cerco la frase esatta che chiede il Comune" } : { rule: "R4", label: "Cerco il riferimento che chiede il Comune" };
@@ -478,8 +501,9 @@ async function receive(id, files, demo = false) {
     f.stamp = prepared.grey ? "SERVE A COLORI" : "PRONTO";
     S.files[id] = f; renderTable();
     await bot(`<p>${prepared.grey ? "⚠️" : "✅"} ${esc(prepared.note || "Fatto, è nella busta.")}</p>`);
-    if (id === "photo" && prepared.grey) return chips([{ label: "📷 Rifaccio la foto", do: () => pickFile("photo") }, { label: "Va bene così", soft: true, do: nextSlot }]);
-    return nextSlot();
+    if (S.consent === null) return askConsent(id);
+    if (S.consent === "check") return checkDoc(id);
+    return afterLocal(id);
   }
   f.status = "scanning"; S.files[id] = f; renderTable();
   if (prepared.note) await bot(`<p>${esc(prepared.note)}</p>`);
@@ -497,16 +521,64 @@ async function receive(id, files, demo = false) {
   medicalVerdict(f);
 }
 
+// local result only (no consent): the colour check on the photo is the one thing that can be fixed here
+function afterLocal(id) {
+  if (id === "photo" && S.files.photo?.status === "warn") return chips([{ label: "📷 Rifaccio la foto", do: () => pickFile("photo") }, { label: "Va bene così", soft: true, do: nextSlot }]);
+  return nextSlot();
+}
+
+// asked once, at the first attachment after the medical document; the answer holds for the whole envelope
+async function askConsent(id) {
+  await bot(`<p>Vuoi che controlli anche <strong>documento d'identità, foto e delega</strong>?</p>
+    <p>Li legge Claude, un'intelligenza artificiale. Guarda solo se è il lato giusto, se si legge e se c'è la firma. <strong>Non copia nomi, numeri o date</strong> e non salva niente.</p>
+    <p class="small">Se preferisci, restano solo sul tuo telefono o computer: li sistemo io qui, senza controllo.</p>`);
+  chips([
+    { label: "🔎 Sì, controllali", yes: true, kw: ["sì", "si", "controlla"], do: () => { S.consent = "check"; renderTable(); checkDoc(id); } },
+    { label: "🔒 No, restano qui", no: true, kw: ["no", "restano", "qui"], do: () => { S.consent = "local"; renderTable(); afterLocal(id); } },
+  ]);
+}
+
+async function checkDoc(id) {
+  const f = S.files[id];
+  const local = { status: f.status, stamp: f.stamp };
+  f.status = "scanning"; renderTable();
+  const steps = DOC_STEPS[KIND[id]], prog = progress(steps);
+  try {
+    f.check = await Connectors.backend.checkDocument({ kind: KIND[id], files: [await forClaude(f)] });
+  } catch (e) {
+    prog.fail();
+    Object.assign(f, local); renderTable();
+    await bot(`<p>${esc(e.message)}</p><p>Il file resta comunque nella busta.</p>`);
+    return chips([{ label: "Riprova il controllo", do: () => checkDoc(id) }, { label: "Vado avanti", soft: true, do: nextSlot }]);
+  }
+  prog.ok((st) => ICON[f.check.controlli.find((c) => c.controllo === st.id)?.esito] || "–");
+  docVerdict(id, f);
+}
+
+async function docVerdict(id, f) {
+  const m = f.check;
+  const failed = m.controlli.find((c) => c.esito === "manca");
+  f.status = { sembra_completo: "ok", manca_qualcosa: "bad", da_verificare: "warn" }[m.esito_generale];
+  f.stamp = f.status === "ok" ? "VA BENE" : f.status === "warn" ? "DA VERIFICARE" : DOC_STAMP[failed?.controllo] || "DA SISTEMARE";
+  renderTable();
+  await bot(`<p><strong>${esc(m.messaggio)}</strong></p>`, checksList(m));
+  const how = addMsg("bot", `<p><button class="chip soft" type="button">🔎 Come ho controllato?</button></p>`);
+  how.querySelector("button").addEventListener("click", () => howChecked(m, id));
+  if (f.status === "ok") return nextSlot();
+  const list = [];
+  if (id === "delega") list.push({ label: "📝 Preparami la delega", keep: true, do: openDelegaSheet });
+  list.push({ label: id === "photo" ? "📷 Rifaccio la foto" : "📷 Lo rifotografo", do: () => pickFile(id) });
+  list.push({ label: "Vado avanti, lo sistemo dopo", soft: true, do: nextSlot });
+  chips(list);
+}
+
 async function medicalVerdict(f) {
   const m = S.medical;
   const pagesMissing = m.controlli.some((c) => c.regola === "R5" && c.esito === "manca");
   f.status = { sembra_completo: "ok", manca_qualcosa: "bad", da_verificare: "warn" }[m.esito_generale];
   f.stamp = f.status === "ok" ? "VA BENE" : f.status === "warn" ? "DA VERIFICARE" : m.serve_lettera_medico ? "MANCA LA FRASE" : pagesMissing ? "MANCANO PAGINE" : "MANCA QUALCOSA";
   renderTable();
-  const icon = { trovato: "✅", manca: "❌", non_sicuro: "❓" };
-  await bot(`<p><strong>${esc(m.messaggio)}</strong></p>`,
-    `<ul>${m.controlli.map((c) => `<li>${icon[c.esito]} ${esc(c.spiegazione)}${c.esito !== "trovato" ? `<br><strong>Cosa fare:</strong> ${esc(c.cosa_fare)}` : ""}<br><span class="small">Ho guardato: ${esc(c.dove_ho_guardato)} · regola ${esc(c.regola)}</span></li>`).join("")}</ul>
-     <p class="small">È un controllo di completezza: la decisione è dell'ufficio.</p>`);
+  await bot(`<p><strong>${esc(m.messaggio)}</strong></p>`, checksList(m));
   const how = addMsg("bot", `<p><button class="chip soft" type="button">🔎 Come ho controllato?</button></p>`);
   how.querySelector("button").addEventListener("click", () => howChecked(m));
   if (f.status === "ok") return nextSlot();
@@ -663,7 +735,7 @@ function renderTable(sealed = false) {
     <p class="sub">${done} di ${list.length} documenti pronti · tocca un foglio per caricarlo, vederlo o scaricarlo</p>
     <div class="envelope ${sealed ? "sealed" : ""}"><span class="label">Pass disabili · Comune di Milano</span><span class="seal" aria-label="Busta sigillata">PRONTA</span>
       <div class="slots">${list.map(card).join("")}</div></div>
-    <p class="sub legend">${where("idFront")} · ${where("medical")}</p>
+    <p class="sub legend">${[...new Set([where("idFront"), where("medical")])].join(" · ")}</p>
     <div class="under">${S.medical?.serve_lettera_medico ? `<button class="chip" data-act="letter">🩺 Lettera per il medico</button>` : ""}
       ${S.role === "delegate" ? `<button class="chip" data-act="delega">📝 Delega da firmare</button>` : ""}
       ${S.stage !== "welcome" && S.canGoOut ? `<button class="chip" data-act="guide">🧭 Accompagnami nel modulo</button>` : ""}
@@ -711,19 +783,22 @@ function openCard(id) {
   const f = S.files[id];
   const s = slots().find((x) => x.id === id);
   if (!f || !f.blob) { addMsg("me", `${s.icon} ${esc(s.name)}`); return promptSlot(id); }
+  const m = id === "medical" ? S.medical : f.check;
   sheet(`${s.icon} ${s.name} (${s.hint})`, `
     <p><strong>File pronto per il modulo:</strong> ${esc(f.name)} · ${(f.blob.size / 1048576).toFixed(1)} MB</p>
     ${f.note ? `<p>${esc(f.note)}</p>` : ""}
-    ${id === "medical" && S.medical ? `<ul>${S.medical.controlli.map((c) => `<li>${{ trovato: "✅", manca: "❌", non_sicuro: "❓" }[c.esito]} ${esc(c.spiegazione)}</li>`).join("")}</ul>` : ""}
+    ${m ? `<ul>${m.controlli.map((c) => `<li>${ICON[c.esito]} ${esc(c.spiegazione)}</li>`).join("")}</ul>` : ""}
     <p><a class="chip" href="${f.url}" download="${esc(f.name)}">⬇️ Scarica il file</a>
     <button class="chip soft" id="replace">🔄 Sostituisci</button>
     <button class="chip soft" id="see-ex">👀 Fammi vedere un esempio</button>
-    ${id === "medical" && S.medical ? `<button class="chip soft" id="how">🔎 Come ho controllato?</button>` : ""}</p>
+    ${m ? `<button class="chip soft" id="how">🔎 Come ho controllato?</button>` : ""}
+    ${KIND[id] && !m && f.status !== "scanning" ? `<button class="chip soft" id="check-now">🔎 Fammelo controllare</button>` : ""}</p>
     ${transparency(id)}
-    <p class="small">${id === "medical" ? "Questo documento è stato letto da Claude solo per il controllo, e non è stato salvato." : "Questo file non è mai uscito dal tuo dispositivo."}</p>`);
+    <p class="small">${m ? "Questo documento è stato letto da Claude solo per il controllo, e non è stato salvato." : "Questo file non è mai uscito dal tuo dispositivo."}</p>`);
   $("replace").addEventListener("click", () => { $("sheet").close(); pickFile(id); });
   $("see-ex").addEventListener("click", () => showExample(id));
-  $("how")?.addEventListener("click", () => howChecked(S.medical));
+  $("how")?.addEventListener("click", () => howChecked(m, id));
+  $("check-now")?.addEventListener("click", () => { $("sheet").close(); addMsg("me", `🔎 ${esc(s.name)} (${esc(s.hint)})`); checkDoc(id); });
 }
 
 // ===================================================================================== local file processing
@@ -992,7 +1067,8 @@ function officeSheetData() {
   const rows = [];
   if (m) m.controlli.forEach((c) => rows.push({ regola: c.regola, controllo: "documento sanitario", esito: c.esito, fonte: m.fonti?.[c.regola] || SRC.form }));
   slots().filter((s) => s.id !== "medical").forEach((s) => rows.push({ regola: ["reqFront", "reqBack", "delega", "nomina"].includes(s.id) ? "R3" : "R2",
-    controllo: `${s.name} (${s.hint})`, esito: S.files[s.id]?.status === "ok" ? "presente" : S.files[s.id]?.status === "warn" ? "da verificare" : "manca", fonte: SRC.form }));
+    controllo: `${s.name} (${s.hint})`, esito: (S.files[s.id]?.status === "ok" ? "presente" : S.files[s.id]?.status === "warn" ? "da verificare" : S.files[s.id]?.status === "bad" ? "da sistemare" : "manca")
+      + (S.files[s.id]?.check ? ", controllato" : ""), fonte: SRC.form }));
   if (r) rows.push({ regola: "Prova generale", controllo: "riepilogo del modulo", esito: r.pronto_per_inoltro ? "nessun problema" : `${r.problemi.length} problemi segnalati`, fonte: null });
   return { avviso: "Controllo automatico di completezza, non è una decisione sul rilascio.", data: new Date().toLocaleDateString("it-IT"),
     ruolo: S.role ? ROLES[S.role].official : "—", richiesta: S.request === "rinnovo" ? `rinnovo${S.permanent ? " (permanente)" : ""}` : "primo rilascio",

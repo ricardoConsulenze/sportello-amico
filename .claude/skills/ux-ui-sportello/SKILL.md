@@ -107,7 +107,7 @@ Messaggi lunghi: più bolle brevi (`bot(p1, p2)`), non una bolla lunga.
 - Prima di uno screenshot del riepilogo, invita a coprire nome e codice fiscale.
 - **"Cancella tutto"** (`#btn-wipe`) deve restare sempre visibile dentro lo sportello (in app.js: `$("btn-wipe").hidden = !inside`);
   "Esci" cancella tutto. Non spostarli in menu nascosti.
-- Dire sempre cosa resta sul dispositivo e cosa va a Claude (solo documento sanitario e riepilogo).
+- Dire sempre cosa resta sul dispositivo e cosa va a Claude: sempre documento sanitario e riepilogo; documento d'identità, foto, delega e nomina solo dopo "🔎 Sì, controllali" o "Fammelo controllare" (badge 🔎/🔒 per foglio, `goesToCheck()`).
 
 ## 8. Vincoli tecnici
 - Niente framework, bundler, CDN o font esterni. Librerie solo in `static/vendor/`.

@@ -14,6 +14,8 @@ Run:
 Endpoints:
   POST /api/check-medical   check the medical document (verbale or certificate)
   POST /api/check-summary   check the screenshot of the form summary
+  POST /api/check-document  check another attachment (identity document, photo, delega, atto di nomina);
+                            the browser sends it only if the person agreed (PRIVACY.md)
   POST /api/ask             answer a question from the texts in knowledge/, with citations; Claude can
                             call the trova_sedi tool to look up City offices in knowledge/sedi.json
 """
@@ -32,7 +34,7 @@ from pathlib import Path
 
 import anthropic
 
-from rules import PHRASE_R6, RULES, rules_for, rules_text
+from rules import DOC_CHECKS, PHRASE_R6, RULES, doc_checks_text, rules_for, rules_text
 
 ROOT = Path(__file__).parent
 STATIC = ROOT / "static"
@@ -139,6 +141,44 @@ SUMMARY_SCHEMA = {
 }
 
 
+DOCUMENT_SYSTEM = f"""Sei l'assistente del Comune di Milano per la domanda del pass disabili (CUDE).
+La persona ti mostra un allegato della domanda PRIMA di caricarlo nel modulo ufficiale e ha accettato
+che tu lo guardi. Verifica solo i controlli indicati nel messaggio, uno per uno, con esito "trovato"
+(il controllo è superato), "manca" (non è superato) o "non_sicuro".
+
+{PRIVACY_RULES}
+- In questi documenti non leggere e non riportare mai numeri di documento, date (nemmeno la scadenza),
+  luoghi, firme o altri dati scritti: dì solo se il controllo è superato.
+- Per la foto non descrivere mai la persona (aspetto, età, origine, salute): guarda solo i controlli.
+- Il documento non deve essere in corso di validità per questi controlli: non commentare la scadenza.
+
+{STYLE}"""
+
+DOCUMENT_SCHEMA = {
+    "type": "object",
+    "properties": {
+        "tipo_riconosciuto": {"type": "string", "enum": [
+            "carta_identita", "passaporto", "patente", "fototessera", "delega", "atto_di_nomina", "altro", "non_leggibile"]},
+        "controlli": {"type": "array", "items": {
+            "type": "object",
+            "properties": {
+                "controllo": {"type": "string"},
+                "esito": {"type": "string", "enum": ["trovato", "manca", "non_sicuro"]},
+                "dove_ho_guardato": {"type": "string", "description": "parte del documento, mai il testo letto"},
+                "spiegazione": {"type": "string"},
+                "cosa_fare": {"type": "string"},
+            },
+            "required": ["controllo", "esito", "dove_ho_guardato", "spiegazione", "cosa_fare"],
+            "additionalProperties": False,
+        }},
+        "esito_generale": {"type": "string", "enum": ["sembra_completo", "manca_qualcosa", "da_verificare"]},
+        "messaggio": {"type": "string", "description": "1-3 frasi semplici per la persona"},
+    },
+    "required": ["tipo_riconosciuto", "controlli", "esito_generale", "messaggio"],
+    "additionalProperties": False,
+}
+
+
 class ClaudeError(Exception):
     pass
 
@@ -231,6 +271,41 @@ def check_summary(client, body: dict) -> dict:
     result = ask_claude(client, SUMMARY_SYSTEM, content_blocks(body.get("files", [])) +
                         [{"type": "text", "text": situation}], SUMMARY_SCHEMA)
     return result
+
+
+def document_kind(body: dict) -> str:
+    kind = body.get("kind")
+    if kind not in DOC_CHECKS:
+        raise ValueError("Tipo di documento non valido.")
+    if len(body.get("files", [])) != 1:
+        raise ValueError("Carica un solo file per volta.")
+    return kind
+
+
+def with_rules(kind: str, result: dict) -> dict:
+    """Keep only the checks we asked for, in our order, and add their rule, plain label and source."""
+    by_id = {c["controllo"]: c for c in result["controlli"]}
+    checks = []
+    for cid, text, rule in DOC_CHECKS[kind]:
+        c = by_id.get(cid) or {"controllo": cid, "esito": "non_sicuro", "dove_ho_guardato": "",
+                               "spiegazione": "Non sono riuscito a verificarlo.", "cosa_fare": "Fallo vedere all'ufficio."}
+        checks.append({**c, "regola": rule, "etichetta": text})
+    result["controlli"] = checks
+    if any(c["esito"] == "manca" for c in checks):
+        result["esito_generale"] = "manca_qualcosa"
+    elif any(c["esito"] == "non_sicuro" for c in checks) and result["esito_generale"] == "sembra_completo":
+        result["esito_generale"] = "da_verificare"
+    result["fonti"] = {rule: RULES[rule][1] for _, _, rule in DOC_CHECKS[kind]}
+    return result
+
+
+def check_document(client, body: dict) -> dict:
+    kind = document_kind(body)
+    situation = (f"Allegato: {kind}.\nControlli da verificare (usa questi id nel campo 'controllo'):\n"
+                 f"{doc_checks_text(kind)}\n\nControlla il documento allegato.")
+    result = ask_claude(client, DOCUMENT_SYSTEM, content_blocks(body.get("files", [])) +
+                        [{"type": "text", "text": situation}], DOCUMENT_SCHEMA)
+    return with_rules(kind, result)
 
 
 # --- Questions about the procedure, answered only from knowledge/ with citations ------------------
@@ -546,6 +621,21 @@ def mock_summary(body: dict) -> dict:
             "mock": True}
 
 
+def mock_document(body: dict) -> dict:
+    """Offline: every check passes, except the signature on a demo delega (names containing 'senza_firma')."""
+    kind = document_kind(body)
+    unsigned = kind == "delega" and "senza_firma" in body["files"][0].get("name", "").lower()
+    checks = [{"controllo": cid, "esito": "manca" if unsigned and cid == "firma" else "trovato",
+               "dove_ho_guardato": "in fondo al foglio" if cid == "firma" else "tutto il documento",
+               "spiegazione": "Non vedo la firma di chi delega." if unsigned and cid == "firma" else "Va bene.",
+               "cosa_fare": "Fai firmare la delega e rifotografala." if unsigned and cid == "firma" else "Niente."}
+              for cid, _, _ in DOC_CHECKS[kind]]
+    result = {"tipo_riconosciuto": {"photo": "fototessera", "delega": "delega", "nomina": "atto_di_nomina"}.get(kind, "carta_identita"),
+              "controlli": checks, "esito_generale": "sembra_completo",
+              "messaggio": "Manca la firma di chi delega." if unsigned else "Mi sembra a posto."}
+    return {**with_rules(kind, result), "mock": True}
+
+
 COMMON = {"pass", "disa", "comu", "mila", "pers", "sost", "circ", "rich", "dell", "ques", "poss", "devo", "sono"}
 
 
@@ -622,6 +712,7 @@ class Handler(SimpleHTTPRequestHandler):
             return self._json({"errore": "Richiesta non valida."}, HTTPStatus.BAD_REQUEST)
         routes = {"/api/check-medical": (check_medical, mock_medical),
                   "/api/check-summary": (check_summary, mock_summary),
+                  "/api/check-document": (check_document, mock_document),
                   "/api/ask": (ask, mock_ask)}
         if self.path not in routes:
             return self._json({"errore": "Non trovato."}, HTTPStatus.NOT_FOUND)

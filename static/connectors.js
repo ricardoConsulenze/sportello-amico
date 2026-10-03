@@ -58,6 +58,8 @@
     },
     checkMedical(payload) { return backend.post("/api/check-medical", payload); },
     checkSummary(payload) { return backend.post("/api/check-summary", payload); },
+    // only for documents the person agreed to have checked (PRIVACY.md)
+    checkDocument(payload) { return backend.post("/api/check-document", payload); },
     async demoFile(name) {
       const res = await request(`${API}/demo/${encodeURIComponent(name)}`);
       if (!res.ok) throw new ConnectorError("File di esempio non trovato.", res.status);

@@ -21,6 +21,7 @@ browser ──► nginx (container frontend :8080: file statici + reverse proxy)
 | avvio (`DOMContentLoaded`) → banner MOCK | `backend.status()` (timeout 10 s) | `GET /api/status` | `location = /api/status` (senza rate limit) | `do_GET` → `{"mock","model"}` |
 | `receive("medical")` | `backend.checkMedical(p)` | `POST /api/check-medical` | `location /api/` (zona `checks` 6 r/min burst 4, 30m, read 300s) | `do_POST` → `check_medical` / `mock_medical` |
 | `receiveSummary()` | `backend.checkSummary(p)` | `POST /api/check-summary` | `location /api/` | `do_POST` → `check_summary` / `mock_summary` |
+| `checkDoc(id)` (solo con consenso) | `backend.checkDocument(p)` | `POST /api/check-document` | `location /api/` | `do_POST` → `check_document` / `mock_document` |
 | `loadDemo()` | `backend.demoFile(name)` → Blob | `GET /demo/{name}` | `location /demo/` | `_demo_file` (solo file in `demo_docs/`) |
 | `askChat()` | `chat.ask(text, chatContext())` (async generator di delta) | `POST /threads` (1ª volta), poi `POST /threads/{uuid}/runs/stream` (SSE) | `= /langgraph/threads`, `~ …/runs/stream$` (zona `chat` 30 r/min) | Agent Server: create thread / run stream |
 | nuova domanda | `chat.cancel()` | interrompe il fetch in corso | – | `multitask_strategy: "interrupt"` |
@@ -56,6 +57,12 @@ Risposta `200`, secondo `MEDICAL_SCHEMA` più alcuni campi aggiunti:
   "files": [ { "name", "media_type", "data" } ] }
 ```
 Risposta `200`, secondo `SUMMARY_SCHEMA`: `{ "problemi": [ { "scheda", "gravita": "blocca|attenzione", "problema", "cosa_fare", "regola" } ], "pronto_per_inoltro": bool, "messaggio": "" }` (+ `"mock": true`).
+
+**`POST /api/check-document`** (solo se la persona ha accettato: `S.consent === "check"` o "Fammelo controllare")
+```json
+{ "kind": "id_front" | "id_back" | "photo" | "delega" | "nomina", "files": [ { "name", "media_type", "data" } ] }   // un solo file
+```
+Risposta `200`: `{ "tipo_riconosciuto", "controlli": [ { "controllo", "esito", "dove_ho_guardato", "spiegazione", "cosa_fare", "regola", "etichetta" } ], "esito_generale", "messaggio", "fonti" }` (+ `"mock": true`). Gli id dei controlli sono in `DOC_CHECKS` (rules.py) e in `DOC_STEPS` (app.js): tienili allineati.
 
 **Errori**: sempre `{"errore": "<frase in italiano semplice>"}`. `connectors.js` mostra `errore` così com'è.
 | Status | Quando |
