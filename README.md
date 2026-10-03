@@ -11,7 +11,7 @@ the application on the Comune's official site, and the pass office decides.
 |---|---|
 | **Team** | Massimiliano Mancini Tortora, Francesca Sampietro, Iuliia Vorobiova, Ricardo Matamoros, Reda Charf ([details](#team)) |
 | **Live demo** | TODO: production URL |
-| **Video / slides** | TODO: public link to the 2-minute demo video (YouTube unlisted, Loom or Google Drive) |
+| **Video / slides** | [60-second demo video](docs/video/sportello-amico-demo.mp4) (mock mode, synthetic voice) · [Pitch deck](docs/pitch/SportelloAmico_pitch.pptx) |
 | **Repository** | https://github.com/ricardoConsulenze/sportello-amico |
 | **Track** | Track 02: Assisted procedure |
 | **Event** | Claude Impact Lab Milano, 3 October 2026 |
@@ -261,7 +261,7 @@ From the event's SUBMISSION.md:
 - [ ] README based on `templates/PROJECT_README.md`. TODO: compare its headings with this file, which we have not seen yet
 - [ ] README complete, track named (Track 02: done), TODO fields filled in
 - [x] "Where Claude works" section written: model, prompts, tools/MCP, what Claude decides, what a human confirms
-- [ ] Two-minute demo recorded and linked above
+- [x] Demo video recorded and linked above (60 seconds)
 - [ ] No personal data anywhere: code, data files, screenshots, video. The demo personas and documents are invented or are the Comune's public samples; use only the personas in the video
 - [ ] No API keys in the repo (`.env` is in `.gitignore`; a scan found no keys)
 - [ ] Submitted once, with the Submission issue form
