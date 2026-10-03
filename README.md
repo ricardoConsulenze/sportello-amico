@@ -10,7 +10,7 @@ the application on the Comune's official site, and the pass office decides.
 | | |
 |---|---|
 | **Team** | Massimiliano Mancini Tortora, Francesca Sampietro, Iuliia Vorobiova, Ricardo Matamoros, Reda Charf ([details](#team)) |
-| **Live demo** | TODO: production URL |
+| **Live demo** | https://sportello-amico-main.vercel.app/ |
 | **Video / slides** | [60-second demo video](docs/video/sportello-amico-demo.mp4) (mock mode, synthetic voice) · [Pitch deck](docs/pitch/SportelloAmico_pitch.pptx) |
 | **Repository** | https://github.com/ricardoConsulenze/sportello-amico |
 | **Track** | Track 02: Assisted procedure |
