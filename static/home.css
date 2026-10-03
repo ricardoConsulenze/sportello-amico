@@ -111,3 +111,8 @@ html.large .h-journey li::after { display: none; }
   .h-hero-art { animation-delay: .1s; }
   @keyframes h-rise { from { opacity: 0; transform: translateY(.8rem); } to { opacity: 1; transform: none; } }
 }
+
+/* A+ at 320px: the long e-mail address must not widen the page (WCAG 1.4.10) */
+.h-where-grid { grid-template-columns: minmax(0, 1fr); }
+.h-home a[href^="mailto"] { overflow-wrap: anywhere; }
+@media (min-width: 48rem) { .h-where-grid { grid-template-columns: 1fr 1fr; } }

@@ -74,7 +74,13 @@ The people applying are often older, have reduced mobility, or are family member
    - No automatic booking: the Comune has no open booking channel, and booking for someone would mean sending their data.
 7. **Office sheet** for Paolo: checks done, rules and official sources, no personal data, plus a JSON export.
 
-TODO: add 3–4 screenshots (home, envelope with stamps, examples sheet, final summary) in `docs/screenshots/` and link them here.
+| Home | Phone | The envelope after a check |
+|---|---|---|
+| ![Home page](docs/screenshots/01-home.png) | ![Home page on a phone](docs/screenshots/02-home-mobile.png) | ![Demo case A: the verbale gets the MANCANO PAGINE stamp](docs/screenshots/03-busta-timbro.png) |
+| **"Fammi vedere un esempio"** | **"Vado di persona"** | |
+| ![Così va bene / così no examples for the verbale](docs/screenshots/04-esempi.png) | ![Office card: address, directions, hours, contacts](docs/screenshots/05-vado-di-persona.png) | |
+
+Screenshots in mock mode, with invented personas only.
 
 ## Where Claude works
 What Claude does every time someone uses Sportello Amico.
@@ -139,7 +145,14 @@ Test cases ("Esempio" buttons in the app):
 
 ## Accessibility
 Large buttons, at most one question at a time, plain Italian, "A+ Testo grande" mode, 🎤 voice answers and 🔊 read-aloud, keyboard navigation, and layouts for phones from 320px.
-Home page checked at 320, 375 and 1280px. TODO: screen reader check, and the counter screens at 320px with A+ on.
+Audited against WCAG 2.2 AA (axe-core, measured contrast, 320/375/768/1280px, landscape phone, A+ and high contrast). The 5 blocking items found have been fixed:
+- page overflow with A+ at 320px;
+- low-contrast input borders;
+- focus ring on the envelope;
+- missing h1/main in the counter;
+- focus and title on page change.
+
+Accessibility statement (AgID): to be drafted from the audit. TODO: screen reader test (NVDA, VoiceOver) and tests with older users.
 
 ## Privacy
 See [PRIVACY.md](PRIVACY.md). In short:

@@ -19,10 +19,10 @@
     </a>
     <div class="tools">
       <span id="who" class="who" hidden></span>
-      <button id="btn-voice" type="button" aria-pressed="false"><span class="emoji" aria-hidden="true">🔊</span> Parla ad alta voce</button>
-      <button id="btn-size" type="button" aria-pressed="false"><span aria-hidden="true">A+</span> Testo grande</button>
-      <button id="btn-contrast" type="button" aria-pressed="false"><span aria-hidden="true">◐</span> Contrasto alto</button>
-      <button id="btn-wipe" type="button" class="danger" hidden aria-describedby="wipe-desc"><span class="emoji" aria-hidden="true">🗑️</span> Cancella tutto</button>
+      <button id="btn-voice" type="button" aria-pressed="false"><span class="emoji" aria-hidden="true">🔊</span> <span class="lbl-long">Parla ad alta voce</span><span class="lbl-short" aria-hidden="true">Voce</span></button>
+      <button id="btn-size" type="button" aria-pressed="false"><span aria-hidden="true">A+</span> <span class="lbl-long">Testo grande</span><span class="lbl-short" aria-hidden="true">Grande</span></button>
+      <button id="btn-contrast" type="button" aria-pressed="false"><span aria-hidden="true">◐</span> <span class="lbl-long">Contrasto alto</span><span class="lbl-short" aria-hidden="true">Contrasto</span></button>
+      <button id="btn-wipe" type="button" class="danger" hidden aria-describedby="wipe-desc"><span class="emoji" aria-hidden="true">🗑️</span> <span class="lbl-long">Cancella tutto</span><span class="lbl-short" aria-hidden="true">Cancella</span></button>
       <span id="wipe-desc" class="sr-only">Cancella documenti e risposte da questo dispositivo. Ti chiedo conferma prima.</span>
       <button id="btn-logout" type="button" class="danger" hidden>Esci</button>
     </div>
@@ -220,16 +220,17 @@
       <h1>Entra con la tua identità digitale</h1>
       <p>Nel servizio vero si entra con <strong>SPID, CIE o eIDAS</strong>, sul sito del proprio gestore. Qui, per la demo, scegli una persona di esempio: <strong>nessun dato reale, nessuna password</strong>.</p>
       <div class="personas">
-        <button class="persona" data-user="lucia"><span class="p-face">👩‍🦱</span><span><strong>Lucia Verdi</strong><small>58 anni · fa la domanda per la mamma Anna, 84 anni</small></span></button>
-        <button class="persona" data-user="giorgio"><span class="p-face">👴</span><span><strong>Giorgio Bianchi</strong><small>71 anni · rinnova il suo pass permanente</small></span></button>
-        <button class="persona" data-user="samira"><span class="p-face">👩</span><span><strong>Samira El Amrani</strong><small>40 anni · amministratrice di sostegno del fratello</small></span></button>
+        <button class="persona" data-user="lucia"><span class="p-face" aria-hidden="true">👩‍🦱</span><span><strong>Lucia Verdi</strong><small>58 anni · fa la domanda per la mamma Anna, 84 anni</small></span></button>
+        <button class="persona" data-user="giorgio"><span class="p-face" aria-hidden="true">👴</span><span><strong>Giorgio Bianchi</strong><small>71 anni · rinnova il suo pass permanente</small></span></button>
+        <button class="persona" data-user="samira"><span class="p-face" aria-hidden="true">👩</span><span><strong>Samira El Amrani</strong><small>40 anni · amministratrice di sostegno del fratello</small></span></button>
       </div>
       <p class="small">Tutti i nomi sono inventati. <a href="#home">← Torna alle informazioni</a></p>
     </div>
   </main>
 
   <!-- ============================== THE COUNTER ============================== -->
-  <div id="view-sportello" class="view room" hidden>
+  <main id="view-sportello" class="view room" tabindex="-1" hidden>
+    <h1 class="sr-only">Sportello Amico: preparazione della domanda del pass disabili</h1>
     <section class="counter" aria-label="Conversazione con lo Sportello Amico">
       <div id="chat" class="chat" role="log" aria-live="polite"></div>
       <div class="answers">
@@ -241,12 +242,12 @@
         </form>
         <div class="mic-row">
           <button id="mic" class="mic" type="button" aria-label="Rispondi a voce">🎤</button>
-          <span id="mic-hint" class="mic-hint">Puoi toccare un pulsante oppure rispondere a voce.</span>
+          <span id="mic-hint" class="mic-hint" aria-live="polite">Puoi toccare un pulsante oppure rispondere a voce.</span>
         </div>
       </div>
     </section>
     <section id="table" class="table" aria-label="Il tavolo con la busta dei documenti"></section>
-  </div>
+  </main>
 
   <input type="file" id="picker" hidden>
   <dialog id="sheet" aria-labelledby="sheet-title"><div class="sheet-head"><strong id="sheet-title" tabindex="-1"></strong><button type="button" id="sheet-close">Chiudi</button></div>
