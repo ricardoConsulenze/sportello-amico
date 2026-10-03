@@ -11,7 +11,7 @@ const MAX_BYTES = 5 * 1024 * 1024; // R9
 const SRC = {
   form: "https://formshd.comune.milano.it/rwe2/module_preview.jsp?MODULE_TAG=PASS_DISABILI",
   extension: "https://servizicrm.comune.milano.it/callasap/richiestaappuntamento/passprovvisorioinattesadivisitaINPS",
-  duplicate: "http://servizicrm.comune.milano.it/callasap/serviziperladisabilita/richiestaappuntamento",
+  duplicate: "https://servizicrm.comune.milano.it/callasap/serviziperladisabilita/richiestaappuntamento",
   delega: "https://www.comune.milano.it/documents/d/guest/mod-delega-3?download=true",
 };
 const PHRASE_R6 = "alla data odierna persistono le condizioni sanitarie che hanno portato al rilascio del pass disabili";
@@ -72,8 +72,10 @@ function speak(text) {
   if (!voiceOn || !window.speechSynthesis) return;
   const u = new SpeechSynthesisUtterance(text.replace(EMOJI, " "));
   u.lang = "it-IT"; u.rate = 0.92;
-  const v = speechSynthesis.getVoices().find((x) => x.lang.startsWith("it"));
-  if (v) u.voice = v;
+  // only on-device voices: network voices (e.g. "Google italiano") send the text to the vendor's servers
+  const v = speechSynthesis.getVoices().find((x) => x.lang.startsWith("it") && x.localService);
+  if (!v) return;
+  u.voice = v;
   speechSynthesis.speak(u);
 }
 
@@ -461,7 +463,7 @@ async function useSpecimen(id) {
 }
 
 async function receive(id, files, demo = false) {
-  if (id === "summary") return receiveSummary(files);
+  if (id === "summary") return receiveSummary(files, demo);
   S.files[id] = { status: "scanning" };
   renderTable();
   let prepared;
@@ -611,7 +613,7 @@ async function guide(n) {
     ...(n > 1 ? [{ label: "← Indietro", soft: true, kw: ["indietro"], do: () => guide(n - 1) }] : [])]);
 }
 
-async function receiveSummary(files) {
+async function receiveSummary(files, demo = false) {
   let prepared;
   try { prepared = await prepare("summary", files); } catch (e) { return bot(`<p>${esc(e.message)}</p>`); }
   S.rehearsal = { scanning: true }; renderTable();
@@ -622,7 +624,7 @@ async function receiveSummary(files) {
       context: { role_label: ROLES[S.role].official, request_label: S.request === "rinnovo" ? "rinnovo" : "primo rilascio",
         can_go_out: S.canGoOut === "no" ? "no, è difficile" : "sì", car: S.car === "yes" ? "sì, vuole associare la targa" : "no o più avanti",
         medical_outcome: S.medical?.esito_generale || "non fatto" },
-      files: [await forClaude({ ...prepared, demoName: files[0].name })],
+      files: [await forClaude({ ...prepared, demoName: demo ? files[0].name : undefined })], // real file names may contain people's names
     });
   } catch (e) {
     S.rehearsal = null; renderTable(); prog.fail();

@@ -13,6 +13,8 @@ services:
     depends_on:
       backend: { condition: service_healthy }
     restart: unless-stopped
+    tmpfs: [/tmp]                # nginx temp files in RAM only
+    logging: &logs { driver: json-file, options: { max-size: "10m", max-file: "3" } }
 
   backend:
     build: { context: ., dockerfile: deploy/backend/Dockerfile }
@@ -21,6 +23,7 @@ services:
       MOCK: ${MOCK:-0}
     expose: ["8765"]
     restart: unless-stopped
+    logging: *logs
 
   # LangGraph Agent Server: uncomment when the graph repo is ready, then set
   # LANGGRAPH_URL=http://langgraph:8000 in .env. Build its image with `langgraph build -t sportello-langgraph`.

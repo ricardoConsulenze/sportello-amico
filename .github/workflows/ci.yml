@@ -1,0 +1,116 @@
+name: CI
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+    branches: ["**"]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: JavaScript syntax (node --check)
+        run: |
+          set -e
+          for f in static/*.js; do
+            echo "node --check $f"
+            node --check "$f"
+          done
+
+      - name: Python syntax (py_compile)
+        run: python -m py_compile server.py rules.py
+
+      - name: Shell syntax (sh -n)
+        run: sh -n deploy/frontend/40-app-config.sh
+
+      - name: Secret scan
+        run: |
+          if grep -rnE 'sk-ant-[A-Za-z0-9_-]{8,}|lsv2_[A-Za-z0-9]{8,}' --exclude-dir=.git . ; then
+            echo "::error::Possible API key committed (Anthropic sk-ant-… or LangSmith lsv2_…). Remove it and rotate the key."
+            exit 1
+          fi
+          echo "No secrets found."
+
+  tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: requirements.txt
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt pytest
+
+      - name: Run pytest
+        env:
+          MOCK: "1"
+        run: |
+          if [ -d tests ]; then
+            pytest -q tests
+          else
+            echo "No tests/ directory: skipping pytest."
+          fi
+
+  stack:
+    needs: lint
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      MOCK: "1"
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build and start stack (MOCK=1)
+        run: docker compose up --build -d
+
+      - name: Wait for /healthz and /api/status
+        run: |
+          deadline=$((SECONDS + 90))
+          until curl -fsS http://localhost:8080/healthz >/dev/null 2>&1 \
+             && curl -fsS http://localhost:8080/api/status >/dev/null 2>&1; do
+            if [ "$SECONDS" -ge "$deadline" ]; then
+              echo "::error::Stack not ready after 90s"
+              docker compose ps
+              exit 1
+            fi
+            sleep 3
+          done
+          echo "Stack ready:"
+          curl -fsS http://localhost:8080/api/status; echo
+
+      - name: Smoke test
+        run: bash .claude/skills/collegamento-fe-be/smoke_test.sh http://localhost:8080
+
+      - name: Show logs on failure
+        if: failure()
+        run: docker compose logs --no-color
+
+      - name: Tear down
+        if: always()
+        run: docker compose down -v

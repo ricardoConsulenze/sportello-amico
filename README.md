@@ -172,7 +172,7 @@ The list below is what stands between this prototype and a public service.
 - [ ] The same agreement with whoever hosts LangGraph.
 - [ ] A DPIA: health data from vulnerable people, using AI.
 - [ ] A legal basis under art. 9 GDPR, reviewed by the Comune's DPO.
-- [ ] A privacy notice and legal notes on the site. AI Act transparency text approved.
+- [ ] A privacy notice (art. 13) and legal notes on the site. AI Act transparency text approved. The notice must also cover the server-side fallback model that may re-read a document after a refusal, and the browser's read-aloud voices (the app now uses on-device voices only).
 - [ ] An accessibility statement published on AgID (required for public bodies).
 
 **Content and model quality: blocking.**
@@ -183,11 +183,15 @@ The list below is what stands between this prototype and a public service.
 
 **Backend and integration.**
 - [ ] The production backend merged from the `backend` branch, passing the contract in [docs/INTEGRAZIONE-FE-BE.md](docs/INTEGRAZIONE-FE-BE.md) and the smoke test.
-- [ ] Production settings: `MOCK` off, `/demo` disabled, demo buttons hidden in the UI.
+- [ ] Production settings: `MOCK` off (refuse to start with `APP_ENV=production` and `MOCK=1`), `/demo` disabled, `demo_docs/` and `static/` not copied into the backend image, demo buttons hidden in the UI.
+- [ ] A catch-all error handler in `server.py` (bad `Content-Length` or a non-string `data` currently give a 500).
+- [ ] Whitelist the values of `case` and `context` before they go into the prompt.
 - [ ] LangGraph, if used:
   - the graph is built, with a `nostream` tag on internal LLM nodes;
   - Postgres and Redis are deployed;
-  - threads expire automatically.
+  - threads expire automatically (TTL / `sweep_interval`), so a closed tab never leaves chat text behind;
+  - LangSmith tracing is off;
+  - the run body is built server-side (e.g. `/api/chat`), so a client cannot set `webhook`, `checkpoint` or `assistant_id` (SSRF risk).
 - [ ] A timeout and a fallback message when Claude is slow. Check the 300-second limits against real response times.
 
 **Infrastructure and operations.**
@@ -196,8 +200,12 @@ The list below is what stands between this prototype and a public service.
 - [ ] Automated tests: unit tests for `rules.py` and the routes in `server.py`, and end-to-end browser tests for the 3 scenarios.
 - [ ] Monitoring: uptime and health checks, error rate, latency of the Claude calls. Alerts without content in the logs.
 - [ ] Cost control: a spending limit and alerts on the Anthropic account, and rate limits tuned to real traffic.
+- [ ] Behind a load balancer: `set_real_ip_from` + `real_ip_header`, otherwise every citizen shares one rate-limit bucket. Add a daily quota per IP, and `limit_req` on `/demo/`.
+- [ ] Dependencies pinned with hashes (`requirements.txt` has no versions; move `pypdf`/`pillow` to a dev file). Base images pinned by digest. Update jsPDF to 3.0.2 or later (CVE-2025-29907, CVE-2025-57810).
+- [ ] Container hardening: `cap_drop: [ALL]`, `no-new-privileges`, `read_only` root filesystem. Add the `Cross-Origin-Opener-Policy` and `Cross-Origin-Resource-Policy` headers.
+- [ ] Log retention defined with the DPO. Today IPs are truncated, chat thread ids are masked, and Docker logs rotate at 3 × 10 MB.
 - [ ] A load test for application peaks.
-- [ ] Remove `'unsafe-eval'` from the CSP: it is needed only by the HEIC converter. Replace it or move the conversion.
+- [ ] Remove `'unsafe-eval'` from the CSP: it is needed only by the HEIC converter, which is no longer maintained. Options: run it in a Worker with its own CSP, use libheif in WASM (`'wasm-unsafe-eval'`), or rely on iOS converting HEIC to JPEG when the file input accepts only JPEG/PNG/PDF.
 
 **Accessibility and UX.**
 - [ ] Tests with real users (older people, family members, office staff) and with screen readers (NVDA, VoiceOver).
