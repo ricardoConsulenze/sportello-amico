@@ -12,7 +12,7 @@ the application on the Comune's official site, and the pass office decides.
 | **Team** | TODO: names and roles |
 | **Live demo** | TODO: production URL |
 | **Video / slides** | TODO: public link to the 2-minute demo video (YouTube unlisted, Loom or Google Drive) |
-| **Repository** | TODO: public repo URL |
+| **Repository** | https://github.com/ricardoConsulenze/sportello-amico |
 | **Track** | Track 02: Assisted procedure |
 | **Event** | Claude Impact Lab Milano, 3 October 2026 |
 | **Status** | Prototype. Not an official service of the Comune di Milano |
@@ -167,7 +167,7 @@ See [PRIVACY.md](PRIVACY.md). In short:
 
 ## Submission checklist (deadline 16:00)
 From the event's SUBMISSION.md:
-- [ ] The repo is public, with an open source licence (MIT: done)
+- [x] The repo is public, with an open source licence (MIT)
 - [ ] README based on `templates/PROJECT_README.md`. TODO: compare its headings with this file, which we have not seen yet
 - [ ] README complete, track named (Track 02: done), TODO fields filled in
 - [x] "Where Claude works" section written: model, prompts, tools/MCP, what Claude decides, what a human confirms

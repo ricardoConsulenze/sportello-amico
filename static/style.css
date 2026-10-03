@@ -328,9 +328,9 @@ html.contrast .small, html.contrast .hint, html.contrast small { color: #2b2f35 
 
 @media (max-width: 600px) {
   header { padding: 8px 12px; gap: 8px; }
-  .tools { width: 100%; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; }
-  .tools .who { grid-column: 1 / -1; text-align: center; }
-  .tools button { padding: 6px 8px; line-height: 1.15; display: flex; align-items: center; justify-content: center; gap: 4px; text-align: center; }
+  .tools { width: 100%; gap: 6px; }
+  .tools .who { flex: 1 1 100%; text-align: center; }
+  .tools button { flex: 1 1 40%; padding: 6px 8px; line-height: 1.15; display: flex; align-items: center; justify-content: center; gap: 4px; text-align: center; }
   .tools button[hidden], .tools .who[hidden] { display: none; }
   .brand { font-size: 1rem; min-width: 0; }
   .brand small { font-size: .8rem; line-height: 1.2; }
