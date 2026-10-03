@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sportello Amico: pass disabili</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="home.css">
+  <script src="vendor/jspdf.umd.min.js" defer></script>
+  <script src="vendor/heic2any.min.js" defer></script>
+  <script src="config.js" defer></script>
+  <script src="connectors.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header>
+    <a class="brand" href="#home"><span class="avatar-sm" aria-hidden="true">🧑‍💼</span>
+      <span>Sportello Amico<small>Pass disabili · Comune di Milano · prototipo</small></span>
+    </a>
+    <div class="tools">
+      <span id="who" class="who" hidden></span>
+      <button id="btn-voice" type="button" aria-pressed="false"><span class="emoji" aria-hidden="true">🔊</span> Parla ad alta voce</button>
+      <button id="btn-size" type="button" aria-pressed="false"><span aria-hidden="true">A+</span> Testo grande</button>
+      <button id="btn-contrast" type="button" aria-pressed="false"><span aria-hidden="true">◐</span> Contrasto alto</button>
+      <button id="btn-wipe" type="button" class="danger" hidden aria-describedby="wipe-desc"><span class="emoji" aria-hidden="true">🗑️</span> Cancella tutto</button>
+      <span id="wipe-desc" class="sr-only">Cancella documenti e risposte da questo dispositivo. Ti chiedo conferma prima.</span>
+      <button id="btn-logout" type="button" class="danger" hidden>Esci</button>
+    </div>
+  </header>
+  <div id="mock-banner" class="mock-banner" hidden>Modalità dimostrazione senza AI: risposte preimpostate. Con una chiave API il controllo lo fa Claude.</div>
+
+  <!-- ============================== HOME: practical information ============================== -->
+  <main id="view-home" class="view home h-home" tabindex="-1">
+    <!-- 1. HERO -->
+    <section class="h-hero" aria-labelledby="h-title">
+      <div class="h-wrap h-hero-grid">
+        <div class="h-hero-text">
+          <p class="h-proto">Prototipo · non è un servizio ufficiale del Comune di Milano</p>
+          <h1 id="h-title">Il pass disabili, preparato insieme. Un passo alla volta.</h1>
+          <p class="h-lead small">Pass per la sosta e la circolazione delle persone con disabilità (CUDE, Contrassegno Unico Disabili Europeo) del Comune di Milano.</p>
+          <p class="h-lead">Meno confusione, meno errori. I documenti sono pronti prima di cominciare il modulo del Comune.</p>
+          <div class="h-cta-row">
+            <a class="cta" href="#accesso">Inizia con lo Sportello Amico</a>
+            <a class="cta ghost" href="#come-funziona">Guarda come funziona</a>
+          </div>
+          <p class="h-reassure">Ci vogliono circa 15 minuti. Puoi cancellare tutto quando vuoi.</p>
+        </div>
+        <img class="h-hero-art" src="illustrations/hero-journey.svg" width="1200" height="720" alt="Dei fogli sparsi sul tavolo diventano un percorso con tappe di controllo e arrivano, in ordine, in una busta pronta. Sullo sfondo passa un tram di Milano.">
+      </div>
+    </section>
+
+    <!-- 2. STORIA -->
+    <section class="h-section h-story" aria-labelledby="h-story-t">
+      <div class="h-wrap">
+        <div class="h-story-grid">
+          <img class="h-story-art" src="illustrations/story-kitchen.svg" width="800" height="600" loading="lazy" alt="Lucia e sua mamma Anna siedono al tavolo della cucina, con documenti e un computer portatile davanti.">
+          <div>
+            <p class="h-eyebrow">Una storia come tante</p>
+            <h2 id="h-story-t">Lucia e la mamma Anna</h2>
+            <p class="h-prose">Lucia deve aiutare sua mamma Anna, 84 anni, a chiedere il pass. Non sa quali documenti servono, se il verbale va bene, né cosa scegliere nel modulo.</p>
+            <p class="h-prose">Con lo Sportello Amico va per gradi, senza fretta.</p>
+          </div>
+        </div>
+        <ol class="h-journey" aria-label="Il percorso di Lucia in quattro tappe">
+          <li><img src="illustrations/step-spiega.svg" width="320" height="240" loading="lazy" alt=""><span class="h-num" aria-hidden="true">1</span><h3>Confusione</h3><p>Tanti fogli, tante domande, nessuna idea da dove cominciare.</p></li>
+          <li><img src="illustrations/step-controlla.svg" width="320" height="240" loading="lazy" alt=""><span class="h-num" aria-hidden="true">2</span><h3>Preparazione guidata</h3><p>Una domanda alla volta, con pulsanti grandi.</p></li>
+          <li><img src="illustrations/step-modulo.svg" width="320" height="240" loading="lazy" alt=""><span class="h-num" aria-hidden="true">3</span><h3>Controllo dei documenti</h3><p>Se manca qualcosa, ti diciamo che cosa fare.</p></li>
+          <li><img src="illustrations/step-ufficio.svg" width="320" height="240" loading="lazy" alt=""><span class="h-num" aria-hidden="true">4</span><h3>Pronta da inviare</h3><p>Lucia ha tutto in ordine. Poi decide l'ufficio.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- 3. COME FUNZIONA -->
+    <section id="come-funziona" class="h-section h-how" aria-labelledby="h-how-t">
+      <div class="h-wrap">
+        <h2 id="h-how-t">Come funziona</h2>
+        <ul class="h-cards">
+          <li><img src="illustrations/step-spiega.svg" width="320" height="240" loading="lazy" alt=""><h3>Ti spiega cosa serve</h3><p>L'elenco dei documenti, in parole semplici.</p></li>
+          <li><img src="illustrations/step-controlla.svg" width="320" height="240" loading="lazy" alt=""><h3>Controlla se manca qualcosa</h3><p>Pagine, frasi, formati: lo vedi subito, prima di inviare.</p></li>
+          <li><img src="illustrations/step-modulo.svg" width="320" height="240" loading="lazy" alt=""><h3>Ti accompagna nel modulo del Comune</h3><p>Ti mostra cosa scegliere in ogni schermata.</p></li>
+          <li><img src="illustrations/step-ufficio.svg" width="320" height="240" loading="lazy" alt=""><h3>Ti dice dove e come andare in ufficio</h3><p>Indirizzo, orari e cosa portare.</p></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 4. BACHECA DI PREPARAZIONE -->
+    <section id="info" class="h-section h-board-sec" aria-labelledby="h-info-t">
+      <div class="h-wrap">
+        <p class="h-eyebrow">La busta da preparare</p>
+        <h2 id="h-info-t">Cosa ti serve, in un colpo d'occhio</h2>
+        <p class="h-prose">Tocca un foglio per leggere i dettagli.</p>
+        <div class="h-board">
+          <details class="h-paper" open>
+            <summary><img src="illustrations/doc-verbale.svg" width="120" height="120" alt=""><span>Verbale INPS<small>tutte le pagine, in un unico PDF</small></span></summary>
+            <div class="h-paper-body">
+              <p><strong>Verbale INPS</strong> con art. 381 DPR 495/1992 o status di non vedente: <strong>tutte le pagine</strong>, versione OMISSIS, in un unico PDF.</p>
+              <p>In alternativa, il certificato ASL di deambulazione ridotta.</p>
+            </div>
+          </details>
+          <details class="h-paper">
+            <summary><img src="illustrations/doc-certificato.svg" width="120" height="120" alt=""><span>Certificato del medico<small>solo per il rinnovo di un pass permanente</small></span></summary>
+            <div class="h-paper-body">
+              <p><strong>Rinnovo</strong> di un pass permanente: certificato del medico di famiglia con una <strong>frase precisa</strong> (te la prepariamo noi):</p>
+              <p class="h-quote">«alla data odierna persistono le condizioni sanitarie che hanno portato al rilascio del pass disabili»</p>
+            </div>
+          </details>
+          <details class="h-paper">
+            <summary><img src="illustrations/doc-identita.svg" width="120" height="120" alt=""><span>Documento d'identità<small>fronte e retro</small></span></summary>
+            <div class="h-paper-body"><p>Documento d'identità <strong>fronte e retro</strong> di chi ha il pass.</p></div>
+          </details>
+          <details class="h-paper">
+            <summary><img src="illustrations/doc-foto.svg" width="120" height="120" alt=""><span>Fototessera<small>a colori</small></span></summary>
+            <div class="h-paper-body"><p><strong>Fototessera a colori.</strong> File in PDF, JPG o PNG, <strong>massimo 5 MB</strong> ciascuno.</p></div>
+          </details>
+          <details class="h-paper">
+            <summary><img src="illustrations/doc-delega.svg" width="120" height="120" alt=""><span>Delega<small>se fai la domanda per un'altra persona</small></span></summary>
+            <div class="h-paper-body"><p>Un familiare o un amico può fare la domanda <strong>con delega firmata</strong>. Il tutore o l'amministratore di sostegno porta il decreto di nomina.</p></div>
+          </details>
+        </div>
+
+        <div class="h-facts">
+          <details class="h-fact">
+            <summary>Cosa permette il pass</summary>
+            <ul>
+              <li>Parcheggiare negli <strong>spazi per persone con disabilità</strong></li>
+              <li>Sosta <strong>gratuita sulle strisce gialle e blu</strong> a Milano</li>
+              <li>Entrare in <strong>Area B, Area C, ZTL</strong> e corsie riservate</li>
+              <li>Chiedere un <strong>posto auto personale</strong> vicino a casa o al lavoro</li>
+              <li>Vale in <strong>tutta l'Unione Europea</strong></li>
+            </ul>
+          </details>
+          <details class="h-fact">
+            <summary>Chi può fare la domanda</summary>
+            <ul>
+              <li>La persona con disabilità</li>
+              <li>Il genitore di un figlio minorenne</li>
+              <li>Un familiare o amico, <strong>con delega firmata</strong></li>
+              <li>Il tutore o l'amministratore di sostegno, con il decreto di nomina</li>
+            </ul>
+            <p>Per entrare nel modulo online serve <strong>SPID, CIE o eIDAS</strong> di chi fa la domanda.</p>
+          </details>
+          <details class="h-fact">
+            <summary>Tempi e durata</summary>
+            <ul>
+              <li>Il Comune risponde entro <strong>30 giorni</strong> (nel 2025, in media 30)</li>
+              <li>Il pass dura <strong>al massimo 5 anni</strong>, anche per invalidità permanenti</li>
+              <li>Arriva a casa con <strong>raccomandata</strong> o si ritira su appuntamento. La scelta <strong>non si cambia dopo</strong>.</li>
+            </ul>
+          </details>
+          <details class="h-fact">
+            <summary>Casi diversi</summary>
+            <ul>
+              <li><strong>Aspetti la visita INPS</strong> e il pass scade? <a href="https://servizicrm.comune.milano.it/callasap/richiestaappuntamento/passprovvisorioinattesadivisitaINPS" target="_blank" rel="noopener">Proroga di 6 mesi</a>: prenoti una telefonata.</li>
+              <li><strong>Pass perso o rubato?</strong> <a href="http://servizicrm.comune.milano.it/callasap/serviziperladisabilita/richiestaappuntamento" target="_blank" rel="noopener">Duplicato</a>: prenoti una telefonata.</li>
+              <li><strong>Non confondere</strong> il pass con la <strong>Carta Europea della Disabilità</strong>: quella si chiede all'INPS e dà sconti e agevolazioni, non serve per l'auto.</li>
+            </ul>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. FIDUCIA E PRIVACY -->
+    <section class="h-section h-trust" aria-labelledby="h-trust-t">
+      <div class="h-wrap">
+        <h2 id="h-trust-t">Le nostre promesse</h2>
+        <ul class="h-priv">
+          <li><img src="illustrations/priv-comune.svg" width="160" height="160" loading="lazy" alt=""><h3>Non inviamo niente al Comune</h3><p>La domanda la invii tu, sul sito ufficiale.</p></li>
+          <li><img src="illustrations/priv-conserva.svg" width="160" height="160" loading="lazy" alt=""><h3>Non conserviamo i documenti</h3><p>Alla fine premi "Cancella tutto".</p></li>
+          <li><img src="illustrations/priv-decide.svg" width="160" height="160" loading="lazy" alt=""><h3>Decide sempre l'ufficio del Comune</h3><p>Noi controlliamo che la domanda sia completa.</p></li>
+          <li><img src="illustrations/priv-cancella.svg" width="160" height="160" loading="lazy" alt=""><h3>Puoi cancellare tutto, quando vuoi</h3><p>Un pulsante sempre visibile.</p></li>
+        </ul>
+        <p class="h-privnote">Documento d'identità, foto e delega restano sul tuo dispositivo. Solo il documento sanitario e il riepilogo vengono letti dal controllo automatico, poi cancellati.</p>
+      </div>
+    </section>
+
+    <!-- 6. DOVE ANDARE -->
+    <section id="dove" class="h-section h-where" aria-labelledby="h-where-t">
+      <div class="h-wrap h-where-grid">
+        <img class="h-map" src="illustrations/map-via-sile.svg" width="640" height="420" loading="lazy" alt="Mappa schematica di via Sile, con l'ufficio al numero 8 e le fermate della metropolitana M3 Brenta e Corvetto.">
+        <div>
+          <h2 id="h-where-t">Dove andare</h2>
+          <p class="h-office"><strong>Unità Gestione Permessi</strong><br>Via Sile 8, Milano (Municipio 4)</p>
+          <p>Lunedì–venerdì · 10:00–12:00 e 13:30–15:00<br><strong>Solo su appuntamento</strong></p>
+          <p>Metropolitana M3 Brenta o Corvetto<br>Autobus 77, 84, 93, 95</p>
+          <p>Telefono 02 884 52909<br>Email <a href="mailto:MTA.Uffdisabili@comune.milano.it">MTA.Uffdisabili@comune.milano.it</a><br>Centralino 020202</p>
+          <p><a class="cta ghost" href="https://www.openstreetmap.org/search?query=Via%20Sile%208%20Milano" target="_blank" rel="noopener">Apri in Mappe</a></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. CTA FINALE -->
+    <section class="h-section h-final" aria-labelledby="h-final-t">
+      <div class="h-wrap h-final-grid">
+        <img src="illustrations/guide.svg" width="240" height="240" loading="lazy" alt="Un impiegato gentile dello Sportello Amico, che sorride.">
+        <div>
+          <h2 id="h-final-t">Prepariamo la domanda insieme.</h2>
+          <p class="h-prose">Senza fretta. Se ti fermi, puoi ricominciare quando vuoi.</p>
+          <a class="cta" href="#accesso">Inizia con lo Sportello Amico</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. FOOTER -->
+    <footer class="sources h-footer">
+      <div class="h-wrap">
+        <p><strong>Fonti ufficiali:</strong>
+          <a href="https://www.comune.milano.it/servizi/mobilita/pass-per-la-sosta-e-la-circolazione-di-persone-con-disabilita" target="_blank" rel="noopener">pagina del servizio</a> ·
+          <a href="https://formshd.comune.milano.it/rwe2/module_preview.jsp?MODULE_TAG=PASS_DISABILI" target="_blank" rel="noopener">modulo online CUDE</a> ·
+          <a href="https://www.comune.milano.it/amministrazione/amministrazione-trasparente/attivita-e-procedimenti/tipologie-di-procedimento" target="_blank" rel="noopener">tempi del procedimento</a> ·
+          <a href="https://www.disabilita.governo.it/it/contrassegno-unico-disabili-europeo-cude/" target="_blank" rel="noopener">CUDE su disabilita.governo.it</a></p>
+        <p class="small">Prototipo realizzato al Claude Impact Lab Milano, 3 ottobre 2026. Non è un servizio ufficiale del Comune di Milano.</p>
+      </div>
+    </footer>
+  </main>
+
+  <!-- ============================== SIMULATED LOGIN ============================== -->
+  <main id="view-login" class="view login" tabindex="-1" hidden>
+    <div class="login-box">
+      <p class="sim-badge">ACCESSO SIMULATO · SOLO DIMOSTRAZIONE</p>
+      <h1>Entra con la tua identità digitale</h1>
+      <p>Nel servizio vero si entra con <strong>SPID, CIE o eIDAS</strong>, sul sito del proprio gestore. Qui, per la demo, scegli una persona di esempio: <strong>nessun dato reale, nessuna password</strong>.</p>
+      <div class="personas">
+        <button class="persona" data-user="lucia"><span class="p-face">👩‍🦱</span><span><strong>Lucia Verdi</strong><small>58 anni · fa la domanda per la mamma Anna, 84 anni</small></span></button>
+        <button class="persona" data-user="giorgio"><span class="p-face">👴</span><span><strong>Giorgio Bianchi</strong><small>71 anni · rinnova il suo pass permanente</small></span></button>
+        <button class="persona" data-user="samira"><span class="p-face">👩</span><span><strong>Samira El Amrani</strong><small>40 anni · amministratrice di sostegno del fratello</small></span></button>
+      </div>
+      <p class="small">Tutti i nomi sono inventati. <a href="#home">← Torna alle informazioni</a></p>
+    </div>
+  </main>
+
+  <!-- ============================== THE COUNTER ============================== -->
+  <div id="view-sportello" class="view room" hidden>
+    <section class="counter" aria-label="Conversazione con lo Sportello Amico">
+      <div id="chat" class="chat" role="log" aria-live="polite"></div>
+      <div class="answers">
+        <div id="chips" class="chips"></div>
+        <form id="ask" class="ask" hidden>
+          <label for="ask-input" class="sr-only">Scrivi una domanda allo Sportello Amico</label>
+          <input id="ask-input" type="text" maxlength="500" autocomplete="off" placeholder="Scrivi una domanda… (non scrivere nomi o codici fiscali)">
+          <button type="submit">Invia</button>
+        </form>
+        <div class="mic-row">
+          <button id="mic" class="mic" type="button" aria-label="Rispondi a voce">🎤</button>
+          <span id="mic-hint" class="mic-hint">Puoi toccare un pulsante oppure rispondere a voce.</span>
+        </div>
+      </div>
+    </section>
+    <section id="table" class="table" aria-label="Il tavolo con la busta dei documenti"></section>
+  </div>
+
+  <input type="file" id="picker" hidden>
+  <dialog id="sheet" aria-labelledby="sheet-title"><div class="sheet-head"><strong id="sheet-title" tabindex="-1"></strong><button type="button" id="sheet-close">Chiudi</button></div>
+    <div class="sheet-body" id="sheet-body"></div></dialog>
+</body>
+</html>

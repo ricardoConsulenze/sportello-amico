@@ -1,0 +1,39 @@
+# Local production-like stack:  cp .env.example .env  &&  docker compose up --build
+#   http://localhost:8080  -> nginx (frontend) -> /api -> backend, /langgraph -> LangGraph
+services:
+  frontend:
+    build: { context: ., dockerfile: deploy/frontend/Dockerfile }
+    ports: ["8080:8080"]
+    environment:
+      APP_ENV: ${APP_ENV:-production}
+      BACKEND_URL: http://backend:8765
+      LANGGRAPH_URL: ${LANGGRAPH_URL:-}
+      LANGGRAPH_API_KEY: ${LANGGRAPH_API_KEY:-}
+      LANGGRAPH_ASSISTANT_ID: ${LANGGRAPH_ASSISTANT_ID:-sportello}
+    depends_on:
+      backend: { condition: service_healthy }
+    restart: unless-stopped
+
+  backend:
+    build: { context: ., dockerfile: deploy/backend/Dockerfile }
+    environment:
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+      MOCK: ${MOCK:-0}
+    expose: ["8765"]
+    restart: unless-stopped
+
+  # LangGraph Agent Server: uncomment when the graph repo is ready, then set
+  # LANGGRAPH_URL=http://langgraph:8000 in .env. Build its image with `langgraph build -t sportello-langgraph`.
+  # langgraph:
+  #   image: sportello-langgraph
+  #   environment:
+  #     ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+  #     REDIS_URI: redis://redis:6379
+  #     DATABASE_URI: postgres://postgres:postgres@postgres:5432/postgres?sslmode=disable
+  #   expose: ["8000"]
+  #   depends_on: [redis, postgres]
+  # redis:
+  #   image: redis:7-alpine
+  # postgres:
+  #   image: postgres:16-alpine
+  #   environment: { POSTGRES_PASSWORD: postgres }
