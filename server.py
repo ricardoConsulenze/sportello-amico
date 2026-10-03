@@ -648,7 +648,8 @@ def mock_summary(body: dict) -> dict:
                          "cosa_fare": "Scegli 'invio a domicilio con raccomandata'. Dopo l'invio non si cambia.",
                          "regola": "R8"})
     return {"problemi": problems, "pronto_per_inoltro": not problems,
-            "messaggio": "Ho guardato il riepilogo." + (" C'è una cosa da sistemare." if problems else " Mi sembra tutto a posto."),
+            "messaggio": "Ho guardato il riepilogo." + ((" C'è una cosa da sistemare." if len(problems) == 1 else f" Ci sono {len(problems)} cose da sistemare.")
+                                                       if problems else " Mi sembra tutto a posto."),
             "mock": True}
 
 

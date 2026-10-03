@@ -966,7 +966,7 @@ function recapHtml() {
     : S.canGoOut ? "A scelta: raccomandata oppure ritiro su appuntamento." : "Non ancora scelta.";
   return `<p class="recap-note"><strong>Questo riepilogo resta sul tuo dispositivo. La domanda la invii tu sul sito del Comune.</strong> Non ho inviato nulla al Comune.</p>
     ${todo.length ? `<div class="recap-todo"><strong>Cosa ancora manca</strong><ul>${todo.map((t) => `<li>${esc(t)}</li>`).join("")}</ul></div>` : `<p class="recap-ok">✅ Non manca niente.</p>`}
-    ${sec(2, "Chi fa la domanda", `<p>${esc(S.role ? ROLES[S.role].official : "non indicato")}${other() ? ` · per conto di ${esc(holder())}` : ""}</p>`)}
+    ${sec(2, "Chi fa la domanda", `<p>${esc(S.role ? ROLES[S.role].official : "non indicato")}${other() ? ` · per conto ${S.role === "parent" ? "di tuo figlio o tua figlia" : "della persona con disabilità"}` : ""}</p>`)}
     ${sec(4, "Tipo di richiesta", `<p>${esc(requestWord())}${S.request === "rinnovo" ? ` · invalidità permanente: ${S.permanent === true ? "sì" : S.permanent === false ? "no" : "non so"}` : ""}</p>`)}
     <h3>Documenti nella busta</h3><ul>${docs}</ul>
     <h3>Controllo del documento sanitario</h3>${m ? `<p>${esc(m.messaggio)}</p>${m.controlli?.length ? `<ul>${m.controlli.map((c) => `<li>${esc(c.regola)}: ${esc(String(c.esito).replace("_", " "))}</li>`).join("")}</ul>` : ""}` : "<p>Non ancora fatto.</p>"}
@@ -1160,15 +1160,19 @@ function route() {
   const views = { home: "view-home", accesso: "view-login", sportello: "view-sportello" };
   if (!views[view]) view = "home";
   Object.entries(views).forEach(([k, id]) => { $(id).hidden = k !== view; });
+  const titles = { home: "Pass disabili, preparato insieme", accesso: "Accesso", sportello: "Allo sportello" };
+  document.title = `${titles[view]} · Sportello Amico`;
   const inside = view === "sportello";
   $("btn-wipe").hidden = !inside; $("btn-logout").hidden = !S.user;
   $("who").hidden = !S.user;
-  if (S.user) $("who").textContent = `${USERS[S.user].face} ${USERS[S.user].name} · accesso simulato`;
+  if (S.user) { $("who").textContent = `${USERS[S.user].face} ${USERS[S.user].name} · accesso simulato`; hideEmoji($("who")); }
   if (inside && !$("chat").children.length) welcome();
   let anchor = view === "home" && location.hash.length > 1 ? document.getElementById(location.hash.slice(1)) : null;
   if (anchor && !$("view-home").contains(anchor)) anchor = null;
   if (anchor) anchor.scrollIntoView();
   else window.scrollTo(0, 0);
+  // move focus to the new view so screen readers announce the page change (the counter focuses its first chip itself)
+  if (!inside) (anchor || $(views[view])).focus({ preventScroll: true });
 }
 
 function wipe() {
