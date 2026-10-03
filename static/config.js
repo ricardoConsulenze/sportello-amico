@@ -6,6 +6,8 @@ window.APP_CONFIG = {
   // empty = same origin (server.py locally, nginx reverse proxy in production)
   apiBaseUrl: "",
   requestTimeoutMs: 180000,
+  // free-text chat: "backend" = /api/ask of server.py, "langgraph" = Agent Server below, "off" = hidden
+  chat: { provider: "backend" },
   langgraph: {
     enabled: false,
     baseUrl: "/langgraph", // proxied by nginx, which adds the API key server-side

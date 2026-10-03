@@ -17,7 +17,8 @@ Endpoints:
   POST /api/check-document  check another attachment (identity document, photo, delega, atto di nomina);
                             the browser sends it only if the person agreed (PRIVACY.md)
   POST /api/ask             answer a question from the texts in knowledge/, with citations; Claude can
-                            call the trova_sedi tool to look up City offices in knowledge/sedi.json
+                            call the trova_sedi tool to look up City offices in knowledge/sedi.json.
+                            It is the chat of the counter when no LangGraph server is configured
 """
 import argparse
 import base64
@@ -327,10 +328,21 @@ persone con disabilità (CUDE). Rispondi alle domande sulla procedura usando SOL
   Per cercare vicino a casa basta il quartiere o la fermata della metro: non chiedere l'indirizzo.
 
 {STYLE}
-Rispondi in poche frasi, in italiano, senza titoli né elenchi lunghi."""
+- Dai sempre del tu, come il resto dello sportello. Non dedurre mai il genere della persona dal nome.
+- Spiega le parole difficili con parole semplici, senza aggiungere fatti che non sono nei documenti.
+- Rispondi in al massimo 5 frasi brevi, in italiano. Niente titoli; al massimo un elenco corto.
+  Se c'è altro da dire, chiudi offrendo di approfondire."""
 
 MAX_QUESTION = 1000
 MAX_TURNS = 20
+
+# Non-personal state of the counter sent by the browser with each question (see chatContext() in app.js).
+# Only these keys, only short plain values: no names, documents or plate ever travel here.
+SITUATION_LABELS = {
+    "stage": "fase dello sportello", "tab": "schermata del modulo", "role": "chi fa la domanda",
+    "request": "tipo di richiesta", "permanent": "pass precedente per invalidità permanente",
+    "medical_outcome": "esito del controllo del documento sanitario",
+}
 
 
 def frontmatter(text: str) -> tuple[dict, str]:
@@ -394,8 +406,27 @@ def conversation(body: dict) -> list[dict]:
         turns.append({"role": role, "content": t["testo"][:4000]})
     if turns and turns[-1]["role"] == "user":
         raise ValueError("Conversazione non valida.")
-    turns.append({"role": "user", "content": question})
+    situation = situation_text(body.get("situazione"))
+    turns.append({"role": "user", "content": f"{situation}\n\nDomanda: {question}" if situation else question})
     return turns
+
+
+def situation_text(situation) -> str:
+    """The counter state as a short note for Claude. It goes after the cached documents, so it never breaks the cache."""
+    if situation is None:
+        return ""
+    if not isinstance(situation, dict):
+        raise ValueError("Conversazione non valida.")
+    lines = []
+    for key, label in SITUATION_LABELS.items():
+        value = situation.get(key)
+        if value is None or value == "":
+            continue
+        if not isinstance(value, (str, int, bool)) or len(str(value)) > 40:
+            raise ValueError("Conversazione non valida.")
+        value = {True: "sì", False: "no"}.get(value, value) if isinstance(value, bool) else value
+        lines.append(f"- {label}: {value}")
+    return "Situazione allo sportello (nessun dato personale):\n" + "\n".join(lines) if lines else ""
 
 
 # --- City offices from the open data portal (knowledge/sedi.json, built once by fetch_sedi.py) ---------
@@ -636,7 +667,8 @@ def mock_document(body: dict) -> dict:
     return {**with_rules(kind, result), "mock": True}
 
 
-COMMON = {"pass", "disa", "comu", "mila", "pers", "sost", "circ", "rich", "dell", "ques", "poss", "devo", "sono"}
+COMMON = {"pass", "disa", "comu", "mila", "pers", "sost", "circ", "rich", "dell", "ques", "poss", "devo", "sono",
+          "serv", "quan", "cosa", "come", "dove", "fare", "ciao", "buon", "graz"}
 
 
 def stems(text: str) -> set[str]:
@@ -646,9 +678,9 @@ def stems(text: str) -> set[str]:
 
 def mock_ask(body: dict) -> dict:
     """Offline: return the official section that shares the most words with the question."""
-    question = conversation(body)[-1]["content"]
-    words = stems(question)
-    best, best_score = None, 1  # at least 2 shared stems
+    conversation(body)  # same validation as the real endpoint
+    words = stems(str(body["domanda"]))
+    best, best_score = None, 0  # at least 1 shared stem (common words excluded)
     for doc in DOCS[:-1]:  # official texts only
         for section in re.split(r"\n(?=#)", doc["testo"]):
             score = len(words & stems(section))

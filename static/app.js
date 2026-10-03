@@ -150,7 +150,7 @@ function matchChip(alternatives) {
   return best;
 }
 
-// ===================================================================================== free questions (LangGraph)
+// ===================================================================================== free questions (/api/ask or LangGraph)
 
 function setupAsk() {
   if (!Connectors.chat.enabled) return;
@@ -169,6 +169,38 @@ function setupAsk() {
 const chatContext = () => ({ stage: S.stage, tab: S.tab, role: S.role, request: S.request, permanent: S.permanent,
   medical_outcome: S.medical?.esito_generale || null });
 
+// the chat answer: escaped first, then only **bold** and [text](https://…) links are turned into HTML
+const safeHttp = (u) => /^https?:\/\//i.test(u);
+function chatHtml(text) {
+  return text.split(/\n{2,}/).map((p) => `<p>${esc(p)
+    .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
+    .replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (m, label, url) => {
+      const href = url.replace(/&amp;/g, "&");
+      return safeHttp(href) ? `<a href="${esc(href)}" target="_blank" rel="noopener">${label}</a>` : label;
+    })
+    .replace(/\n/g, "<br>")}</p>`).join("");
+}
+
+// offices found by the assistant (open data of the Comune), each with its source and any warning
+function sediHtml(sedi) {
+  if (!sedi.length) return "";
+  const row = (s) => `<li><strong>${esc(s.nome)}</strong><br>${esc(s.indirizzo || "")}${
+    s.orari ? `<br>🕘 ${esc(s.orari)}` : ""}${s.telefono ? `<br>📞 ${esc(s.telefono)}` : ""}${
+    s.metro_vicina ? `<br>🚇 ${esc(s.metro_vicina)}` : ""}${s.note ? `<br><span class="small">${esc(s.note)}</span>` : ""}${
+    s.avviso ? `<br><span class="small">⚠️ ${esc(s.avviso)}</span>` : ""}${
+    s.fonte?.url && safeHttp(s.fonte.url) ? `<br><a class="small" href="${esc(s.fonte.url)}" target="_blank" rel="noopener">Fonte: ${esc(s.fonte.titolo)}</a>` : ""}</li>`;
+  return `<p><strong>📍 Dove andare</strong></p><ul>${sedi.map(row).join("")}</ul>`;
+}
+
+// the official texts the answer comes from: one line per document, linked to the Comune page
+function fontiHtml(fonti) {
+  const docs = [...new Map(fonti.map((f) => [f.titolo, f])).values()];
+  if (!docs.length) return "";
+  const item = (f) => (f.fonte && safeHttp(f.fonte)
+    ? `<a href="${esc(f.fonte)}" target="_blank" rel="noopener">${esc(f.titolo)}</a>` : esc(f.titolo));
+  return `<p class="small">📄 Da dove viene la risposta: ${docs.map(item).join(" · ")}</p>`;
+}
+
 async function askChat(text) {
   addMsg("me", esc(text));
   const el = document.createElement("div");
@@ -176,11 +208,12 @@ async function askChat(text) {
   el.innerHTML = `<div class="face" aria-hidden="true">🧑‍💼</div><div class="bubble"><p class="typing">Sto pensando…</p></div>`;
   $("chat").appendChild(el);
   const bubble = el.querySelector(".bubble");
-  let answer = "";
+  let answer = "", extra = "";
   try {
-    for await (const delta of Connectors.chat.ask(text, chatContext())) {
-      answer += delta;
-      bubble.innerHTML = answer.split(/\n{2,}/).map((p) => `<p>${esc(p).replace(/\n/g, "<br>")}</p>`).join("");
+    for await (const piece of Connectors.chat.ask(text, chatContext())) {
+      if (typeof piece === "string") answer += piece;
+      else extra = sediHtml(piece.sedi || []) + fontiHtml(piece.fonti || []);
+      bubble.innerHTML = chatHtml(answer) + extra;
       $("chat").scrollTop = $("chat").scrollHeight;
     }
     if (!answer) bubble.innerHTML = "<p>Non ho una risposta. Puoi chiedere all'ufficio: 📞 02 884 52909.</p>";

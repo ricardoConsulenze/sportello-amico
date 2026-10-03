@@ -1,7 +1,9 @@
 #!/bin/sh
 # Runs at container start (nginx entrypoint), after the templates are rendered.
 #  1. writes the public runtime config read by the browser (static/config.js);
-#  2. writes the LangGraph proxy rules, or nothing if LANGGRAPH_URL is empty (chat disabled).
+#  2. writes the LangGraph proxy rules, or nothing if LANGGRAPH_URL is empty.
+# The chat uses LangGraph when LANGGRAPH_URL is set, otherwise the backend's /api/ask.
+# CHAT_PROVIDER=backend|langgraph|off overrides that choice.
 set -eu
 
 HTML=/usr/share/nginx/html
@@ -9,6 +11,13 @@ SNIPPET=/etc/nginx/snippets/langgraph.conf
 json_str() { printf '"%s"' "$(printf '%s' "$1" | sed 's/\\/\\\\/g; s/"/\\"/g')"; }
 
 if [ -n "${LANGGRAPH_URL:-}" ]; then CHAT=true; else CHAT=false; fi
+if [ "$CHAT" = true ]; then PROVIDER=langgraph; else PROVIDER=backend; fi
+PROVIDER="${CHAT_PROVIDER:-$PROVIDER}"
+case "$PROVIDER" in
+  backend|off) ;;
+  langgraph) [ "$CHAT" = true ] || { echo "40-app-config: CHAT_PROVIDER=langgraph needs LANGGRAPH_URL" >&2; exit 1; } ;;
+  *) echo "40-app-config: CHAT_PROVIDER must be backend, langgraph or off" >&2; exit 1 ;;
+esac
 
 cat > "$HTML/config.js" <<JS
 /* generated at container start by 40-app-config.sh: do not edit */
@@ -16,13 +25,14 @@ window.APP_CONFIG = {
   env: $(json_str "${APP_ENV:-production}"),
   apiBaseUrl: $(json_str "${API_BASE_URL:-}"),
   requestTimeoutMs: 180000,
+  chat: { provider: $(json_str "$PROVIDER") },
   langgraph: { enabled: $CHAT, baseUrl: "/langgraph", assistantId: $(json_str "${LANGGRAPH_ASSISTANT_ID:-sportello}") },
 };
 JS
 
 if [ "$CHAT" = false ]; then
   echo "location /langgraph/ { return 404; }" > "$SNIPPET"
-  echo "40-app-config: chat disabled (LANGGRAPH_URL empty)"
+  echo "40-app-config: LangGraph disabled (LANGGRAPH_URL empty), chat provider: $PROVIDER"
   exit 0
 fi
 
