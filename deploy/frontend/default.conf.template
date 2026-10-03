@@ -1,6 +1,16 @@
 # Rendered by the nginx entrypoint with envsubst: only ${VARS} defined in the environment are replaced.
 # privacy (P3): no request bodies, no query strings in the access log
-log_format privacy '$remote_addr [$time_local] "$request_method $uri" $status $request_time';
+# IP truncated to /24 (IPv4) or dropped (IPv6): with the path it would reveal who prepares a disability pass application
+map $remote_addr $ip_anon {
+  ~^(?<p>\d+\.\d+\.\d+)\.\d+$ $p.0;
+  default                           "-";
+}
+# thread ids work as access keys to a chat: never log them
+map $uri $uri_safe {
+  "~^/langgraph/threads/[0-9a-fA-F-]{36}(?<rest>.*)$" /langgraph/threads/:id$rest;
+  default $uri;
+}
+log_format privacy '$ip_anon [$time_local] "$request_method $uri_safe" $status $request_time';
 
 limit_req_zone $binary_remote_addr zone=checks:10m rate=6r/m;
 limit_req_zone $binary_remote_addr zone=chat:10m rate=30r/m;
@@ -42,6 +52,7 @@ server {
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
     proxy_set_header X-Forwarded-Proto $scheme;
     client_max_body_size 30m;     # matches MAX_BODY in server.py
+    client_body_buffer_size 30m;  # keep uploaded medical documents in memory, never in a temp file (P2)
     proxy_read_timeout 300s;      # Claude with effort "high" can take a while
   }
   location = /api/status { proxy_pass ${BACKEND_URL}; }
@@ -53,8 +64,13 @@ server {
   limit_req_status 429;
 
   # errors from nginx itself in the same {"errore": ...} format the frontend shows to people
+  error_page 413 = @too_large;
   error_page 429 = @too_many;
   error_page 502 503 504 = @backend_down;
+  location @too_large {
+    default_type application/json;
+    return 413 '{"errore": "File troppo grandi. Ogni file deve stare sotto i 5 MB."}';
+  }
   location @too_many {
     default_type application/json;
     return 429 '{"errore": "Troppe richieste in poco tempo. Aspetta un minuto e riprova."}';

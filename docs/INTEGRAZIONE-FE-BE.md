@@ -106,7 +106,7 @@ Regole da applicare (`rules.py`): `rinnovo` + `permanent: true` → **R6, R5**; 
 ```
 | Campo | Valori ammessi | Cosa ci fa il frontend |
 |---|---|---|
-| `tipo_documento` | `verbale_invalidita_o_handicap`, `certificato_asl_deambulazione`, `certificato_medico_curante`, `sentenza`, `altro`, `non_leggibile` | scheda per l'ufficio |
+| `tipo_documento`, `pagine_viste`, `pagine_totali_dichiarate` | tipo: `verbale_invalidita_o_handicap`, `certificato_asl_deambulazione`, `certificato_medico_curante`, `sentenza`, `altro`, `non_leggibile` | oggi non letti dal frontend: tenerli nello schema per controlli futuri e per l'ufficio |
 | `controlli[].esito` | `trovato`, `manca`, `non_sicuro` | icona ✅ ❌ ❓; "Cosa fare" mostrato se non `trovato` |
 | `controlli[].regola` | `R1`…`R12` | link alla fonte in `fonti[regola]` |
 | `esito_generale` | `sembra_completo` → timbro **VA BENE**; `da_verificare` → **DA VERIFICARE**; `manca_qualcosa` → **MANCA LA FRASE** se `serve_lettera_medico`, altrimenti **MANCANO PAGINE** se R5 è `manca`, altrimenti **MANCA QUALCOSA** | timbro sulla busta |
@@ -195,9 +195,10 @@ Formato unico, per tutte le route: `{"errore": "<frase in italiano semplice, con
 
 | Status | Quando | Esempio di `errore` |
 |---|---|---|
-| `400` | JSON non valido, formato file non ammesso, base64 non valido, nessun file | `Formato non accettato: image/heic` |
+| `400` | JSON non valido; corpo che non è un oggetto; `case`/`context` non oggetti; `files` non lista di oggetti con `name`/`media_type`/`data` stringhe; formato file non ammesso; base64 non valido; nessun file | `Richiesta non valida.` · `Formato non accettato: image/heic` |
 | `404` | route o file demo inesistente | `Non trovato.` |
-| `413` | corpo oltre 30 MB | `File troppo grandi.` |
+| `413` | corpo oltre 30 MB (lo blocca prima nginx) | `File troppo grandi. Ogni file deve stare sotto i 5 MB.` |
+| `500` | errore inatteso del backend (nel log solo il tipo di errore) | `Qualcosa non ha funzionato. Riprova.` |
 | `429` | rate limit di nginx (6 controlli al minuto per IP, burst 4; chat 30 al minuto) | `Troppe richieste in poco tempo. Aspetta un minuto e riprova.` (risponde nginx) |
 | `502` | Claude non disponibile, rifiuto, risposta troncata | `Il controllo automatico non è disponibile. Riprova più tardi.` |
 | `502`/`504` da nginx | backend spento o irraggiungibile | `Il servizio non risponde in questo momento. Riprova tra poco.` |
@@ -321,6 +322,12 @@ Avvio in sviluppo: `langgraph dev` (porta 2024). In produzione: `langgraph build
 e decommenta i servizi `langgraph`, `redis`, `postgres` in `docker-compose.yml`.
 
 ---
+
+## 4bis. Dati dell'ufficio (OFFICE)
+La funzione "Vado di persona" usa la costante `OFFICE` in `static/app.js`: indirizzo, orari, telefono,
+email, centralino e mezzi per l'Unità Gestione Permessi di via Sile 8. Se il chatbot LangGraph deve
+rispondere su ufficio, orari o contatti, usi **gli stessi valori** (per esempio un tool `office_info` che
+li restituisce fissi) invece di generarli. Orari e canale di prenotazione vanno confermati con il Comune.
 
 ## 5. Configurazione
 

@@ -1,6 +1,8 @@
 # Documenti demo per i tester di Sportello Amico
 
-**Tutti i dati sono inventati.** Nomi (ESEMPIO PERSONA, Anna/Lucia/Samira Esempio), codice fiscale `XXXXXX00X00X000X`, numero documento `FAC000000`: niente è reale. Ogni immagine generata riporta la scritta "FAC-SIMILE · DOCUMENTO DI PROVA". I verbali 01 e 05 vengono dagli esempi pubblici che il Comune collega al proprio modulo.
+**Dati inventati o campioni pubblici anonimizzati.** Tutti i file generati sono inventati: nomi (ESEMPIO PERSONA, Anna/Lucia/Samira Esempio), codice fiscale `XXXXXX00X00X000X`, numero documento `FAC000000`, e ogni immagine riporta "FAC-SIMILE · DOCUMENTO DI PROVA". Fanno eccezione i verbali **01** e **05** (e `demo_docs/C_verbale_esempio_art381.pdf`, `demo_docs/C2_verbale_esempio_L382.pdf`): sono i **verbali di esempio anonimizzati (OMISSIS) pubblicati dal Comune di Milano** nel modulo online CUDE (https://formshd.comune.milano.it/rwe2/module_preview.jsp?MODULE_TAG=PASS_DISABILI), senza dati anagrafici. Non aggiungere mai documenti reali.
+
+In modalità mock il nome del file conta solo per i pulsanti "Esempio" dell'app: un file caricato a mano (documento sanitario o riepilogo) viene inviato con un nome generico, per non mandare al server nomi di persona.
 
 Formati: PDF, JPG o PNG, tutti sotto i 5 MB.
 Rigenerare i file: `uv run --with pillow --with pypdf python documenti-demo/genera_documenti_demo.py` (dalla cartella del progetto).

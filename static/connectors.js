@@ -149,7 +149,7 @@
       chat.cancel();
       const id = threadId; threadId = null;
       if (id && LG.enabled) {
-        try { await request(lgUrl(`/threads/${id}`), { method: "DELETE", headers: lgHeaders }, 10000); } catch { /* offline: thread expires server-side */ }
+        try { await request(lgUrl(`/threads/${id}`), { method: "DELETE", headers: lgHeaders }, 10000); } catch { /* offline: the Agent Server must expire threads (TTL), see docs/INTEGRAZIONE-FE-BE.md */ }
       }
     },
   };
