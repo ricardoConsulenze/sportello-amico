@@ -981,6 +981,7 @@ function printDoctorLetter() {
 
 function printWindow(title, html) {
   const w = window.open("", "_blank");
+  if (!w) return bot("<p>Il browser ha bloccato la finestra di stampa. Consenti le finestre pop-up per questo sito e riprova.</p>");
   w.document.write(`<!doctype html><html lang="it"><head><meta charset="utf-8"><title>${esc(title)}</title>
     <style>body{font-family:Arial,sans-serif;font-size:15px;line-height:1.6;max-width:720px;margin:30px auto;padding:0 20px}h1{font-size:20px;text-align:center}
     .line{border-bottom:1px solid #000;display:inline-block;min-width:220px}.box{border:2px solid #000;padding:10px;margin:14px 0}.small{font-size:12px;color:#444}</style></head>

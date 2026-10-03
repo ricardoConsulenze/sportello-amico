@@ -64,8 +64,13 @@ server {
   limit_req_status 429;
 
   # errors from nginx itself in the same {"errore": ...} format the frontend shows to people
+  error_page 413 = @too_large;
   error_page 429 = @too_many;
   error_page 502 503 504 = @backend_down;
+  location @too_large {
+    default_type application/json;
+    return 413 '{"errore": "File troppo grandi. Ogni file deve stare sotto i 5 MB."}';
+  }
   location @too_many {
     default_type application/json;
     return 429 '{"errore": "Troppe richieste in poco tempo. Aspetta un minuto e riprova."}';

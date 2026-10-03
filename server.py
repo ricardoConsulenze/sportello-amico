@@ -302,7 +302,12 @@ class Handler(SimpleHTTPRequestHandler):
         return super().do_GET()
 
     def do_POST(self):
-        length = int(self.headers.get("Content-Length", 0))
+        try:
+            length = int(self.headers.get("Content-Length", 0))
+        except ValueError:
+            length = -1
+        if length < 0:
+            return self._json({"errore": "Richiesta non valida."}, HTTPStatus.BAD_REQUEST)
         if length > MAX_BODY:
             return self._json({"errore": "File troppo grandi."}, HTTPStatus.REQUEST_ENTITY_TOO_LARGE)
         try:
@@ -311,7 +316,8 @@ class Handler(SimpleHTTPRequestHandler):
             return self._json({"errore": "Richiesta non valida."}, HTTPStatus.BAD_REQUEST)
         files = body.get("files", []) if isinstance(body, dict) else None
         if (not isinstance(body, dict) or not all(isinstance(body.get(k, {}), dict) for k in ("case", "context"))
-                or not isinstance(files, list) or not all(isinstance(f, dict) for f in files)):
+                or not isinstance(files, list) or not all(isinstance(f, dict) for f in files)
+                or not all(isinstance(f.get(k, ""), str) for f in files for k in ("name", "media_type", "data"))):
             return self._json({"errore": "Richiesta non valida."}, HTTPStatus.BAD_REQUEST)
         routes = {"/api/check-medical": (check_medical, mock_medical),
                   "/api/check-summary": (check_summary, mock_summary)}
@@ -324,6 +330,9 @@ class Handler(SimpleHTTPRequestHandler):
             return self._json({"errore": str(e)}, HTTPStatus.BAD_REQUEST)
         except ClaudeError as e:
             return self._json({"errore": str(e)}, HTTPStatus.BAD_GATEWAY)
+        except Exception as e:  # never a bare traceback to the client; log the type only, no content
+            print(f"Unexpected error {type(e).__name__} on {self.path}", file=sys.stderr)
+            return self._json({"errore": "Qualcosa non ha funzionato. Riprova."}, HTTPStatus.INTERNAL_SERVER_ERROR)
         finally:
             body = None  # drop the uploaded documents as soon as the answer is ready
         return self._json(result)

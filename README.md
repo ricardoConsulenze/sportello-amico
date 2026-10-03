@@ -9,7 +9,7 @@ the application on the Comune's official site, and the pass office decides.
 
 | | |
 |---|---|
-| **Team** | TODO: names and roles |
+| **Team** | Massimiliano Mancini Tortora, Francesca Sampietro, Iuliia Vorobiova, Ricardo Matamoros, Reda Charf ([details](#team)) |
 | **Live demo** | TODO: production URL |
 | **Video / slides** | TODO: public link to the 2-minute demo video (YouTube unlisted, Loom or Google Drive) |
 | **Repository** | https://github.com/ricardoConsulenze/sportello-amico |
@@ -17,6 +17,15 @@ the application on the Comune's official site, and the pass office decides.
 | **Event** | Claude Impact Lab Milano, 3 October 2026 |
 | **Status** | Prototype. Not an official service of the Comune di Milano |
 | **License** | MIT ([LICENSE](LICENSE)) |
+
+## Team
+| Name | Contacts |
+|---|---|
+| Massimiliano Mancini Tortora | massimiliano.mancini.tortora@gmail.com · [LinkedIn](https://www.linkedin.com/in/massimiliano-mancini-tortora/) · GitHub [@MAXMT75](https://github.com/MAXMT75) |
+| Francesca Sampietro | francesca.sampietro@gmail.com |
+| Iuliia Vorobiova | [LinkedIn](https://www.linkedin.com/in/iuliiavorobiova) |
+| Ricardo Matamoros | ricardo.matamoros95@gmail.com · [LinkedIn](https://www.linkedin.com/in/ricardo-matamoros-679284168) |
+| Reda Charf | redino98@gmail.com · [LinkedIn](https://www.linkedin.com/in/redacharf/) |
 
 ## The problem and who has it
 The online CUDE form has 10 screens. Most rejections and requests for missing documents come from a
