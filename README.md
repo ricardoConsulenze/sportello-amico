@@ -141,8 +141,68 @@ See [PRIVACY.md](PRIVACY.md). In short:
 - "Cancella tutto" (delete everything) is always visible, and also deletes the chat on the server.
 
 ## For contributors working with Claude Code
-- Agents in `.claude/agents/`: `frontend-dev`, `ux-ui-designer` (UX, UI, responsive and content), `integration-checker` (frontend ↔ backend ↔ LangGraph, release verdict).
-- Skills in `.claude/skills/`: `ux-ui-sportello` and `collegamento-fe-be` (with `smoke_test.sh`).
+Agents in `.claude/agents/`:
+
+| Agent | Role | Changes files? |
+|---|---|---|
+| `frontend-dev` | builds frontend features | yes |
+| `ux-ui-designer` | UX, UI, responsive layout and content | yes |
+| `integration-checker` | frontend ↔ backend ↔ LangGraph contracts, release verdict | no, reports |
+| `demo-validator` | runs the Lucia, Giorgio and Samira scenarios end to end with `documenti-demo/` (expected vs actual) | no, reports |
+| `privacy-security-reviewer` | data flow, GDPR and AI Act points, logs, secrets, CSP, attack surface | no, reports |
+| `accessibility-auditor` | WCAG 2.2 AA with measured contrast, keyboard and screen-reader structure, AgID accessibility statement draft | no, reports |
+
+Skills in `.claude/skills/`: `ux-ui-sportello` and `collegamento-fe-be` (with `smoke_test.sh`).
+
+**Release gate.** Before going live, run `demo-validator`, `integration-checker`, `privacy-security-reviewer` and `accessibility-auditor`. All four must say **ready**.
+
+## What is missing for production
+Ready today:
+- the full flow, with containers and nginx (CSP, rate limits, privacy-safe logs);
+- a smoke test;
+- the integration guide;
+- invented demo documents;
+- an accessibility and responsive pass.
+
+The list below is what stands between this prototype and a public service.
+
+**Legal and privacy: blocking.**
+- [ ] The Comune is the data controller; a processor agreement with the provider.
+- [ ] A data processing agreement with Anthropic, with zero data retention and an agreed processing region.
+- [ ] The same agreement with whoever hosts LangGraph.
+- [ ] A DPIA: health data from vulnerable people, using AI.
+- [ ] A legal basis under art. 9 GDPR, reviewed by the Comune's DPO.
+- [ ] A privacy notice and legal notes on the site. AI Act transparency text approved.
+- [ ] An accessibility statement published on AgID (required for public bodies).
+
+**Content and model quality: blocking.**
+- [ ] The pass office signs off rules R1–R12 (`rules.py`), all the texts, the examples and the "Vado di persona" facts. The hours and booking channel are still to be confirmed.
+- [ ] Answers to the open questions in [Known limits](#known-limits-and-next-steps).
+- [ ] An **evaluation set**: anonymised real verbali and certificates, provided by the office, with the correct outcome. Measure how often the check says "VA BENE" when something is missing (target: never), and how often it says "non sicuro". Re-run it at every prompt or model change.
+- [ ] A human review of the first weeks of use, through the office's feedback.
+
+**Backend and integration.**
+- [ ] The production backend merged from the `backend` branch, passing the contract in [docs/INTEGRAZIONE-FE-BE.md](docs/INTEGRAZIONE-FE-BE.md) and the smoke test.
+- [ ] Production settings: `MOCK` off, `/demo` disabled, demo buttons hidden in the UI.
+- [ ] LangGraph, if used:
+  - the graph is built, with a `nostream` tag on internal LLM nodes;
+  - Postgres and Redis are deployed;
+  - threads expire automatically.
+- [ ] A timeout and a fallback message when Claude is slow. Check the 300-second limits against real response times.
+
+**Infrastructure and operations.**
+- [ ] A domain and HTTPS on the City's infrastructure; secrets (`ANTHROPIC_API_KEY`, `LANGGRAPH_API_KEY`) in a secret manager.
+- [ ] CI (GitHub Actions): build both images, `node --check`, smoke test, secret scan, on every push.
+- [ ] Automated tests: unit tests for `rules.py` and the routes in `server.py`, and end-to-end browser tests for the 3 scenarios.
+- [ ] Monitoring: uptime and health checks, error rate, latency of the Claude calls. Alerts without content in the logs.
+- [ ] Cost control: a spending limit and alerts on the Anthropic account, and rate limits tuned to real traffic.
+- [ ] A load test for application peaks.
+- [ ] Remove `'unsafe-eval'` from the CSP: it is needed only by the HEIC converter. Replace it or move the conversion.
+
+**Accessibility and UX.**
+- [ ] Tests with real users (older people, family members, office staff) and with screen readers (NVDA, VoiceOver).
+- [ ] An `accessibility-auditor` report with no blocking items.
+- [ ] Optional: real SPID/CIE login, only if a future feature needs identity. Today none does.
 
 ## Known limits and next steps
 - Questions for the Comune:
