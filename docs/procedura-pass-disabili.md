@@ -1,6 +1,7 @@
 # Pass per la sosta e la circolazione di persone con disabilità (CUDE): procedura passo per passo
 
 Fonte: pagine ufficiali del Comune di Milano, consultate il 3 ottobre 2026 (link in fondo).
+**Fonte di verità:** la [pagina del modulo online CUDE](https://formshd2.comune.milano.it/rwe2/module_preview.jsp?MODULE_TAG=PASS_DISABILI) (copia in `knowledge/modulo-cude-presentazione.md`). In caso di differenze, vale quella.
 Base normativa: art. 381 DPR 495/1992, art. 188 Codice della Strada.
 
 ---
@@ -66,12 +67,15 @@ Il Comune valuta anche le **sentenze omologate** che riconoscano uno di questi d
 
 ## Passo 2: Prepara gli altri documenti (in formato digitale)
 
+Sono i documenti elencati nel modulo online:
+
 1. **Documento d'identità** dell'intestatario del pass, scansione **fronte e retro**.
 2. Solo se presenti la domanda per un'altra persona: **documento d'identità del richiedente**, fronte e retro.
 3. **Fototessera** recente a colori dell'intestatario.
 4. **Documentazione sanitaria** del passo 1.
-5. Se sei un delegato: **modulo delega** firmato dal delegante (vedi passo 2bis). Se sei il legale rappresentante: **atto di nomina**.
-6. **Libretto di circolazione** dell'auto usata in prevalenza per trasportare la persona con disabilità. Serve per registrare la targa e accedere ad Area B, Area C, ZTL e corsie riservate.
+5. Se sei un delegato: **modulo delega** firmato dal delegante (vedi passo 2bis). Se sei il legale rappresentante: il modulo chiede che tu sia "munito dei necessari poteri"; la FAQ del Comune consiglia di allegare l'**atto di nomina**.
+
+Il **libretto di circolazione non è tra i documenti richiesti** dal modulo. Se vuoi associare una targa, basta scriverla nel modulo (scheda 7) o nella delega.
 
 ---
 
@@ -127,7 +131,7 @@ I moduli sono PDF **non compilabili**: vanno stampati, compilati a mano, firmati
 
 > ⚠️ Errori frequenti:
 > - delega non firmata dal delegante;
-> - targa indicata nella delega diversa da quella del libretto allegato;
+> - targa indicata nella delega diversa da quella scritta nel modulo online;
 > - modulo sbagliato per la procedura;
 > - documento del delegato mancante.
 
@@ -181,7 +185,7 @@ Il pass è in **formato europeo (CUDE)**. Dura quanto il diritto riconosciuto e 
 
 ## Passo 6: Registrazione della targa
 
-- Se il pass è del **Comune di Milano**, la targa viene registrata **d'ufficio** al rilascio, a partire dal libretto allegato.
+- Se il pass è del **Comune di Milano**, la targa indicata nella domanda viene registrata **d'ufficio** al rilascio.
 - Si può registrare **una sola auto** (targa "master").
 - Se il pass è di **un altro Comune**, la targa va registrata separatamente (servizio "Ingressi in Area B e Area C… per titolari di contrassegno disabili").
 - Per un'auto **immatricolata all'estero**, la registrazione vale **al massimo 60 giorni**.
@@ -222,7 +226,7 @@ Cosa permette il pass:
 
 ## Fonti ufficiali
 - [Pass per la sosta e la circolazione di persone con disabilità](https://www.comune.milano.it/servizi/mobilita/pass-per-la-sosta-e-la-circolazione-di-persone-con-disabilita)
-- [Modulo digitale CUDE (Richiedi/rinnova)](https://formshd.comune.milano.it/rwe2/module_preview.jsp?MODULE_TAG=PASS_DISABILI)
+- [Modulo digitale CUDE (Richiedi/rinnova)](https://formshd2.comune.milano.it/rwe2/module_preview.jsp?MODULE_TAG=PASS_DISABILI)
 - [Prenota appuntamento: rilascio](https://servizicrm.comune.milano.it/spec/passdisabili/rilascio) · [rinnovo](https://servizicrm.comune.milano.it/spec/passdisabili/rinnovo)
 - [Modulo delega: rilascio/rinnovo](https://www.comune.milano.it/documents/d/guest/mod-delega-3?download=true) · [Modulo delega: proroga/duplicato](https://www.comune.milano.it/documents/d/guest/mod-delega_agg-09-2024?download=true)
 - [Pass per la disabilità: proroga](https://www.comune.milano.it/servizi/mobilita/pass-per-la-disabilita-proroga) · [duplicato](https://www.comune.milano.it/servizi/mobilita/pass-per-la-disabilita-duplicato)

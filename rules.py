@@ -3,18 +3,23 @@
 Each rule has an id, the text Claude checks against, and the official source shown to the user
 and to the office. Keep this file as the single source of truth: the server prompt and the
 office summary sheet are both built from it.
+
+Source of truth: the public page of the online form (FORM, saved in knowledge/modulo-cude-presentazione.md).
+Other sources only add detail and never override it. ORIGIN records where each rule comes from.
 """
 
-FORM = "https://formshd.comune.milano.it/rwe2/module_preview.jsp?MODULE_TAG=PASS_DISABILI"
+FORM = "https://formshd2.comune.milano.it/rwe2/module_preview.jsp?MODULE_TAG=PASS_DISABILI"
 PAGE = "https://www.comune.milano.it/servizi/mobilita/pass-per-la-sosta-e-la-circolazione-di-persone-con-disabilita"
+FAQ_FIRST = "https://servizicrm.comune.milano.it/centro-supporto/KA-01318/Domanda-pass-disabili-prima-richiesta"
 
 RULES = {
     "R1": ("Possono fare domanda: la persona con disabilità, il genitore di un figlio minorenne, un delegato, "
            "il legale rappresentante (tutore, protutore, procuratore, amministratore di sostegno) con i poteri necessari.", FORM),
     "R2": ("Allegati sempre richiesti: documento d'identità fronte/retro del titolare, fototessera recente a colori "
-           "35x45 mm, documentazione sanitaria.", FORM),
+           "(35x45 mm), documentazione sanitaria.", FORM),
     "R3": ("Se si fa domanda per un'altra persona: documento fronte/retro del richiedente e delega firmata dal "
-           "delegante, oppure atto di nomina a legale rappresentante.", FORM),
+           "delegante. Il legale rappresentante deve essere munito dei necessari poteri (la FAQ del Comune "
+           "consiglia di allegare l'atto di nomina).", FORM),
     "R4": ("Primo rilascio: certificato di deambulazione sensibilmente ridotta in corso di validità rilasciato "
            "dall'ufficio medico legale dell'azienda sanitaria, oppure verbale d'invalidità o handicap con "
            "riconoscimento dello status di non vedente (L. 382/70) o con l'indicazione di capacità di deambulazione "
@@ -35,6 +40,17 @@ RULES = {
     "R11": ("Le comunicazioni sulla domanda arrivano al telefono e all'email indicati per il titolare.", FORM),
     "R12": ("La targa si può associare subito o in un secondo momento. Se si associa, va scelto se aderire o no "
             "alla Piattaforma nazionale CUDE (MIT).", FORM),
+}
+
+# Where each rule comes from:
+# - "pagina_pubblica": the public form page, the source of truth
+# - "schermate_interne": the form screens behind SPID/CIE login (same form, no saved copy yet)
+# - "pagina_servizio": the Comune service page
+# The 35x45 mm photo size in R2 and the atto di nomina advice in R3 are details from FAQ_FIRST.
+ORIGIN = {
+    "R1": "pagina_pubblica", "R2": "pagina_pubblica", "R3": "pagina_pubblica", "R4": "pagina_pubblica",
+    "R5": "pagina_pubblica", "R6": "pagina_pubblica", "R7": "pagina_pubblica", "R8": "pagina_pubblica",
+    "R9": "schermate_interne", "R10": "pagina_servizio", "R11": "schermate_interne", "R12": "schermate_interne",
 }
 
 PHRASE_R6 = "alla data odierna persistono le condizioni sanitarie che hanno portato al rilascio del pass disabili"

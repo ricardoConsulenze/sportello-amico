@@ -7,6 +7,9 @@ WORKDIR /app
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 COPY server.py rules.py ./
+# knowledge base for /api/ask (texts + sedi.json) and the team summary it also reads
+COPY knowledge/ knowledge/
+COPY docs/procedura-pass-disabili.md docs/
 COPY static/ static/
 COPY demo_docs/ demo_docs/
 RUN useradd --system --uid 10001 app

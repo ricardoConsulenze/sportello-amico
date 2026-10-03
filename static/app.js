@@ -9,7 +9,7 @@
 
 const MAX_BYTES = 5 * 1024 * 1024; // R9
 const SRC = {
-  form: "https://formshd.comune.milano.it/rwe2/module_preview.jsp?MODULE_TAG=PASS_DISABILI",
+  form: "https://formshd2.comune.milano.it/rwe2/module_preview.jsp?MODULE_TAG=PASS_DISABILI",
   extension: "https://servizicrm.comune.milano.it/callasap/richiestaappuntamento/passprovvisorioinattesadivisitaINPS",
   duplicate: "http://servizicrm.comune.milano.it/callasap/serviziperladisabilita/richiestaappuntamento",
   delega: "https://www.comune.milano.it/documents/d/guest/mod-delega-3?download=true",

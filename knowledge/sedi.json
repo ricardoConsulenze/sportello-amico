@@ -1,0 +1,2642 @@
+{
+ "scaricato": "2026-10-03",
+ "fonti": [
+  {
+   "id": "pagina_servizio",
+   "tipo": "pass_disabili",
+   "titolo": "Pagina del servizio pass disabili",
+   "url": "https://www.comune.milano.it/servizi/mobilita/pass-per-la-sosta-e-la-circolazione-di-persone-con-disabilita",
+   "uso": "Unico sportello che rilascia e rinnova il pass.",
+   "voci": 1
+  },
+  {
+   "id": "ds549-sedi-dei-servizi-anagrafici",
+   "tipo": "anagrafe",
+   "titolo": "Sedi dei servizi anagrafici",
+   "uso": "Documento d'identità e CIE del titolare o del richiedente.",
+   "url": "https://dati.comune.milano.it/dataset/ds549-sedi-dei-servizi-anagrafici",
+   "csv": "https://dati.comune.milano.it/dataset/fd54c20c-f677-402e-969d-f71ae189de75/resource/48b24517-765e-4f6f-8b30-9094a212eb85/download/sportelli_di_quartiere_edit_layer_0_sedi_servizi_anagrafici_4326_final.csv",
+   "aggiornato_dal_comune": "2026-05-08",
+   "licenza": "Creative Commons Attribution",
+   "voci": 13
+  },
+  {
+   "id": "ds1303-servizio-sociale-professionale-territoriale-le-sedi",
+   "tipo": "servizio_sociale",
+   "titolo": "Servizio Sociale Professionale Territoriale: le sedi",
+   "uso": "Aiuto per chi non riesce a fare la domanda da solo.",
+   "url": "https://dati.comune.milano.it/dataset/ds1303-servizio-sociale-professionale-territoriale-le-sedi",
+   "csv": "https://dati.comune.milano.it/dataset/a5b525f0-3a2d-4154-96d0-3ffe288cbae3/resource/2de82411-2293-4017-9adc-5d27cb7f40d9/download/ds1303_servizio-sociale-territoriale-sedi_final.csv",
+   "aggiornato_dal_comune": "2026-05-08",
+   "licenza": "Creative Commons Attribution",
+   "voci": 19,
+   "coordinate_rimosse": [
+    "Via Augusto Anfossi 25",
+    "Via Antonio Aldini 72",
+    "Via Adolfo Consolini 24",
+    "Via Sant’Arnaldo 17"
+   ]
+  },
+  {
+   "id": "ds550_sede-dei-sindacati-e-patronati",
+   "tipo": "patronato",
+   "titolo": "Sede dei Sindacati e Patronati",
+   "uso": "Assistenza su verbale d'invalidità INPS e visite di revisione.",
+   "url": "https://dati.comune.milano.it/dataset/ds550_sede-dei-sindacati-e-patronati",
+   "csv": "https://dati.comune.milano.it/dataset/44082c0d-1416-490b-b311-3239a7320716/resource/4f541e96-b984-469e-91b3-0291031cad44/download/ds550_sedi_sindacati_e_patronati_comune_milano__final.csv",
+   "aggiornato_dal_comune": "2026-05-08",
+   "licenza": "Creative Commons Attribution",
+   "voci": 90,
+   "avviso": "Elenco del 2018 (hackathon Service4Migrants): verificare i recapiti prima di indicarli.",
+   "coordinate_rimosse": [
+    "Via Bellotti 7 177",
+    "Via Bellotti 7"
+   ]
+  },
+  {
+   "id": "ds1299-sedi-municipi-nel-comune-di-milano",
+   "tipo": "municipio",
+   "titolo": "Sedi municipi nel Comune di Milano",
+   "uso": "Sede e contatti del Municipio dell'utente.",
+   "url": "https://dati.comune.milano.it/dataset/ds1299-sedi-municipi-nel-comune-di-milano",
+   "csv": "https://dati.comune.milano.it/dataset/a7f54a9a-8331-4825-bc52-6a69a10b0bd3/resource/012d2a75-5344-43ad-a977-83a85fe967ee/download/ds1299_municipi_sedi.csv",
+   "aggiornato_dal_comune": "2026-05-08",
+   "licenza": "Creative Commons Attribution",
+   "voci": 9
+  },
+  {
+   "id": "ds535_atm-fermate-linee-metropolitane",
+   "tipo": "metro",
+   "titolo": "ATM - Fermate linee metropolitane",
+   "uso": "Fermata della metropolitana più vicina a una sede.",
+   "url": "https://dati.comune.milano.it/dataset/ds535_atm-fermate-linee-metropolitane",
+   "csv": "https://dati.comune.milano.it/dataset/b7344a8f-0ef5-424b-a902-f7f06e32dd67/resource/0f4d4d05-b379-45a4-9a10-412a34708484/download/tpl_metrofermate.csv",
+   "aggiornato_dal_comune": "2026-07-24",
+   "licenza": "Creative Commons Attribution",
+   "voci": 130,
+   "avviso": "Non contiene informazioni sull'accessibilità delle stazioni (ascensori, scale mobili): vedi atm.it."
+  }
+ ],
+ "sedi": [
+  {
+   "tipo": "pass_disabili",
+   "nome": "Unità Gestione Permessi (pass disabili)",
+   "indirizzo": "Via Sile 8, 20139",
+   "municipio": "4",
+   "note": "Solo su appuntamento, prenotabile online con SPID, CIE o eIDAS.",
+   "fonte": "pagina_servizio"
+  },
+  {
+   "tipo": "anagrafe",
+   "nome": "Anagrafe Municipio 1",
+   "indirizzo": "(sede via Larga 12) INGRESSO PROVVISORIO da Via Pecorari 3",
+   "telefono": "Infoline 020202",
+   "orari": "Orario su appuntamento: dal lun.al ven. dalle 08:30 alle 15:30 Orario prolungato (su appuntamento): giovedì fino alle 19:00; sabato dalle 8:30 alle 11:30",
+   "note": "Tutti i servizi di sportello sono accessibili esclusivamente su appuntamento prenotando online. I ticket relativi alle urgenze sono erogati fino a mezz'ora precedente la chiusura della sede.",
+   "municipio": "1",
+   "quartiere": "Duomo",
+   "lat": 45.461846,
+   "lon": 9.192323,
+   "fonte": "ds549-sedi-dei-servizi-anagrafici"
+  },
+  {
+   "tipo": "anagrafe",
+   "nome": "Anagrafe Municipio 2",
+   "indirizzo": "via Padova 118",
+   "telefono": "Infoline 020202",
+   "orari": "Orario su appuntamento: dal lunedi al venerdi dalle 8:30 alle 15:30",
+   "note": "Tutti i servizi di sportello sono accessibili esclusivamente su appuntamento prenotando online. La prenotazione è accessibile sia con un'utenza SPID che senza necessità di registrazione. I ticket relativi ad urgenze sono erogati fino alla mezz’ora precedente la chiusura sede.",
+   "municipio": "2",
+   "quartiere": "Padova - Turro - Crescenzago",
+   "lat": 45.496589,
+   "lon": 9.23072,
+   "fonte": "ds549-sedi-dei-servizi-anagrafici"
+  },
+  {
+   "tipo": "anagrafe",
+   "nome": "Anagrafe Municipio 3",
+   "indirizzo": "via Sansovino 9",
+   "telefono": "Infoline 020202",
+   "orari": "Orario su appuntamento: dal lunedi al venerdi dalle 8:30 alle 15:30",
+   "note": "Tutti i servizi di sportello sono accessibili esclusivamente su appuntamento prenotando online. La prenotazione è accessibile sia con un'utenza SPID che senza necessità di registrazione. Tessere elettorali senza appuntamento",
+   "municipio": "3",
+   "quartiere": "Buenos Aires - Porta Venezia - Porta Monforte",
+   "lat": 45.479225,
+   "lon": 9.218574,
+   "fonte": "ds549-sedi-dei-servizi-anagrafici"
+  },
+  {
+   "tipo": "anagrafe",
+   "nome": "Anagrafe Municipio 4",
+   "indirizzo": "via Oglio 18",
+   "telefono": "Infoline 020202",
+   "orari": "Orario su appuntamento: dal lunedi al venerdi dalle 8:30 alle 15:30",
+   "note": "Tutti i servizi di sportello sono accessibili esclusivamente su appuntamento prenotando online. La prenotazione è accessibile sia con un'utenza SPID che senza necessità di registrazione. Tessere elettorali senza appuntamento",
+   "municipio": "4",
+   "quartiere": "Lodi - Corvetto",
+   "lat": 45.44019,
+   "lon": 9.218008,
+   "fonte": "ds549-sedi-dei-servizi-anagrafici"
+  },
+  {
+   "tipo": "anagrafe",
+   "nome": "Anagrafe Municipio 5",
+   "indirizzo": "viale Tibaldi 41",
+   "telefono": "Infoline 020202",
+   "orari": "Orario su appuntamento: dal lunedi al venerdi dalle 8:30 alle 15:30",
+   "note": "Tutti i servizi di sportello sono accessibili esclusivamente su appuntamento prenotando online. La prenotazione è accessibile sia con un'utenza SPID che senza necessità di registrazione. I ticket relativi ad urgenze sono erogati fino alla mezz’ora precedente la chiusura sede.",
+   "municipio": "5",
+   "quartiere": "Porta Ticinese - Conca Del Naviglio",
+   "lat": 45.444604,
+   "lon": 9.183194,
+   "fonte": "ds549-sedi-dei-servizi-anagrafici"
+  },
+  {
+   "tipo": "anagrafe",
+   "nome": "Anagrafe Municipio 6",
+   "indirizzo": "via San Paolino 18",
+   "telefono": "Infoline 020202",
+   "orari": "Orario su appuntamento: dal lunedi al venerdi dalle 8:30 alle 15:30",
+   "note": "Tutti i servizi di sportello sono accessibili esclusivamente su appuntamento prenotando online. La prenotazione è accessibile sia con un'utenza SPID che senza necessità di registrazione. I ticket relativi ad urgenze sono erogati fino alla mezz’ora precedente la chiusura sede.",
+   "municipio": "6",
+   "quartiere": "Barona",
+   "lat": 45.431123,
+   "lon": 9.16304,
+   "fonte": "ds549-sedi-dei-servizi-anagrafici"
+  },
+  {
+   "tipo": "anagrafe",
+   "nome": "Anagrafe Municipio 6",
+   "indirizzo": "viale Legioni Romane 54",
+   "telefono": "Infoline 020202",
+   "orari": "Orario su appuntamento: dal lunedi al venerdi dalle 8:30 alle 15:30",
+   "note": "Tutti i servizi di sportello sono accessibili esclusivamente su appuntamento prenotando online. La prenotazione è accessibile sia con un'utenza SPID che senza necessità di registrazione. I ticket relativi ad urgenze sono erogati fino alla mezz’ora precedente la chiusura sede.",
+   "municipio": "6",
+   "quartiere": "Forze Armate",
+   "lat": 45.459549,
+   "lon": 9.127471,
+   "fonte": "ds549-sedi-dei-servizi-anagrafici"
+  },
+  {
+   "tipo": "anagrafe",
+   "nome": "Anagrafe Municipio 7",
+   "indirizzo": "piazza Stovani 3",
+   "telefono": "Infoline 020202",
+   "orari": "Orario su appuntamento: dal lunedi al venerdi dalle 8:30 alle 15:30.",
+   "note": "Tutti i servizi di sportello sono accessibili esclusivamente su appuntamento prenotando online. La prenotazione è accessibile sia con un'utenza SPID che senza necessità di registrazione. I ticket relativi ad urgenze sono erogati fino alla mezz’ora precedente la chiusura sede.",
+   "municipio": "7",
+   "quartiere": "Baggio - Q.Re Degli Olmi - Q.Re Valsesia",
+   "lat": 45.46059,
+   "lon": 9.092518,
+   "fonte": "ds549-sedi-dei-servizi-anagrafici"
+  },
+  {
+   "tipo": "anagrafe",
+   "nome": "Anagrafe Municipio 8",
+   "indirizzo": "via Quarenghi 21",
+   "telefono": "Infoline 020202",
+   "orari": "Orario su appuntamento: dal lunedi al venerdi dalle 8:30 alle 15:30",
+   "note": "Tutti i servizi di sportello sono accessibili esclusivamente su appuntamento prenotando online. La prenotazione è accessibile sia con un'utenza SPID che senza necessità di registrazione. Tessere elettorali senza appuntamento",
+   "municipio": "8",
+   "quartiere": "Q.Re Gallaratese - Q.Re San Leonardo - Lampugnano",
+   "lat": 45.496251,
+   "lon": 9.115162,
+   "fonte": "ds549-sedi-dei-servizi-anagrafici"
+  },
+  {
+   "tipo": "anagrafe",
+   "nome": "Anagrafe Municipio 8",
+   "indirizzo": "piazzale Accursio 5",
+   "telefono": "Infoline 020202",
+   "orari": "Orario su appuntamento: dal lunedi al venerdi dalle 8:30 alle 15:30",
+   "note": "Tutti i servizi di sportello sono accessibili esclusivamente su appuntamento prenotando online. La prenotazione è accessibile sia con un'utenza SPID che senza necessità di registrazione. I ticket relativi ad urgenze sono erogati fino alla mezz’ora precedente la chiusura sede.",
+   "municipio": "8",
+   "quartiere": "Villapizzone - Cagnola - Boldinasco",
+   "lat": 45.491439,
+   "lon": 9.146148,
+   "fonte": "ds549-sedi-dei-servizi-anagrafici"
+  },
+  {
+   "tipo": "anagrafe",
+   "nome": "Anagrafe Municipio 9",
+   "indirizzo": "Largo De Benedetti 1",
+   "telefono": "Infoline 020202",
+   "orari": "Orario su appuntamento: dal lunedi al venerdi dalle 8:30 alle 15:30",
+   "note": "Tutti i servizi di sportello sono accessibili esclusivamente su appuntamento prenotando online. La prenotazione è accessibile sia con un'utenza SPID che senza necessità di registrazione.  I ticket relativi ad urgenze sono erogati fino alla mezz’ora precedente la chiusura sede.",
+   "municipio": "9",
+   "quartiere": "Isola",
+   "lat": 45.486123,
+   "lon": 9.193904,
+   "fonte": "ds549-sedi-dei-servizi-anagrafici"
+  },
+  {
+   "tipo": "anagrafe",
+   "nome": "Anagrafe Municipio 9",
+   "indirizzo": "via Baldinucci 76",
+   "telefono": "Infoline 020202",
+   "orari": "Orario su appuntamento: dal lunedi al venerdi dalle 8:30 alle 15:30",
+   "note": "Tutti i servizi di sportello sono accessibili esclusivamente su appuntamento prenotando online. La prenotazione è accessibile sia con un'utenza SPID che senza necessità di registrazione.  I ticket relativi ad urgenze sono erogati fino alla mezz’ora precedente la chiusura sede.",
+   "municipio": "9",
+   "quartiere": "Bovisa",
+   "lat": 45.503404,
+   "lon": 9.168776,
+   "fonte": "ds549-sedi-dei-servizi-anagrafici"
+  },
+  {
+   "tipo": "anagrafe",
+   "nome": "Anagrafe Niguarda - Ca' Granda - Prato Centenaro - Q.Re Fulvio Testi",
+   "indirizzo": "Via Passerini 5",
+   "orari": "solo il lunedì dalle 8:30 alle 12:30 e dalle 14:30 alle 15:30 - lunedì 5 gennaio 2026: CHIUSO",
+   "quartiere": "Niguarda - Ca' Granda - Prato Centenaro - Q.Re Fulvio Testi",
+   "lat": 45.515429,
+   "lon": 9.193187,
+   "fonte": "ds549-sedi-dei-servizi-anagrafici"
+  },
+  {
+   "tipo": "servizio_sociale",
+   "nome": "Servizio Sociale Municipio 1",
+   "indirizzo": "Via Rugabella 4",
+   "telefono": "020202 (tasti 4-1)",
+   "orari": "Dalle 8:00 alle 18:00 dal lunedi al sabato",
+   "note": "scala A - 4 piano; solo su appuntamento",
+   "municipio": "1",
+   "link": "https://www.comune.milano.it/aree-tematiche/servizi-sociali/servizio-sociale-professionale-territoriale-sspt",
+   "quartiere": "Duomo",
+   "lat": 45.458984,
+   "lon": 9.189198,
+   "fonte": "ds1303-servizio-sociale-professionale-territoriale-le-sedi"
+  },
+  {
+   "tipo": "servizio_sociale",
+   "nome": "Servizio Sociale Municipio 2",
+   "indirizzo": "Via Degli Assereto 19",
+   "telefono": "020202 (tasti 4-1)",
+   "orari": "Dalle 8:00 alle 18:00 dal lunedi al sabato",
+   "note": "solo su appuntamento",
+   "municipio": "2",
+   "link": "https://www.comune.milano.it/aree-tematiche/servizi-sociali/servizio-sociale-professionale-territoriale-sspt",
+   "quartiere": "Isola",
+   "lat": 45.489457,
+   "lon": 9.195504,
+   "fonte": "ds1303-servizio-sociale-professionale-territoriale-le-sedi"
+  },
+  {
+   "tipo": "servizio_sociale",
+   "nome": "Servizio Sociale Municipio 2 - sede secondaria",
+   "indirizzo": "Via Sant' Erlembaldo 4",
+   "telefono": "020202 (tasti 4-1)",
+   "orari": "Dalle 8:00 alle 18:00 dal lunedi al sabato",
+   "note": "solo su appuntamento",
+   "municipio": "2",
+   "link": "https://www.comune.milano.it/aree-tematiche/servizi-sociali/servizio-sociale-professionale-territoriale-sspt",
+   "quartiere": "Gorla - Precotto",
+   "lat": 45.505468,
+   "lon": 9.222022,
+   "fonte": "ds1303-servizio-sociale-professionale-territoriale-le-sedi"
+  },
+  {
+   "tipo": "servizio_sociale",
+   "nome": "Servizio Sociale Municipio 3",
+   "indirizzo": "Via Tommaso Pini 1",
+   "telefono": "020202 (tasti 4-1)",
+   "orari": "Dalle 8:00 alle 18:00 dal lunedi al sabato",
+   "note": "solo su appuntamento",
+   "municipio": "3",
+   "link": "https://www.comune.milano.it/aree-tematiche/servizi-sociali/servizio-sociale-professionale-territoriale-sspt",
+   "quartiere": "Lambrate - Ortica",
+   "lat": 45.484668,
+   "lon": 9.240476,
+   "fonte": "ds1303-servizio-sociale-professionale-territoriale-le-sedi"
+  },
+  {
+   "tipo": "servizio_sociale",
+   "nome": "Servizio Sociale Municipio 3 - sede secondaria",
+   "indirizzo": "Via Claudio Monteverdi 8",
+   "telefono": "020202 (tasti 4-1)",
+   "orari": "Dalle 8:00 alle 18:00 dal lunedi al sabato",
+   "note": "solo su appuntamento",
+   "municipio": "3",
+   "link": "https://www.comune.milano.it/aree-tematiche/servizi-sociali/servizio-sociale-professionale-territoriale-sspt",
+   "quartiere": "Buenos Aires - Porta Venezia - Porta Monforte",
+   "lat": 45.481417,
+   "lon": 9.214613,
+   "fonte": "ds1303-servizio-sociale-professionale-territoriale-le-sedi"
+  },
+  {
+   "tipo": "servizio_sociale",
+   "nome": "Servizio Sociale Municipio 4",
+   "indirizzo": "Via Augusto Anfossi 25",
+   "telefono": "020202 (tasti 4-1)",
+   "orari": "Dalle 8:00 alle 18:00 dal lunedi al sabato",
+   "note": "solo su appuntamento",
+   "municipio": "4",
+   "link": "https://www.comune.milano.it/aree-tematiche/servizi-sociali/servizio-sociale-professionale-territoriale-sspt",
+   "quartiere": "Xxii Marzo",
+   "fonte": "ds1303-servizio-sociale-professionale-territoriale-le-sedi"
+  },
+  {
+   "tipo": "servizio_sociale",
+   "nome": "Servizio Sociale Municipio 4 - sede secondaria",
+   "indirizzo": "Via Nicolò Barabino 8",
+   "telefono": "020202 (tasti 4-1)",
+   "orari": "Dalle 8:00 alle 18:00 dal lunedi al sabato",
+   "note": "solo su appuntamento",
+   "municipio": "4",
+   "link": "https://www.comune.milano.it/aree-tematiche/servizi-sociali/servizio-sociale-professionale-territoriale-sspt",
+   "quartiere": "Lodi - Corvetto",
+   "lat": 45.434261,
+   "lon": 9.223211,
+   "fonte": "ds1303-servizio-sociale-professionale-territoriale-le-sedi"
+  },
+  {
+   "tipo": "servizio_sociale",
+   "nome": "Servizio Sociale Municipio 5",
+   "indirizzo": "Viale Tibaldi 41",
+   "telefono": "020202 (tasti 4-1)",
+   "orari": "Dalle 8:00 alle 18:00 dal lunedi al sabato",
+   "note": "solo su appuntamento",
+   "municipio": "5",
+   "link": "https://www.comune.milano.it/aree-tematiche/servizi-sociali/servizio-sociale-professionale-territoriale-sspt",
+   "quartiere": "Porta Ticinese - Conca Del Naviglio",
+   "lat": 45.44447,
+   "lon": 9.183877,
+   "fonte": "ds1303-servizio-sociale-professionale-territoriale-le-sedi"
+  },
+  {
+   "tipo": "servizio_sociale",
+   "nome": "Servizio Sociale Municipio 6",
+   "indirizzo": "Via Antonio Di Rudinì 3",
+   "telefono": "020202 (tasti 4-1)",
+   "orari": "Dalle 8:00 alle 18:00 dal lunedi al sabato",
+   "note": "solo su appuntamento",
+   "municipio": "6",
+   "link": "https://www.comune.milano.it/aree-tematiche/servizi-sociali/servizio-sociale-professionale-territoriale-sspt",
+   "quartiere": "Barona",
+   "lat": 45.433032,
+   "lon": 9.157709,
+   "fonte": "ds1303-servizio-sociale-professionale-territoriale-le-sedi"
+  },
+  {
+   "tipo": "servizio_sociale",
+   "nome": "Servizio Sociale Municipio 6 - sede secondaria",
+   "indirizzo": "Via Francesco Gonin 28",
+   "telefono": "020202 (tasti 4-1)",
+   "orari": "Dalle 8:00 alle 18:00 dal lunedi al sabato",
+   "note": "solo su appuntamento",
+   "municipio": "6",
+   "link": "https://www.comune.milano.it/aree-tematiche/servizi-sociali/servizio-sociale-professionale-territoriale-sspt",
+   "quartiere": "Giambellino",
+   "lat": 45.444015,
+   "lon": 9.124704,
+   "fonte": "ds1303-servizio-sociale-professionale-territoriale-le-sedi"
+  },
+  {
+   "tipo": "servizio_sociale",
+   "nome": "Servizio Sociale Municipio 6 - sede secondaria",
+   "indirizzo": "Viale Legioni Romane 54",
+   "telefono": "020202 (tasti 4-1)",
+   "orari": "Dalle 8:00 alle 18:00 dal lunedi al sabato",
+   "note": "solo su appuntamento",
+   "municipio": "6",
+   "link": "https://www.comune.milano.it/aree-tematiche/servizi-sociali/servizio-sociale-professionale-territoriale-sspt",
+   "quartiere": "Bande Nere",
+   "lat": 45.459685,
+   "lon": 9.130261,
+   "fonte": "ds1303-servizio-sociale-professionale-territoriale-le-sedi"
+  },
+  {
+   "tipo": "servizio_sociale",
+   "nome": "Servizio Sociale Municipio 7",
+   "indirizzo": "Via Anselmo Da Baggio 54",
+   "telefono": "020202 (tasti 4-1)",
+   "orari": "Dalle 8:00 alle 18:00 dal lunedi al sabato",
+   "note": "solo su appuntamento",
+   "municipio": "7",
+   "link": "https://www.comune.milano.it/aree-tematiche/servizi-sociali/servizio-sociale-professionale-territoriale-sspt",
+   "quartiere": "Baggio - Q.Re Degli Olmi - Q.Re Valsesia",
+   "lat": 45.464209,
+   "lon": 9.088536,
+   "fonte": "ds1303-servizio-sociale-professionale-territoriale-le-sedi"
+  },
+  {
+   "tipo": "servizio_sociale",
+   "nome": "Servizio Sociale Municipio 7 - sede secondaria",
+   "indirizzo": "Piazzale Segesta 11",
+   "telefono": "020202 (tasti 4-1)",
+   "orari": "Dalle 8:00 alle 18:00 dal lunedi al sabato",
+   "note": "solo accesso telefonico",
+   "municipio": "7",
+   "link": "https://www.comune.milano.it/aree-tematiche/servizi-sociali/servizio-sociale-professionale-territoriale-sspt",
+   "quartiere": "San Siro",
+   "lat": 45.475961,
+   "lon": 9.137711,
+   "fonte": "ds1303-servizio-sociale-professionale-territoriale-le-sedi"
+  },
+  {
+   "tipo": "servizio_sociale",
+   "nome": "Servizio Sociale Municipio 8",
+   "indirizzo": "Via Antonio Aldini 72",
+   "telefono": "020202 (tasti 4-1)",
+   "orari": "Dalle 8:00 alle 18:00 dal lunedi al sabato",
+   "note": "Edificio E; solo su appuntamento",
+   "municipio": "8",
+   "link": "https://www.comune.milano.it/aree-tematiche/servizi-sociali/servizio-sociale-professionale-territoriale-sspt",
+   "quartiere": "Q.Re Gallaratese - Q.Re San Leonardo - Lampugnano",
+   "fonte": "ds1303-servizio-sociale-professionale-territoriale-le-sedi"
+  },
+  {
+   "tipo": "servizio_sociale",
+   "nome": "Servizio Sociale Municipio 8 - sede secondaria",
+   "indirizzo": "Piazzale Francesco Accursio 5",
+   "telefono": "020202 (tasti 4-1)",
+   "orari": "Dalle 8:00 alle 18:00 dal lunedi al sabato",
+   "note": "solo su appuntamento",
+   "municipio": "8",
+   "link": "https://www.comune.milano.it/aree-tematiche/servizi-sociali/servizio-sociale-professionale-territoriale-sspt",
+   "quartiere": "Villapizzone - Cagnola - Boldinasco",
+   "lat": 45.492778,
+   "lon": 9.146188,
+   "fonte": "ds1303-servizio-sociale-professionale-territoriale-le-sedi"
+  },
+  {
+   "tipo": "servizio_sociale",
+   "nome": "Servizio Sociale Municipio 8 - sede secondaria",
+   "indirizzo": "Via Adolfo Consolini 24",
+   "telefono": "020202 (tasti 4-1)",
+   "orari": "Dalle 8:00 alle 18:00 dal lunedi al sabato",
+   "note": "Edificio E; solo su appuntamento",
+   "municipio": "8",
+   "link": "https://www.comune.milano.it/aree-tematiche/servizi-sociali/servizio-sociale-professionale-territoriale-sspt",
+   "quartiere": "Q.Re Gallaratese - Q.Re San Leonardo - Lampugnano",
+   "fonte": "ds1303-servizio-sociale-professionale-territoriale-le-sedi"
+  },
+  {
+   "tipo": "servizio_sociale",
+   "nome": "Servizio Sociale Municipio 9",
+   "indirizzo": "Via Cesare Brivio 4",
+   "telefono": "020202 (tasti 4-1)",
+   "orari": "Dalle 8:00 alle 18:00 dal lunedi al sabato",
+   "note": "solo su appuntamento",
+   "municipio": "8",
+   "link": "https://www.comune.milano.it/aree-tematiche/servizi-sociali/servizio-sociale-professionale-territoriale-sspt",
+   "quartiere": "Villapizzone - Cagnola - Boldinasco",
+   "lat": 45.502323,
+   "lon": 9.143316,
+   "fonte": "ds1303-servizio-sociale-professionale-territoriale-le-sedi"
+  },
+  {
+   "tipo": "servizio_sociale",
+   "nome": "Servizio Sociale Municipio 9 - sede secondaria",
+   "indirizzo": "Via Raffaello Giolli 29",
+   "telefono": "020202 (tasti 4-1)",
+   "orari": "Dalle 8:00 alle 18:00 dal lunedi al sabato",
+   "note": "solo su appuntamento",
+   "municipio": "9",
+   "link": "https://www.comune.milano.it/aree-tematiche/servizi-sociali/servizio-sociale-professionale-territoriale-sspt",
+   "quartiere": "Niguarda - Ca' Granda - Prato Centenaro - Q.Re Fulvio Testi",
+   "lat": 45.526824,
+   "lon": 9.210708,
+   "fonte": "ds1303-servizio-sociale-professionale-territoriale-le-sedi"
+  },
+  {
+   "tipo": "servizio_sociale",
+   "nome": "Servizio Sociale Municipio 9 - sede secondaria",
+   "indirizzo": "Via Sant’Arnaldo 17",
+   "telefono": "020202 (tasti 4-1)",
+   "orari": "Dalle 8:00 alle 18:00 dal lunedi al sabato",
+   "note": "solo su appuntamento",
+   "municipio": "9",
+   "link": "https://www.comune.milano.it/aree-tematiche/servizi-sociali/servizio-sociale-professionale-territoriale-sspt",
+   "quartiere": "Bruzzano",
+   "fonte": "ds1303-servizio-sociale-professionale-territoriale-le-sedi"
+  },
+  {
+   "tipo": "patronato",
+   "nome": "ACAI - MILANO",
+   "indirizzo": "Via Angelo Brofferio 10",
+   "telefono": "0226168597",
+   "municipio": "9",
+   "link": "http://www.patronato.acli.it/",
+   "quartiere": "Bovisa",
+   "lat": 45.503064,
+   "lon": 9.164772,
+   "fonte": "ds550_sede-dei-sindacati-e-patronati"
+  },
+  {
+   "tipo": "patronato",
+   "nome": "ACAI - MILANO TONALE NORD",
+   "indirizzo": "Via De Ruggiero 8/B",
+   "telefono": "0289309362",
+   "municipio": "5",
+   "quartiere": "Gratosoglio - Q.Re Missaglia - Q.Re Terrazze",
+   "lat": 45.418842,
+   "lon": 9.174506,
+   "fonte": "ds550_sede-dei-sindacati-e-patronati"
+  },
+  {
+   "tipo": "patronato",
+   "nome": "ACLI - Milano",
+   "indirizzo": "Via Della Signora 3",
+   "telefono": "012900100",
+   "municipio": "1",
+   "quartiere": "Duomo",
+   "lat": 45.4617,
+   "lon": 9.196259,
+   "fonte": "ds550_sede-dei-sindacati-e-patronati"
+  },
+  {
+   "tipo": "patronato",
+   "nome": "ACLI - MILANO CORVETTO",
+   "indirizzo": "Viale Lucania 12",
+   "telefono": "0898703700",
+   "municipio": "4",
+   "quartiere": "Lodi - Corvetto",
+   "lat": 45.441459,
+   "lon": 9.224514,
+   "fonte": "ds550_sede-dei-sindacati-e-patronati"
+  },
+  {
+   "tipo": "patronato",
+   "nome": "ACLI - Milano Lambrate",
+   "indirizzo": "Via Conte Rosso 5",
+   "telefono": "0359050900",
+   "municipio": "3",
+   "quartiere": "Lambrate - Ortica",
+   "lat": 45.481788,
+   "lon": 9.242523,
+   "fonte": "ds550_sede-dei-sindacati-e-patronati"
+  },
+  {
+   "tipo": "patronato",
+   "nome": "ACLI - MILANO NORD",
+   "indirizzo": "Via Francesco Albani 21",
+   "telefono": "076795400",
+   "municipio": "8",
+   "quartiere": "De Angeli - Monte Rosa",
+   "lat": 45.479646,
+   "lon": 9.147659,
+   "fonte": "ds550_sede-dei-sindacati-e-patronati"
+  },
+  {
+   "tipo": "patronato",
+   "nome": "ACLI - MILANO SAN CRISTOFORO",
+   "indirizzo": "Via Ponti Andrea 1",
+   "telefono": "071394900",
+   "municipio": "6",
+   "quartiere": "Moncucco - San Cristoforo",
+   "lat": 45.447471,
+   "lon": 9.155916,
+   "fonte": "ds550_sede-dei-sindacati-e-patronati"
+  },
+  {
+   "tipo": "patronato",
+   "nome": "ANMIL - SEDE PROVINCIALE DI MILANO",
+   "indirizzo": "Via Lario 9/A",
+   "telefono": "0266809503",
+   "municipio": "9",
+   "link": "http://www.patronato.anmil.it/",
+   "quartiere": "Isola",
+   "lat": 45.492048,
+   "lon": 9.189842,
+   "fonte": "ds550_sede-dei-sindacati-e-patronati"
+  },
+  {
+   "tipo": "patronato",
+   "nome": "CLAAI - Patronato CLAAI",
+   "indirizzo": "Corso Manusardi 10",
+   "telefono": "0283306329",
+   "municipio": "5",
+   "quartiere": "Porta Ticinese - Conca Del Naviglio",
+   "lat": 45.451035,
+   "lon": 9.178677,
+   "fonte": "ds550_sede-dei-sindacati-e-patronati"
+  },
+  {
+   "tipo": "patronato",
+   "nome": "ENAC - SEDE ZONALE MILANO E",
+   "indirizzo": "Via Dei Tulipani 2",
+   "telefono": "0239462792",
+   "municipio": "6",
+   "quartiere": "Giambellino",
+   "lat": 45.448434,
+   "lon": 9.138659,
+   "fonte": "ds550_sede-dei-sindacati-e-patronati"
+  },
+  {
+   "tipo": "patronato",
+   "nome": "NAC - SEDE ZONALE MILANO LORENTEGGIO",
+   "indirizzo": "Via Dei Tulipani 13",
+   "telefono": "0289071857",
+   "municipio": "6",
+   "quartiere": "Giambellino",
+   "lat": 45.449253,
+   "lon": 9.137709,
+   "fonte": "ds550_sede-dei-sindacati-e-patronati"
+  },
+  {
+   "tipo": "patronato",
+   "nome": "ENAC - SEDE ZONALE MILANO MAHON",
+   "indirizzo": "Via Mac Mahon 83",
+   "telefono": "0239446146",
+   "municipio": "8",
+   "quartiere": "Ghisolfa",
+   "lat": 45.49374,
+   "lon": 9.157874,
+   "fonte": "ds550_sede-dei-sindacati-e-patronati"
+  },
+  {
+   "tipo": "patronato",
+   "nome": "ENAC - SEDE ZONALE MILANO ZON. B",
+   "indirizzo": "Piazza San Materno 14",
+   "telefono": "0228381331",
+   "municipio": "3",
+   "quartiere": "Loreto - Casoretto - Nolo",
+   "lat": 45.488592,
+   "lon": 9.227516,
+   "fonte": "ds550_sede-dei-sindacati-e-patronati"
+  },
+  {
+   "tipo": "patronato",
+   "nome": "ENAC - SEDE ZONALE MILANO-CHAVEZ",
+   "indirizzo": "Via Giorgio Chavez 19",
+   "telefono": "0245371113",
+   "municipio": "2",
+   "quartiere": "Loreto - Casoretto - Nolo",
+   "lat": 45.492912,
+   "lon": 9.22604,
+   "fonte": "ds550_sede-dei-sindacati-e-patronati"
+  },
+  {
+   "tipo": "patronato",
+   "nome": "ENAC - UFFICIO ZONALE MILANO2",
+   "indirizzo": "Via Arganini 22",
+   "telefono": "0266109136",
+   "municipio": "9",
+   "quartiere": "Niguarda - Ca' Granda - Prato Centenaro - Q.Re Fulvio Testi",
+   "lat": 45.517023,
+   "lon": 9.19944,
+   "fonte": "ds550_sede-dei-sindacati-e-patronati"
+  },
+  {
+   "tipo": "patronato",
+   "nome": "ENAPA - MILANO",
+   "indirizzo": "Viale Enrico Forlanini 23",
+   "telefono": "025820701",
+   "municipio": "4",
+   "link": "http://www.enapa.it/ita/",
+   "quartiere": "Parco Forlanini - Cavriano",
+   "lat": 45.462168,
+   "lon": 9.241497,
+   "fonte": "ds550_sede-dei-sindacati-e-patronati"
+  },
+  {
+   "tipo": "patronato",
+   "nome": "ENAPA - MILANO ISONZO",
+   "indirizzo": "Viale Isonzo 27",
+   "telefono": "0258302122",
+   "municipio": "5",
+   "quartiere": "Pta Romana",
+   "lat": 45.446337,
+   "lon": 9.199377,
+   "fonte": "ds550_sede-dei-sindacati-e-patronati"
+  },
+  {
+   "tipo": "patronato",
+   "nome": "ENAS - UFFICIO PROVINCIALE",
+   "indirizzo": "Via Nicola Antonio Porpora 90",
+   "telefono": "0262694676",
+   "municipio": "3",
+   "quartiere": "Citta' Studi",
+   "lat": 45.485937,
+   "lon": 9.225522,
+   "fonte": "ds550_sede-dei-sindacati-e-patronati"
+  },
+  {
+   "tipo": "patronato",
+   "nome": "ENAS - UFFICIO REGIONALE",
+   "indirizzo": "Via Enrico Annibale Butti 5",
+   "municipio": "9",
+   "quartiere": "Dergano",
+   "lat": 45.497268,
+   "lon": 9.174465,
+   "fonte": "ds550_sede-dei-sindacati-e-patronati"
+  },
+  {
+   "tipo": "patronato",
+   "nome": "ENASC - 101 ENASC ZONALE BRUGHERIO",
+   "indirizzo": "Via Della Vittoria 59",
+   "telefono": "0392848376",
+   "fonte": "ds550_sede-dei-sindacati-e-patronati"
+  },
+  {
+   "tipo": "patronato",
+   "nome": "ENASC - 131 ENASC ZONALE MILANO",
+   "indirizzo": "Via Iacopo Palma 11",
+   "telefono": "0658333801",
+   "municipio": "7",
+   "quartiere": "Bande Nere",
+   "lat": 45.464769,
+   "lon": 9.140495,
+   "fonte": "ds550_sede-dei-sindacati-e-patronati"
+  },
+  {
+   "tipo": "patronato",
+   "nome": "ENASC - 269 ENASC ZONALE MILANO_MEDA",
+   "indirizzo": "Via Giuseppe Meda 47",
+   "telefono": "0223164289",
+   "municipio": "5",
+   "quartiere": "Tibaldi",
+   "lat": 45.439227,
+   "lon": 9.178646,
+   "fonte": "ds550_sede-dei-sindacati-e-patronati"
+  },
+  {
+   "tipo": "patronato",
+   "nome": "ENASC - 314 ENASC ZONALE MILANO",
+   "indirizzo": "Via Luigi Federico Menabrea 6",
+   "telefono": "02668531",
+   "municipio": "9",
+   "quartiere": "Isola",
+   "lat": 45.494478,
+   "lon": 9.187313,
+   "fonte": "ds550_sede-dei-sindacati-e-patronati"
+  },
+  {
+   "tipo": "patronato",
+   "nome": "ENASC - 331 ENASC ZONALE MILANO",
+   "indirizzo": "Viale Lombardia 20",
+   "telefono": "022665140",
+   "municipio": "3",
+   "quartiere": "Citta' Studi",
+   "lat": 45.482598,
+   "lon": 9.223826,
+   "fonte": "ds550_sede-dei-sindacati-e-patronati"
+  },
+  {
+   "tipo": "patronato",
+   "nome": "ENASC - 446 ENASC ZONALE MILANO",
+   "indirizzo": "Via Carlo Marochetti 19",
+   "telefono": "0658333803",
+   "municipio": "4",
+   "quartiere": "Lodi - Corvetto",
+   "lat": 45.438867,
+   "lon": 9.226967,
+   "fonte": "ds550_sede-dei-sindacati-e-patronati"
+  },
+  {
+   "tipo": "patronato",
+   "nome": "ENASC - 461 ENASC ZONALE MILANO",
+   "indirizzo": "Via Andrea Costa 3",
+   "telefono": "0239660440",
+   "municipio": "2",
+   "quartiere": "Loreto - Casoretto - Nolo",
+   "lat": 45.486774,
+   "lon": 9.218547,
+   "fonte": "ds550_sede-dei-sindacati-e-patronati"
+  },
+  {
+   "tipo": "patronato",
+   "nome": "ENASC - 462 ENASC ZONALE MILANO",
+   "indirizzo": "Via Mac Mahon 38",
+   "telefono": "0291700448",
+   "municipio": "8",
+   "quartiere": "Ghisolfa",
+   "lat": 45.491022,
+   "lon": 9.162009,
+   "fonte": "ds550_sede-dei-sindacati-e-patronati"
+  },
+  {
+   "tipo": "patronato",
+   "nome": "ENASC - 469 ENASC ZONALE FRASCHINI",
+   "indirizzo": "Via Fratelli Fraschini 2",
+   "telefono": "0287388202",
+   "municipio": "5",
+   "quartiere": "Gratosoglio - Q.Re Missaglia - Q.Re Terrazze",
+   "lat": 45.419103,
+   "lon": 9.178259,
+   "fonte": "ds550_sede-dei-sindacati-e-patronati"
+  },
+  {
+   "tipo": "patronato",
+   "nome": "ENASC - 536 ENASC ZONALE MILANO",
+   "indirizzo": "Piazza Pietro Gasparri 4",
+   "telefono": "0266207840",
+   "municipio": "9",
+   "quartiere": "Comasina",
+   "lat": 45.526293,
+   "lon": 9.162432,
+   "fonte": "ds550_sede-dei-sindacati-e-patronati"
+  },
+  {
+   "tipo": "patronato",
+   "nome": "ENASC - PATRONATO VIA PONTE NUOVO",
+   "indirizzo": "Via Ponte Nuovo 50",
+   "telefono": "022565683",
+   "municipio": "2",
+   "quartiere": "Adriano",
+   "lat": 45.508599,
+   "lon": 9.236412,
+   "fonte": "ds550_sede-dei-sindacati-e-patronati"
+  },
+  {
+   "tipo": "patronato",
+   "nome": "ENASCO - ENASCO-UFFICIO 1",
+   "indirizzo": "Corso Venezia C/O Unione Commercianti 47",
+   "municipio": "1",
+   "quartiere": "Guastalla",
+   "lat": 45.47096,
+   "lon": 9.201502,
+   "fonte": "ds550_sede-dei-sindacati-e-patronati"
+  },
+  {
+   "tipo": "patronato",
+   "nome": "ENCAL-INPAL - ENCAL INPAL - MILANO",
+   "indirizzo": "Via Bellotti 7 177",
+   "municipio": "3",
+   "quartiere": "Buenos Aires - Porta Venezia - Porta Monforte",
+   "fonte": "ds550_sede-dei-sindacati-e-patronati"
+  },
+  {
+   "tipo": "patronato",
+   "nome": "ENCAL-INPAL - ENCAL INPAL PROVINCIALE MILANO BELLOTTI",
+   "indirizzo": "Via Bellotti 7",
+   "telefono": "0276011471",
+   "municipio": "3",
+   "quartiere": "Buenos Aires - Porta Venezia - Porta Monforte",
+   "fonte": "ds550_sede-dei-sindacati-e-patronati"
+  },
+  {
+   "tipo": "patronato",
+   "nome": "ENCAL-INPAL - UFF. ZONALE ENCAL-INPAL MILANO DOBERDO'",
+   "indirizzo": "Via Doberdò 16",
+   "telefono": "028375941",
+   "municipio": "2",
+   "quartiere": "Gorla - Precotto",
+   "lat": 45.519156,
+   "lon": 9.22433,
+   "fonte": "ds550_sede-dei-sindacati-e-patronati"
+  },
+  {
+   "tipo": "patronato",
+   "nome": "ENCAL-INPAL - Ufficio Zonale Encal-Inpal Milano Cenisio",
+   "indirizzo": "Via Cenisio 18",
+   "telefono": "0249528230",
+   "municipio": "8",
+   "quartiere": "Ghisolfa",
+   "lat": 45.48816,
+   "lon": 9.169137,
+   "fonte": "ds550_sede-dei-sindacati-e-patronati"
+  },
+  {
+   "tipo": "patronato",
+   "nome": "EPACA - EPACA - UFF. PROV. MILANO",
+   "indirizzo": "Via Ripamonti 66",
+   "telefono": "025829871",
+   "municipio": "5",
+   "quartiere": "Morivione",
+   "lat": 45.443664,
+   "lon": 9.198518,
+   "fonte": "ds550_sede-dei-sindacati-e-patronati"
+  },
+  {
+   "tipo": "patronato",
+   "nome": "EPAS - MILANO 10",
+   "indirizzo": "Via Nicola Romeo 3",
+   "telefono": "028265299",
+   "municipio": "5",
+   "quartiere": "Gratosoglio - Q.Re Missaglia - Q.Re Terrazze",
+   "lat": 45.419796,
+   "lon": 9.178313,
+   "fonte": "ds550_sede-dei-sindacati-e-patronati"
+  },
+  {
+   "tipo": "patronato",
+   "nome": "EPAS - MILANO 11",
+   "indirizzo": "Via Luigi Soderini 23",
+   "telefono": "0239823345",
+   "municipio": "6",
+   "quartiere": "Bande Nere",
+   "lat": 45.456374,
+   "lon": 9.14191,
+   "fonte": "ds550_sede-dei-sindacati-e-patronati"
+  },
+  {
+   "tipo": "patronato",
+   "nome": "EPAS - MILANO 12",
+   "indirizzo": "Via Padova 157",
+   "telefono": "0239823200",
+   "municipio": "2",
+   "quartiere": "Padova - Turro - Crescenzago",
+   "lat": 45.500391,
+   "lon": 9.235377,
+   "fonte": "ds550_sede-dei-sindacati-e-patronati"
+  },
+  {
+   "tipo": "patronato",
+   "nome": "EPAS - MILANO 6",
+   "indirizzo": "Via Melchiorre Gioia 125",
+   "telefono": "0267481981",
+   "municipio": "2",
+   "quartiere": "Maciachini - Maggiolina",
+   "lat": 45.49329,
+   "lon": 9.205115,
+   "fonte": "ds550_sede-dei-sindacati-e-patronati"
+  },
+  {
+   "tipo": "patronato",
+   "nome": "EPAS - MILANO 7",
+   "indirizzo": "Via Gian Battista Brocchi 24",
+   "telefono": "0249457838",
+   "municipio": "3",
+   "quartiere": "Citta' Studi",
+   "lat": 45.484758,
+   "lon": 9.230805,
+   "fonte": "ds550_sede-dei-sindacati-e-patronati"
+  },
+  {
+   "tipo": "patronato",
+   "nome": "EPAS - MILANO 8",
+   "indirizzo": "Viale Monza 9",
+   "telefono": "0228971049",
+   "municipio": "2",
+   "quartiere": "Loreto - Casoretto - Nolo",
+   "lat": 45.487899,
+   "lon": 9.217013,
+   "fonte": "ds550_sede-dei-sindacati-e-patronati"
+  },
+  {
+   "tipo": "patronato",
+   "nome": "EPAS - MILANO 9",
+   "indirizzo": "Via Padova 127",
+   "telefono": "0239823200",
+   "municipio": "2",
+   "quartiere": "Padova - Turro - Crescenzago",
+   "lat": 45.497628,
+   "lon": 9.231732,
+   "fonte": "ds550_sede-dei-sindacati-e-patronati"
+  },
+  {
+   "tipo": "patronato",
+   "nome": "EPAS - MILANO PROVINCIALE",
+   "indirizzo": "Viale Renato Serra 52",
+   "telefono": "0239217527",
+   "municipio": "8",
+   "quartiere": "Portello",
+   "lat": 45.488628,
+   "lon": 9.149711,
+   "fonte": "ds550_sede-dei-sindacati-e-patronati"
+  },
+  {
+   "tipo": "patronato",
+   "nome": "EPASA - MILANO",
+   "indirizzo": "Via Giuseppe Giacosa 3",
+   "telefono": "02261683234",
+   "municipio": "2",
+   "quartiere": "Loreto - Casoretto - Nolo",
+   "lat": 45.491589,
+   "lon": 9.222818,
+   "fonte": "ds550_sede-dei-sindacati-e-patronati"
+  },
+  {
+   "tipo": "patronato",
+   "nome": "Fenalca - MI03/SEDE PROVINCIALE DI MILANO",
+   "indirizzo": "Via G. Pezzotti 46",
+   "telefono": "026888853",
+   "municipio": "5",
+   "link": "http://www.fenalca.it/patronato/",
+   "quartiere": "Tibaldi",
+   "lat": 45.439533,
+   "lon": 9.183038,
+   "fonte": "ds550_sede-dei-sindacati-e-patronati"
+  },
+  {
+   "tipo": "patronato",
+   "nome": "INAC - INAC UFFICIO 1",
+   "indirizzo": "Via Coni Zugna 58",
+   "municipio": "6",
+   "quartiere": "Porta Ticinese - Conchetta",
+   "lat": 45.455967,
+   "lon": 9.170928,
+   "fonte": "ds550_sede-dei-sindacati-e-patronati"
+  },
+  {
+   "tipo": "patronato",
+   "nome": "INAPA - Milano",
+   "indirizzo": "Via Luigi Federico Menabrea 18",
+   "municipio": "9",
+   "quartiere": "Isola",
+   "lat": 45.495468,
+   "lon": 9.186633,
+   "fonte": "ds550_sede-dei-sindacati-e-patronati"
+  },
+  {
+   "tipo": "patronato",
+   "nome": "INAPI - MILANO CIAIA",
+   "indirizzo": "Via Ignazio Ciaia 1",
+   "telefono": "0236530276",
+   "municipio": "9",
+   "quartiere": "Dergano",
+   "lat": 45.502092,
+   "lon": 9.17559,
+   "fonte": "ds550_sede-dei-sindacati-e-patronati"
+  },
+  {
+   "tipo": "patronato",
+   "nome": "INAPI - MILANO PROV",
+   "indirizzo": "Via California 1/A",
+   "telefono": "0239400616",
+   "municipio": "7",
+   "quartiere": "Porta Magenta",
+   "lat": 45.45909,
+   "lon": 9.160547,
+   "fonte": "ds550_sede-dei-sindacati-e-patronati"
+  },
+  {
+   "tipo": "patronato",
+   "nome": "INAPI - MILANO SUZZANI",
+   "indirizzo": "Via Giovanni Suzzani 18",
+   "telefono": "0235946245",
+   "municipio": "9",
+   "quartiere": "Niguarda - Ca' Granda - Prato Centenaro - Q.Re Fulvio Testi",
+   "lat": 45.506268,
+   "lon": 9.197901,
+   "fonte": "ds550_sede-dei-sindacati-e-patronati"
+  },
+  {
+   "tipo": "patronato",
+   "nome": "INAPI - MILANO VAL TROMPIA",
+   "indirizzo": "Via Val Trompia 43",
+   "municipio": "8",
+   "quartiere": "Quarto Oggiaro - Vialba - Musocco",
+   "lat": 45.519408,
+   "lon": 9.134294,
+   "fonte": "ds550_sede-dei-sindacati-e-patronati"
+  },
+  {
+   "tipo": "patronato",
+   "nome": "INAPI - MILANO VIA PADOVA",
+   "indirizzo": "Via Padova 113",
+   "municipio": "2",
+   "quartiere": "Padova - Turro - Crescenzago",
+   "lat": 45.496998,
+   "lon": 9.230882,
+   "fonte": "ds550_sede-dei-sindacati-e-patronati"
+  },
+  {
+   "tipo": "patronato",
+   "nome": "INAS - INAS - MILANO",
+   "indirizzo": "Via Benedetto Marcello 18",
+   "telefono": "0229525021",
+   "municipio": "3",
+   "quartiere": "Buenos Aires - Porta Venezia - Porta Monforte",
+   "lat": 45.480348,
+   "lon": 9.208008,
+   "fonte": "ds550_sede-dei-sindacati-e-patronati"
+  },
+  {
+   "tipo": "patronato",
+   "nome": "INAS - INAS - MILANO GIAMBELLINO",
+   "indirizzo": "Largo Scalabrini Giovanni Battista 6",
+   "telefono": "0220525607",
+   "municipio": "6",
+   "quartiere": "Giambellino",
+   "lat": 45.449793,
+   "lon": 9.141075,
+   "fonte": "ds550_sede-dei-sindacati-e-patronati"
+  },
+  {
+   "tipo": "patronato",
+   "nome": "INAS - INAS - MILANO SAN SIRO",
+   "indirizzo": "Piazzale Selinunte 6",
+   "telefono": "0220525547",
+   "municipio": "7",
+   "quartiere": "San Siro",
+   "lat": 45.472293,
+   "lon": 9.138236,
+   "fonte": "ds550_sede-dei-sindacati-e-patronati"
+  },
+  {
+   "tipo": "patronato",
+   "nome": "INAS - INAS - TREZZO D'ADDA",
+   "indirizzo": "Via Dei Mille 14",
+   "telefono": "03920525293",
+   "municipio": "3",
+   "quartiere": "Buenos Aires - Porta Venezia - Porta Monforte",
+   "lat": 45.469017,
+   "lon": 9.217512,
+   "fonte": "ds550_sede-dei-sindacati-e-patronati"
+  },
+  {
+   "tipo": "patronato",
+   "nome": "INCA - BOVISA - MILANO",
+   "indirizzo": "Via Mercatini 15",
+   "telefono": "0255025309",
+   "municipio": "9",
+   "quartiere": "Bovisa",
+   "lat": 45.501597,
+   "lon": 9.163688,
+   "fonte": "ds550_sede-dei-sindacati-e-patronati"
+  },
+  {
+   "tipo": "patronato",
+   "nome": "INCA - GIAMBELLINO - MILANO",
+   "indirizzo": "Via Giambellino 115",
+   "telefono": "0255025309",
+   "municipio": "6",
+   "quartiere": "Giambellino",
+   "lat": 45.448119,
+   "lon": 9.141323,
+   "fonte": "ds550_sede-dei-sindacati-e-patronati"
+  },
+  {
+   "tipo": "patronato",
+   "nome": "INCA - INCA - GORLA",
+   "indirizzo": "Via Matteo Maria Boiardo 20",
+   "telefono": "0226254333",
+   "municipio": "2",
+   "quartiere": "Padova - Turro - Crescenzago",
+   "lat": 45.499734,
+   "lon": 9.223457,
+   "fonte": "ds550_sede-dei-sindacati-e-patronati"
+  },
+  {
+   "tipo": "patronato",
+   "nome": "INCA - INCA - MILANO",
+   "indirizzo": "C.So Porta Vittoria 43",
+   "telefono": "0255025309",
+   "municipio": "1",
+   "quartiere": "Guastalla",
+   "lat": 45.462447,
+   "lon": 9.204039,
+   "fonte": "ds550_sede-dei-sindacati-e-patronati"
+  },
+  {
+   "tipo": "patronato",
+   "nome": "INCA - INCA - SAN SIRO - MILANO",
+   "indirizzo": "Piazzale Segesta 4",
+   "telefono": "02406878",
+   "municipio": "7",
+   "quartiere": "San Siro",
+   "lat": 45.475961,
+   "lon": 9.137711,
+   "fonte": "ds550_sede-dei-sindacati-e-patronati"
+  },
+  {
+   "tipo": "patronato",
+   "nome": "INCA - LAMBRATE - MILANO",
+   "indirizzo": "Via Conte Rosso 30",
+   "telefono": "0255025309",
+   "municipio": "3",
+   "quartiere": "Lambrate - Ortica",
+   "lat": 45.483732,
+   "lon": 9.24255,
+   "fonte": "ds550_sede-dei-sindacati-e-patronati"
+  },
+  {
+   "tipo": "patronato",
+   "nome": "INCA - SESTO SAN GIOVANNI",
+   "indirizzo": "Via Breda Ernesto 56",
+   "telefono": "0226254333",
+   "municipio": "2",
+   "quartiere": "Gorla - Precotto",
+   "lat": 45.511059,
+   "lon": 9.215326,
+   "fonte": "ds550_sede-dei-sindacati-e-patronati"
+  },
+  {
+   "tipo": "patronato",
+   "nome": "INFORMAFAMIGLIA - SEDE PROVINCIALE",
+   "indirizzo": "Via Egadi 5",
+   "telefono": "0239400616",
+   "municipio": "7",
+   "quartiere": "Porta Magenta",
+   "lat": 45.459873,
+   "lon": 9.1584,
+   "fonte": "ds550_sede-dei-sindacati-e-patronati"
+  },
+  {
+   "tipo": "patronato",
+   "nome": "INPAS - MI0101 / INPAS SEDE MILANO",
+   "indirizzo": "Via Medeghino 34",
+   "telefono": "0289540473",
+   "municipio": "5",
+   "quartiere": "Stadera - Chiesa Rossa - Q.Re Torretta - Conca Fallata",
+   "lat": 45.430686,
+   "lon": 9.178565,
+   "fonte": "ds550_sede-dei-sindacati-e-patronati"
+  },
+  {
+   "tipo": "patronato",
+   "nome": "ITACO - ITACO PROVINCIALE MILANO",
+   "indirizzo": "Via Giuseppe Sirtori 3",
+   "municipio": "3",
+   "quartiere": "Buenos Aires - Porta Venezia - Porta Monforte",
+   "lat": 45.472347,
+   "lon": 9.208346,
+   "fonte": "ds550_sede-dei-sindacati-e-patronati"
+  },
+  {
+   "tipo": "patronato",
+   "nome": "ITACO - ITACO ZONALE MILANO ZONA 1",
+   "indirizzo": "Via Caianello 6",
+   "telefono": "0239283095",
+   "municipio": "9",
+   "quartiere": "Dergano",
+   "lat": 45.500859,
+   "lon": 9.174627,
+   "fonte": "ds550_sede-dei-sindacati-e-patronati"
+  },
+  {
+   "tipo": "patronato",
+   "nome": "ITAL - MI VIA HERMADA",
+   "indirizzo": "Via Hermada 14",
+   "telefono": "026432140",
+   "municipio": "9",
+   "quartiere": "Niguarda - Ca' Granda - Prato Centenaro - Q.Re Fulvio Testi",
+   "lat": 45.514746,
+   "lon": 9.189792,
+   "fonte": "ds550_sede-dei-sindacati-e-patronati"
+  },
+  {
+   "tipo": "patronato",
+   "nome": "ITAL - MILANO 2",
+   "indirizzo": "Via Campanini Alfredo 7",
+   "telefono": "02671103409",
+   "municipio": "9",
+   "quartiere": "Porta Garibaldi - Porta Nuova",
+   "lat": 45.486198,
+   "lon": 9.198,
+   "fonte": "ds550_sede-dei-sindacati-e-patronati"
+  },
+  {
+   "tipo": "patronato",
+   "nome": "ITAL - MILANO 3",
+   "indirizzo": "Via Stefano Canzio 14",
+   "telefono": "022043441",
+   "municipio": "3",
+   "quartiere": "Buenos Aires - Porta Venezia - Porta Monforte",
+   "lat": 45.485118,
+   "lon": 9.218637,
+   "fonte": "ds550_sede-dei-sindacati-e-patronati"
+  },
+  {
+   "tipo": "patronato",
+   "nome": "ITAL - MILANO PROVINCIALE",
+   "indirizzo": "Via Mauro Macchi 27",
+   "telefono": "02671103409",
+   "municipio": "2",
+   "quartiere": "Stazione Centrale - Ponte Seveso",
+   "lat": 45.483345,
+   "lon": 9.206055,
+   "fonte": "ds550_sede-dei-sindacati-e-patronati"
+  },
+  {
+   "tipo": "patronato",
+   "nome": "ITAL - MILANO SESTO S. GIOVANNI",
+   "indirizzo": "Via Ercole Marelli 497",
+   "telefono": "022403990",
+   "municipio": "5",
+   "quartiere": "Scalo Romana",
+   "lat": 45.442748,
+   "lon": 9.201245,
+   "fonte": "ds550_sede-dei-sindacati-e-patronati"
+  },
+  {
+   "tipo": "patronato",
+   "nome": "ITAL - MILANO V. MACCHI",
+   "indirizzo": "Via Scarlatti 29",
+   "telefono": "02671103409",
+   "municipio": "2",
+   "quartiere": "Stazione Centrale - Ponte Seveso",
+   "lat": 45.484182,
+   "lon": 9.206667,
+   "fonte": "ds550_sede-dei-sindacati-e-patronati"
+  },
+  {
+   "tipo": "patronato",
+   "nome": "ITAL - SAN DONATO M.SE",
+   "indirizzo": "Via Cesare Battisti 43",
+   "telefono": "025272999",
+   "municipio": "1",
+   "quartiere": "Guastalla",
+   "lat": 45.463149,
+   "lon": 9.199175,
+   "fonte": "ds550_sede-dei-sindacati-e-patronati"
+  },
+  {
+   "tipo": "patronato",
+   "nome": "LABOR - MILANO MI0105",
+   "indirizzo": "Via Boltraffio 7",
+   "telefono": "0272080632",
+   "municipio": "9",
+   "quartiere": "Isola",
+   "lat": 45.491788,
+   "lon": 9.186734,
+   "fonte": "ds550_sede-dei-sindacati-e-patronati"
+  },
+  {
+   "tipo": "patronato",
+   "nome": "LABOR - SEDE MI0104",
+   "indirizzo": "Largo Promessi Sposi 2",
+   "municipio": "5",
+   "quartiere": "Stadera - Chiesa Rossa - Q.Re Torretta - Conca Fallata",
+   "lat": 45.43551,
+   "lon": 9.173556,
+   "fonte": "ds550_sede-dei-sindacati-e-patronati"
+  },
+  {
+   "tipo": "patronato",
+   "nome": "Patronato Famiglia Italiana - MILANO PROVINCIALE",
+   "indirizzo": "Via Padova 157",
+   "telefono": "022610741",
+   "municipio": "2",
+   "quartiere": "Padova - Turro - Crescenzago",
+   "lat": 45.500391,
+   "lon": 9.235377,
+   "fonte": "ds550_sede-dei-sindacati-e-patronati"
+  },
+  {
+   "tipo": "patronato",
+   "nome": "SENAS - PROVINCIALE MILANO",
+   "indirizzo": "Via Belinzaghi 11/H",
+   "telefono": "026684972",
+   "municipio": "9",
+   "quartiere": "Isola",
+   "lat": 45.495891,
+   "lon": 9.18779,
+   "fonte": "ds550_sede-dei-sindacati-e-patronati"
+  },
+  {
+   "tipo": "patronato",
+   "nome": "SENAS - Sede Zonale Milano",
+   "indirizzo": "Via Delle Ande 15",
+   "telefono": "023087498",
+   "municipio": "8",
+   "quartiere": "Q.Re Gallaratese - Q.Re San Leonardo - Lampugnano",
+   "lat": 45.495414,
+   "lon": 9.126995,
+   "fonte": "ds550_sede-dei-sindacati-e-patronati"
+  },
+  {
+   "tipo": "patronato",
+   "nome": "SENAS - Sede Zonale Milano val Trompia",
+   "indirizzo": "Via Val Trompia 43",
+   "telefono": "0233200411",
+   "municipio": "8",
+   "quartiere": "Quarto Oggiaro - Vialba - Musocco",
+   "lat": 45.519408,
+   "lon": 9.134294,
+   "fonte": "ds550_sede-dei-sindacati-e-patronati"
+  },
+  {
+   "tipo": "patronato",
+   "nome": "SENAS - Zonale Milano",
+   "indirizzo": "Via Cola Di Rienzo 44",
+   "telefono": "0287212241",
+   "municipio": "6",
+   "quartiere": "Porta Genova",
+   "lat": 45.455076,
+   "lon": 9.156348,
+   "fonte": "ds550_sede-dei-sindacati-e-patronati"
+  },
+  {
+   "tipo": "patronato",
+   "nome": "SIAS - SIAS MILANO",
+   "indirizzo": "Via Civitali 23",
+   "telefono": "016230313500",
+   "municipio": "7",
+   "quartiere": "San Siro",
+   "lat": 45.470592,
+   "lon": 9.134411,
+   "fonte": "ds550_sede-dei-sindacati-e-patronati"
+  },
+  {
+   "tipo": "patronato",
+   "nome": "SIAS - SIAS MILANO - ABBA",
+   "indirizzo": "Via Giuseppe Cesare Abba 31",
+   "telefono": "014539715600",
+   "municipio": "9",
+   "quartiere": "Dergano",
+   "lat": 45.502632,
+   "lon": 9.178506,
+   "fonte": "ds550_sede-dei-sindacati-e-patronati"
+  },
+  {
+   "tipo": "patronato",
+   "nome": "SIAS - SIAS MILANO - Faenza",
+   "indirizzo": "Viale Faenza 25",
+   "municipio": "6",
+   "quartiere": "Barona",
+   "lat": 45.435888,
+   "lon": 9.148212,
+   "fonte": "ds550_sede-dei-sindacati-e-patronati"
+  },
+  {
+   "tipo": "patronato",
+   "nome": "SIAS - SIAS MILANO - Goldoni",
+   "indirizzo": "Via Carlo Goldoni 12/A",
+   "municipio": "3",
+   "quartiere": "Buenos Aires - Porta Venezia - Porta Monforte",
+   "lat": 45.469134,
+   "lon": 9.209745,
+   "fonte": "ds550_sede-dei-sindacati-e-patronati"
+  },
+  {
+   "tipo": "patronato",
+   "nome": "SIAS - SIAS MILANO BOTTICELLI",
+   "indirizzo": "Via Sandro Botticelli 2",
+   "municipio": "3",
+   "quartiere": "Citta' Studi",
+   "lat": 45.473247,
+   "lon": 9.224442,
+   "fonte": "ds550_sede-dei-sindacati-e-patronati"
+  },
+  {
+   "tipo": "patronato",
+   "nome": "SIAS - SIAS MILANO FILZI",
+   "indirizzo": "Via Fabio Filzi 2",
+   "municipio": "2",
+   "quartiere": "Stazione Centrale - Ponte Seveso",
+   "lat": 45.481644,
+   "lon": 9.198666,
+   "fonte": "ds550_sede-dei-sindacati-e-patronati"
+  },
+  {
+   "tipo": "patronato",
+   "nome": "SIAS - SIAS MILANO SASSETTI",
+   "indirizzo": "Via Melchiorre Gioia 70",
+   "municipio": "2",
+   "quartiere": "Stazione Centrale - Ponte Seveso",
+   "lat": 45.490329,
+   "lon": 9.202275,
+   "fonte": "ds550_sede-dei-sindacati-e-patronati"
+  },
+  {
+   "tipo": "patronato",
+   "nome": "SIAS - SIAS MILANO SAVOLDO",
+   "indirizzo": "Via Giangirolamo Savoldo 4",
+   "municipio": "9",
+   "quartiere": "Greco - Segnano",
+   "lat": 45.509247,
+   "lon": 9.204197,
+   "fonte": "ds550_sede-dei-sindacati-e-patronati"
+  },
+  {
+   "tipo": "municipio",
+   "nome": "Municipio 1 - Centro storico",
+   "indirizzo": "Via Guglielmo Marconi 2, 20123",
+   "telefono": "02 88452689",
+   "email": "M.Municipio1@comune.milano.it",
+   "mezzi_pubblici": "Metro:linea 1 (rossa) - linea 3 (gialla) - Tram: 2-3-12-14-15-16-19",
+   "municipio": "1",
+   "quartiere": "Duomo",
+   "lat": 45.463365,
+   "lon": 9.189857,
+   "fonte": "ds1299-sedi-municipi-nel-comune-di-milano"
+  },
+  {
+   "tipo": "municipio",
+   "nome": "Municipio 2",
+   "indirizzo": "Viale Zara 100, 20125",
+   "telefono": "02.884.58223  - 64253",
+   "email": "M.Municipio2@comune.milano.it",
+   "mezzi_pubblici": "MM5 Marche/MM3 Zara - Tram 2-3-12-14-15-16-19",
+   "municipio": "2",
+   "quartiere": "Maciachini - Maggiolina",
+   "lat": 45.497279,
+   "lon": 9.195895,
+   "fonte": "ds1299-sedi-municipi-nel-comune-di-milano"
+  },
+  {
+   "tipo": "municipio",
+   "nome": "Municipio 3",
+   "indirizzo": "Via Sansovino 9, 20133",
+   "telefono": "02 884.58300 no anagrafe",
+   "email": "M.Municipio3@comune.milano.it",
+   "mezzi_pubblici": "MM 1-2 (Lima,Loreto,Piola) Filobus 90-91-92 Autobus 39",
+   "municipio": "3",
+   "quartiere": "Buenos Aires - Porta Venezia - Porta Monforte",
+   "lat": 45.479225,
+   "lon": 9.218574,
+   "fonte": "ds1299-sedi-municipi-nel-comune-di-milano"
+  },
+  {
+   "tipo": "municipio",
+   "nome": "Municipio 4",
+   "indirizzo": "Via Oglio 18, 20139",
+   "telefono": "02 884.58400 no anagrafe - dal lunedi al venerdi 9:00 - 12:00",
+   "email": "M.Municipio4@comune.milano.it",
+   "mezzi_pubblici": "MM3 Brenta/Corvetto - Bus: 34-65-77-84-95",
+   "municipio": "4",
+   "quartiere": "Lodi - Corvetto",
+   "lat": 45.440367,
+   "lon": 9.2178,
+   "fonte": "ds1299-sedi-municipi-nel-comune-di-milano"
+  },
+  {
+   "tipo": "municipio",
+   "nome": "Municipio 5",
+   "indirizzo": "Viale Tibaldi 41, 20136",
+   "telefono": "02 884.53541",
+   "email": "M.Municipio5@comune.milano.it",
+   "mezzi_pubblici": "tram 15 - filobus 90, 91",
+   "municipio": "5",
+   "quartiere": "Porta Ticinese - Conca Del Naviglio",
+   "lat": 45.444604,
+   "lon": 9.183194,
+   "fonte": "ds1299-sedi-municipi-nel-comune-di-milano"
+  },
+  {
+   "tipo": "municipio",
+   "nome": "Municipio 6",
+   "indirizzo": "Viale Legioni Romane 54, 20147",
+   "telefono": "02 884 58636",
+   "email": "M.Municipio6@comune.milano.it",
+   "mezzi_pubblici": "MM 1 (Primaticcio) - Autobus 58 - 63 - 64",
+   "municipio": "6",
+   "quartiere": "Forze Armate",
+   "lat": 45.459587,
+   "lon": 9.127671,
+   "fonte": "ds1299-sedi-municipi-nel-comune-di-milano"
+  },
+  {
+   "tipo": "municipio",
+   "nome": "Municipio 7",
+   "indirizzo": "Via Anselmo da Baggio 55, 20153",
+   "telefono": "02 884 58700",
+   "email": "M.Municipio7@comune.milano.it",
+   "mezzi_pubblici": "Autobus 67",
+   "municipio": "7",
+   "quartiere": "Baggio - Q.Re Degli Olmi - Q.Re Valsesia",
+   "lat": 45.463432,
+   "lon": 9.088685,
+   "fonte": "ds1299-sedi-municipi-nel-comune-di-milano"
+  },
+  {
+   "tipo": "municipio",
+   "nome": "Municipio 8",
+   "indirizzo": "Via Quarenghi 21, 20151",
+   "telefono": "02 884.58820",
+   "email": "M.Municipio8@comune.milano.it",
+   "mezzi_pubblici": "M1 Bonola - Autobus 40-64-68-69",
+   "municipio": "8",
+   "quartiere": "Q.Re Gallaratese - Q.Re San Leonardo - Lampugnano",
+   "lat": 45.496472,
+   "lon": 9.115104,
+   "fonte": "ds1299-sedi-municipi-nel-comune-di-milano"
+  },
+  {
+   "tipo": "municipio",
+   "nome": "Municipio 9",
+   "indirizzo": "Via Guerzoni 38, 20158",
+   "telefono": "02 884 58777 dal lunedi al venerdi orario 9:00 - 12:30  14:30 - 15:30",
+   "email": "M.Municipio9@comune.milano.it",
+   "mezzi_pubblici": "MM3 Dergano - Maciachini - Autobus 82 - Filobus 90-92 - Tram 2",
+   "municipio": "9",
+   "quartiere": "Dergano",
+   "lat": 45.50014,
+   "lon": 9.175739,
+   "fonte": "ds1299-sedi-municipi-nel-comune-di-milano"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Bolivar",
+   "linee": "M4",
+   "lat": 45.455319,
+   "lon": 9.153149,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "California",
+   "linee": "M4",
+   "lat": 45.457548,
+   "lon": 9.160062,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Segneri",
+   "linee": "M4",
+   "lat": 45.446535,
+   "lon": 9.130565,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Tolstoj",
+   "linee": "M4",
+   "lat": 45.453597,
+   "lon": 9.148017,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Coni Zugna",
+   "linee": "M4",
+   "lat": 45.459088,
+   "lon": 9.164912,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "De Amicis",
+   "linee": "M4",
+   "lat": 45.458756,
+   "lon": 9.178004,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Frattini",
+   "linee": "M4",
+   "lat": 45.451821,
+   "lon": 9.142448,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Gelsomini",
+   "linee": "M4",
+   "lat": 45.449616,
+   "lon": 9.135715,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "San Ambrogio",
+   "linee": "M4",
+   "lat": 45.461817,
+   "lon": 9.17322,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Sforza-Policlinico",
+   "linee": "M4",
+   "lat": 45.45972,
+   "lon": 9.195465,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Santa Sofia",
+   "linee": "M4",
+   "lat": 45.456267,
+   "lon": 9.18818,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Vetra",
+   "linee": "M4",
+   "lat": 45.457128,
+   "lon": 9.18232,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "San Cristoforo",
+   "linee": "M4",
+   "lat": 45.442357,
+   "lon": 9.129774,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Tricolore",
+   "linee": "M4",
+   "lat": 45.467904,
+   "lon": 9.207771,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Dateo",
+   "linee": "M4",
+   "lat": 45.467991,
+   "lon": 9.218453,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Susa",
+   "linee": "M4",
+   "lat": 45.468069,
+   "lon": 9.224884,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Argonne",
+   "linee": "M4",
+   "lat": 45.468131,
+   "lon": 9.231956,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Stazione Forlanini",
+   "linee": "M4",
+   "lat": 45.464313,
+   "lon": 9.23635,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Repetti",
+   "linee": "M4",
+   "lat": 45.462009,
+   "lon": 9.240393,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Linate Aeroporto",
+   "linee": "M4",
+   "lat": 45.46285,
+   "lon": 9.277901,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Tre Torri",
+   "linee": "M5",
+   "lat": 45.47814,
+   "lon": 9.156675,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Zara",
+   "linee": "M3, M5",
+   "lat": 45.492664,
+   "lon": 9.192601,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Wagner",
+   "linee": "M1",
+   "lat": 45.46795,
+   "lon": 9.155914,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Vimodrone",
+   "linee": "M2",
+   "lat": 45.515783,
+   "lon": 9.285989,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Villa S.G.",
+   "linee": "M1",
+   "lat": 45.517455,
+   "lon": 9.22613,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Villa Pompea",
+   "linee": "M2",
+   "lat": 45.527849,
+   "lon": 9.384974,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Villa Fiorita",
+   "linee": "M2",
+   "lat": 45.52074,
+   "lon": 9.345971,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Uruguay",
+   "linee": "M1",
+   "lat": 45.493717,
+   "lon": 9.120546,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Udine",
+   "linee": "M2",
+   "lat": 45.491204,
+   "lon": 9.236996,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Turro",
+   "linee": "M1",
+   "lat": 45.500446,
+   "lon": 9.221005,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Turati",
+   "linee": "M3",
+   "lat": 45.475041,
+   "lon": 9.194707,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Sondrio",
+   "linee": "M3",
+   "lat": 45.48999,
+   "lon": 9.200558,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "S.Leonardo",
+   "linee": "M1",
+   "lat": 45.501156,
+   "lon": 9.101481,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Sesto Rondo",
+   "linee": "M1",
+   "lat": 45.534159,
+   "lon": 9.231246,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Sesto Marelli",
+   "linee": "M1",
+   "lat": 45.523477,
+   "lon": 9.227962,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Sesto 1 Maggio Fs",
+   "linee": "M1",
+   "lat": 45.541691,
+   "lon": 9.238333,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Segesta",
+   "linee": "M5",
+   "lat": 45.476359,
+   "lon": 9.137894,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "San Siro Stadio",
+   "linee": "M5",
+   "lat": 45.476259,
+   "lon": 9.118315,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "San Siro Ippodromo",
+   "linee": "M5",
+   "lat": 45.476209,
+   "lon": 9.129012,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "San Donato",
+   "linee": "M3",
+   "lat": 45.429206,
+   "lon": 9.256234,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "San Babila",
+   "linee": "M1, M4",
+   "lat": 45.466521,
+   "lon": 9.197529,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "S.Ambrogio",
+   "linee": "M2",
+   "lat": 45.461624,
+   "lon": 9.173168,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "S.Agostino",
+   "linee": "M2",
+   "lat": 45.45862,
+   "lon": 9.169814,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Rovereto",
+   "linee": "M1",
+   "lat": 45.495533,
+   "lon": 9.219506,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Romolo",
+   "linee": "M2",
+   "lat": 45.443733,
+   "lon": 9.167677,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Rogoredo Fs",
+   "linee": "M3",
+   "lat": 45.433586,
+   "lon": 9.238089,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Rho Fieramilano",
+   "linee": "M1",
+   "lat": 45.51984,
+   "lon": 9.087107,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Repubblica",
+   "linee": "M3",
+   "lat": 45.48009,
+   "lon": 9.198856,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Qt8",
+   "linee": "M1",
+   "lat": 45.485958,
+   "lon": 9.137182,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "P.Ta Venezia",
+   "linee": "M1",
+   "lat": 45.474419,
+   "lon": 9.205046,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "P.Ta Genova F.S.",
+   "linee": "M2",
+   "lat": 45.452378,
+   "lon": 9.169606,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Primaticcio",
+   "linee": "M1",
+   "lat": 45.459414,
+   "lon": 9.12926,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Precotto",
+   "linee": "M1",
+   "lat": 45.51203,
+   "lon": 9.224499,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Porto Di Mare",
+   "linee": "M3",
+   "lat": 45.437128,
+   "lon": 9.230311,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Portello",
+   "linee": "M5",
+   "lat": 45.4808,
+   "lon": 9.151499,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Porta Romana",
+   "linee": "M3",
+   "lat": 45.451434,
+   "lon": 9.2034,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Ponale",
+   "linee": "M5",
+   "lat": 45.521995,
+   "lon": 9.209474,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Piola",
+   "linee": "M2",
+   "lat": 45.481145,
+   "lon": 9.225917,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Pero",
+   "linee": "M1",
+   "lat": 45.5088,
+   "lon": 9.085807,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Pasteur",
+   "linee": "M1",
+   "lat": 45.491069,
+   "lon": 9.21818,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Palestro",
+   "linee": "M1",
+   "lat": 45.471425,
+   "lon": 9.201949,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Pagano",
+   "linee": "M1",
+   "lat": 45.468281,
+   "lon": 9.161095,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Moscova",
+   "linee": "M2",
+   "lat": 45.47744,
+   "lon": 9.184476,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Monumentale",
+   "linee": "M5",
+   "lat": 45.484815,
+   "lon": 9.179793,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Montenapoleone",
+   "linee": "M3",
+   "lat": 45.470006,
+   "lon": 9.192848,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Molino Dorino",
+   "linee": "M1",
+   "lat": 45.505212,
+   "lon": 9.092966,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Missori",
+   "linee": "M3",
+   "lat": 45.460109,
+   "lon": 9.189027,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Marche",
+   "linee": "M5",
+   "lat": 45.496146,
+   "lon": 9.194824,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Maciachini",
+   "linee": "M3",
+   "lat": 45.497702,
+   "lon": 9.185043,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Lotto",
+   "linee": "M5",
+   "lat": 45.479782,
+   "lon": 9.143669,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Lotto Fieramilanocity",
+   "linee": "M1",
+   "lat": 45.479145,
+   "lon": 9.143749,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Loreto",
+   "linee": "M2",
+   "lat": 45.484594,
+   "lon": 9.215166,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Loreto",
+   "linee": "M1",
+   "lat": 45.48624,
+   "lon": 9.216982,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Lodi T.I.B.B.",
+   "linee": "M3",
+   "lat": 45.446764,
+   "lon": 9.210816,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Lima",
+   "linee": "M1",
+   "lat": 45.480346,
+   "lon": 9.210983,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Lanza",
+   "linee": "M2",
+   "lat": 45.47223,
+   "lon": 9.182548,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Lampugnano",
+   "linee": "M1",
+   "lat": 45.489402,
+   "lon": 9.127319,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Lambrate Fs",
+   "linee": "M2",
+   "lat": 45.484248,
+   "lon": 9.23483,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Istria",
+   "linee": "M5",
+   "lat": 45.501626,
+   "lon": 9.19792,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Isola",
+   "linee": "M5",
+   "lat": 45.487608,
+   "lon": 9.191263,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Inganni",
+   "linee": "M1",
+   "lat": 45.457563,
+   "lon": 9.122263,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Gorla",
+   "linee": "M1",
+   "lat": 45.506734,
+   "lon": 9.222739,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Gorgonzola",
+   "linee": "M2",
+   "lat": 45.536741,
+   "lon": 9.403454,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Gioia",
+   "linee": "M2",
+   "lat": 45.4849,
+   "lon": 9.194857,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Gessate",
+   "linee": "M2",
+   "lat": 45.545287,
+   "lon": 9.436625,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Gerusalemme",
+   "linee": "M5",
+   "lat": 45.484522,
+   "lon": 9.166778,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Garibaldi Fs",
+   "linee": "M2, M5",
+   "lat": 45.48364,
+   "lon": 9.186742,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Gambara",
+   "linee": "M1",
+   "lat": 45.464896,
+   "lon": 9.143028,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Famagosta",
+   "linee": "M2",
+   "lat": 45.436895,
+   "lon": 9.168013,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Duomo",
+   "linee": "M3",
+   "lat": 45.463904,
+   "lon": 9.188611,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Duomo",
+   "linee": "M1",
+   "lat": 45.464622,
+   "lon": 9.189596,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Domodossola",
+   "linee": "M5",
+   "lat": 45.481619,
+   "lon": 9.16226,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Dergano",
+   "linee": "M3",
+   "lat": 45.505537,
+   "lon": 9.179603,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "De Angeli",
+   "linee": "M1",
+   "lat": 45.466431,
+   "lon": 9.149566,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Crocetta",
+   "linee": "M3",
+   "lat": 45.456551,
+   "lon": 9.195103,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Crescenzago",
+   "linee": "M2",
+   "lat": 45.505254,
+   "lon": 9.248193,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Corvetto",
+   "linee": "M3",
+   "lat": 45.440411,
+   "lon": 9.22347,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Cordusio",
+   "linee": "M1",
+   "lat": 45.465532,
+   "lon": 9.186235,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Conciliazione",
+   "linee": "M1",
+   "lat": 45.467534,
+   "lon": 9.166487,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Comasina",
+   "linee": "M3",
+   "lat": 45.528133,
+   "lon": 9.163729,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Cologno Sud",
+   "linee": "M2",
+   "lat": 45.520213,
+   "lon": 9.274927,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Cologno Nord",
+   "linee": "M2",
+   "lat": 45.534303,
+   "lon": 9.291094,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Cologno Centro",
+   "linee": "M2",
+   "lat": 45.527478,
+   "lon": 9.282964,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Cimiano",
+   "linee": "M2",
+   "lat": 45.500042,
+   "lon": 9.241426,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Cernusco Sul Naviglio",
+   "linee": "M2",
+   "lat": 45.521069,
+   "lon": 9.331378,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Centrale Fs",
+   "linee": "M2, M3",
+   "lat": 45.48444,
+   "lon": 9.202613,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Cenisio",
+   "linee": "M5",
+   "lat": 45.48749,
+   "lon": 9.171947,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Cassina De Pecchi",
+   "linee": "M2",
+   "lat": 45.521864,
+   "lon": 9.363122,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Cascina Gobba",
+   "linee": "M2",
+   "lat": 45.511442,
+   "lon": 9.26051,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Cascina Burrona",
+   "linee": "M2",
+   "lat": 45.517364,
+   "lon": 9.297835,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Cascina Antonietta",
+   "linee": "M2",
+   "lat": 45.542079,
+   "lon": 9.4235,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Cairoli",
+   "linee": "M1",
+   "lat": 45.468367,
+   "lon": 9.182025,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Caiazzo",
+   "linee": "M2",
+   "lat": 45.485318,
+   "lon": 9.209409,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Ca Granda",
+   "linee": "M5",
+   "lat": 45.507243,
+   "lon": 9.20111,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Cadorna Fn",
+   "linee": "M2",
+   "lat": 45.468155,
+   "lon": 9.177102,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Cadorna Fn",
+   "linee": "M1",
+   "lat": 45.468195,
+   "lon": 9.176426,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Bussero",
+   "linee": "M2",
+   "lat": 45.525302,
+   "lon": 9.375897,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Buonarroti",
+   "linee": "M1",
+   "lat": 45.470402,
+   "lon": 9.155292,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Brenta",
+   "linee": "M3",
+   "lat": 45.442811,
+   "lon": 9.218481,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Bonola",
+   "linee": "M1",
+   "lat": 45.497003,
+   "lon": 9.110148,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Bisceglie",
+   "linee": "M1",
+   "lat": 45.45538,
+   "lon": 9.112926,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Bignami",
+   "linee": "M5",
+   "lat": 45.526784,
+   "lon": 9.212181,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Bicocca",
+   "linee": "M5",
+   "lat": 45.514734,
+   "lon": 9.20537,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Bande Nere",
+   "linee": "M1",
+   "lat": 45.461504,
+   "lon": 9.136485,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Assago Milanofiori Nord",
+   "linee": "M2",
+   "lat": 45.409455,
+   "lon": 9.150046,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Assago Milanofiori Forum",
+   "linee": "M2",
+   "lat": 45.401749,
+   "lon": 9.145539,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Amendola",
+   "linee": "M1",
+   "lat": 45.473679,
+   "lon": 9.150969,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Affori Fn",
+   "linee": "M3",
+   "lat": 45.521682,
+   "lon": 9.168252,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Affori Centro",
+   "linee": "M3",
+   "lat": 45.513554,
+   "lon": 9.17398,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  },
+  {
+   "tipo": "metro",
+   "nome": "Abbiategrasso",
+   "linee": "M2",
+   "lat": 45.429995,
+   "lon": 9.177323,
+   "fonte": "ds535_atm-fermate-linee-metropolitane"
+  }
+ ]
+}
