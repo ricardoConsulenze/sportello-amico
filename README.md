@@ -19,13 +19,13 @@ the application on the Comune's official site, and the pass office decides.
 | **License** | MIT ([LICENSE](LICENSE)) |
 
 ## Team
-| Name | Contacts |
+| Name | Links |
 |---|---|
-| Massimiliano Mancini Tortora | massimiliano.mancini.tortora@gmail.com · [LinkedIn](https://www.linkedin.com/in/massimiliano-mancini-tortora/) · GitHub [@MAXMT75](https://github.com/MAXMT75) |
-| Francesca Sampietro | francesca.sampietro@gmail.com |
+| Massimiliano Mancini Tortora | [LinkedIn](https://www.linkedin.com/in/massimiliano-mancini-tortora/) · GitHub [@MAXMT75](https://github.com/MAXMT75) |
+| Francesca Sampietro | |
 | Iuliia Vorobiova | [LinkedIn](https://www.linkedin.com/in/iuliiavorobiova) |
-| Ricardo Matamoros | ricardo.matamoros95@gmail.com · [LinkedIn](https://www.linkedin.com/in/ricardo-matamoros-679284168) |
-| Reda Charf | redino98@gmail.com · [LinkedIn](https://www.linkedin.com/in/redacharf/) |
+| Ricardo Matamoros | [LinkedIn](https://www.linkedin.com/in/ricardo-matamoros-679284168) |
+| Reda Charf | [LinkedIn](https://www.linkedin.com/in/redacharf/) |
 
 ## The problem and who has it
 The online CUDE form has 10 screens. Most rejections and requests for missing documents come from a
