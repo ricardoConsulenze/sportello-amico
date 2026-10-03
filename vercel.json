@@ -1,0 +1,15 @@
+{
+  "framework": null,
+  "buildCommand": "",
+  "outputDirectory": "static",
+  "functions": {
+    "api/index.py": {
+      "maxDuration": 60,
+      "includeFiles": "{server.py,rules.py,demo_docs/**,knowledge/**,docs/procedura-pass-disabili.md}"
+    }
+  },
+  "rewrites": [
+    { "source": "/api/:path*", "destination": "/api/index" },
+    { "source": "/demo/:path*", "destination": "/api/index" }
+  ]
+}
