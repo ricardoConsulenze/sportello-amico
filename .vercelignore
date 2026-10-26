@@ -1,0 +1,13 @@
+.venv/
+.claude/
+.github/
+__pycache__/
+*.pyc
+.env
+uploads/
+documenti-demo/
+deploy/
+tests/
+docs/pitch/
+docs/screenshots/
+docs/video/
